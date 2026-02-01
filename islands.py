@@ -118,6 +118,12 @@ def _calculate_land_coverage(bbox_polygon: Polygon, island_polygon: Polygon) -> 
     return intersection.area / bbox_polygon.area if bbox_polygon.area > 0 else 0
 
 
+def _calculate_island_coverage(bbox_polygon: Polygon, island_polygon: Polygon) -> float:
+    """Calculate what fraction of the island is covered by the bbox."""
+    intersection = bbox_polygon.intersection(island_polygon)
+    return intersection.area / island_polygon.area if island_polygon.area > 0 else 0
+
+
 def _calculate_land_coverage_multi(bbox_polygon: Polygon, island_polygons: list[Polygon]) -> float:
     """Calculate what fraction of the bbox is covered by land from multiple islands."""
     combined = unary_union(island_polygons)
@@ -168,7 +174,7 @@ def _select_two_random_islands(
 def generate_random_bbox_pair(
     island1: IslandName | None = None,
     island2: IslandName | None = None,
-    min_land_coverage: float = 0.1,
+    min_island_coverage: float = 0.3,
     min_padding_ratio: float = 0.1,
     max_padding_ratio: float = 0.4,
     max_attempts: int = 100,
@@ -184,7 +190,7 @@ def generate_random_bbox_pair(
     Args:
         island1: First island, or None for random selection
         island2: Second island, or None for random selection
-        min_land_coverage: Minimum fraction of land in bbox (0-1)
+        min_island_coverage: Minimum fraction of each island covered by bbox (0-1)
         min_padding_ratio: Minimum extra padding as ratio of combined bounds
         max_padding_ratio: Maximum extra padding as ratio of combined bounds
         max_attempts: Maximum attempts to find valid bbox
@@ -243,9 +249,11 @@ def generate_random_bbox_pair(
         north = center_y + bbox_height / 2
         
         bbox_polygon = box(west, south, east, north)
-        land_coverage = _calculate_land_coverage_multi(bbox_polygon, island_polygons)
-        
-        if land_coverage >= min_land_coverage:
+        island_coverages = [
+            _calculate_island_coverage(bbox_polygon, island_polygons[0]),
+            _calculate_island_coverage(bbox_polygon, island_polygons[1]),
+        ]
+        if all(coverage >= min_island_coverage for coverage in island_coverages):
             return (west, south, east, north), (island1, island2)
     
     bbox_width = combined_width * 1.2
@@ -335,7 +343,7 @@ def generate_random_view(
     island: IslandName | None = None,
     bbox_size_km: float = 15.0,
     min_land_coverage_single: float = 0.3,
-    min_land_coverage_pair: float = 0.1,
+    min_island_coverage_pair: float = 0.3,
     min_padding_ratio_pair: float = 0.1,
     max_padding_ratio_pair: float = 0.4,
     max_attempts: int = 100,
@@ -352,7 +360,7 @@ def generate_random_view(
         island: Specific island for single mode (ignored in pair mode)
         bbox_size_km: Height of bbox in km for single mode
         min_land_coverage_single: Minimum land coverage for single mode
-        min_land_coverage_pair: Minimum land coverage for pair mode
+        min_island_coverage_pair: Minimum island coverage for pair mode
         min_padding_ratio_pair: Min padding ratio for pair mode
         max_padding_ratio_pair: Max padding ratio for pair mode
         max_attempts: Maximum attempts to find valid bbox
@@ -382,7 +390,7 @@ def generate_random_view(
         return bbox, selected_island, "single"
     else:
         bbox, (island1, island2) = generate_random_bbox_pair(
-            min_land_coverage=min_land_coverage_pair,
+            min_island_coverage=min_island_coverage_pair,
             min_padding_ratio=min_padding_ratio_pair,
             max_padding_ratio=max_padding_ratio_pair,
             max_attempts=max_attempts,

@@ -6,6 +6,7 @@ import logging
 import os
 import platform
 import subprocess
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -41,19 +42,16 @@ def set_wallpaper(image_path: str) -> bool:
 
 def _set_wallpaper_macos(image_path: str) -> bool:
     """Set wallpaper on macOS using multiple methods for compatibility."""
-    
-    if _set_wallpaper_macos_swift(image_path):
-        return True
-    
-    if _set_wallpaper_macos_appkit(image_path):
-        return True
-    
-    if _set_wallpaper_macos_applescript(image_path):
-        return True
-    
-    if _set_wallpaper_macos_desktoppr(image_path):
-        return True
-    
+    setters = [
+        _set_wallpaper_macos_swift,
+        _set_wallpaper_macos_appkit,
+        _set_wallpaper_macos_applescript,
+        _set_wallpaper_macos_desktoppr,
+    ]
+    for setter in setters:
+        if setter(image_path):
+            _enable_macos_all_spaces(image_path)
+            return True
     logger.error("All macOS wallpaper methods failed")
     return False
 
@@ -75,9 +73,6 @@ def _set_wallpaper_macos_swift(image_path: str) -> bool:
             text=True
         )
         logger.info("Wallpaper set successfully via Swift binary")
-        
-        _enable_macos_all_spaces(image_path)
-        
         return True
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
         logger.debug(f"Swift binary method failed: {e}")
@@ -107,25 +102,22 @@ def _enable_macos_all_spaces(image_path: str) -> bool:
             data = plistlib.load(f)
         
         desktop_entry = None
-        displays = data.get('Displays', {})
-        for display_data in displays.values():
-            if 'Desktop' in display_data:
-                desktop_entry = display_data['Desktop']
+        for _ in range(5):
+            desktop_entry = _find_macos_desktop_entry(data)
+            if desktop_entry:
                 break
-        
-        if not desktop_entry:
-            desktop_entry = data.get('SystemDefault', {}).get('Desktop')
-        
+            time.sleep(0.2)
+
         if not desktop_entry:
             logger.debug("Could not find Desktop entry in wallpaper plist")
             return False
         
         if 'AllSpacesAndDisplays' not in data:
             data['AllSpacesAndDisplays'] = {}
-        
+
         data['AllSpacesAndDisplays']['Desktop'] = desktop_entry
         data['AllSpacesAndDisplays']['Type'] = 'all'
-        
+
         file_url = f"file://{image_path}"
         if 'Content' in desktop_entry and 'Choices' in desktop_entry['Content']:
             for choice in desktop_entry['Content']['Choices']:
@@ -136,11 +128,55 @@ def _enable_macos_all_spaces(image_path: str) -> bool:
             plistlib.dump(data, f)
         
         logger.debug("Updated wallpaper plist for all-spaces support")
+        _reload_macos_wallpaper_agent()
         return True
         
     except Exception as e:
         logger.debug(f"Failed to update wallpaper plist: {e}")
         return False
+
+
+def _find_macos_desktop_entry(data: dict) -> dict | None:
+    spaces = data.get('Spaces', {})
+    for space_data in spaces.values():
+        default_entry = space_data.get('Default', {})
+        if 'Desktop' in default_entry:
+            return default_entry['Desktop']
+        if 'Linked' in default_entry:
+            return default_entry['Linked']
+        displays = space_data.get('Displays', {})
+        for display_data in displays.values():
+            if 'Desktop' in display_data:
+                return display_data['Desktop']
+            if 'Linked' in display_data:
+                return display_data['Linked']
+
+    displays = data.get('Displays', {})
+    for display_data in displays.values():
+        if 'Desktop' in display_data:
+            return display_data['Desktop']
+        if 'Linked' in display_data:
+            return display_data['Linked']
+
+    system_default = data.get('SystemDefault', {})
+    if 'Desktop' in system_default:
+        return system_default['Desktop']
+    if 'Linked' in system_default:
+        return system_default['Linked']
+    return None
+
+
+def _reload_macos_wallpaper_agent() -> None:
+    try:
+        uid = os.getuid()
+        subprocess.run(
+            ["launchctl", "kickstart", "-k", f"gui/{uid}/com.apple.wallpaper.agent"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except Exception as e:
+        logger.debug(f"Failed to reload WallpaperAgent: {e}")
 
 
 def _compile_swift_wallpaper_binary(output_path: str) -> bool:

@@ -127,6 +127,11 @@ def main():
         help="Don't set wallpaper, just save image"
     )
     parser.add_argument(
+        "--set-wallpaper",
+        action="store_true",
+        help="Set wallpaper after downloading image"
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         help="Custom output path for the image"
@@ -212,7 +217,16 @@ def main():
     
     logger.info(f"Saved image to {output_path}")
     
-    if not args.dry_run:
+    # if not args.dry_run:
+    #     logger.info("Setting wallpaper...")
+    #     if set_wallpaper(str(output_path)):
+    #         logger.info("Wallpaper set successfully!")
+    #     else:
+    #         logger.error("Failed to set wallpaper (image was saved)")
+    #         sys.exit(1)
+    # else:
+    #     logger.info("Dry run - skipping wallpaper set")
+    if args.set_wallpaper and not args.dry_run:
         logger.info("Setting wallpaper...")
         if set_wallpaper(str(output_path)):
             logger.info("Wallpaper set successfully!")
@@ -220,7 +234,7 @@ def main():
             logger.error("Failed to set wallpaper (image was saved)")
             sys.exit(1)
     else:
-        logger.info("Dry run - skipping wallpaper set")
+        logger.info("Skipping wallpaper set (use --set-wallpaper)")
     
     cleanup_old_images(OUTPUT_DIR, keep=args.keep)
     
