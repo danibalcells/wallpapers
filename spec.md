@@ -2,260 +2,89 @@
 
 ## Project Goal
 
-Build a Python script that automatically fetches high-resolution Sentinel-2 satellite imagery of random locations within the Canary Islands and sets it as the desktop wallpaper. The script should run on a schedule (cron/launchd/Task Scheduler) and select a new random bounding box within one of the 7 main Canary Islands each time.
+Build a Python script that automatically fetches high-resolution Sentinel-2 satellite imagery mosaics for the Canary Islands and sets them as the desktop wallpaper. The script should sample 10 km subtiles, form contiguous 4x3 mosaics, and only fall back to older dates after exhausting all possible mosaics for the most recent date.
 
 ---
 
 ## Architecture Overview
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  islands.py     │────▶│  sentinel.py     │────▶│  wallpaper.py   │
-│                 │     │                  │     │                 │
-│ - Island polys  │     │ - CDSE/SentinelHub│    │ - OS detection  │
-│ - Random bbox   │     │ - Cloud filtering │    │ - Set wallpaper │
-│ - Land coverage │     │ - Image render   │     │                 │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
-                                 │
-                                 ▼
-                        ┌──────────────────┐
-                        │  main.py         │
-                        │                  │
-                        │ - CLI entry      │
-                        │ - Config loading │
-                        │ - Scheduling     │
-                        └──────────────────┘
+┌───────────────────────┐     ┌──────────────────────┐     ┌─────────────────┐
+│ data/subtile_*.json   │────▶│ mosaic_selector.py   │────▶│ sentinel.py     │
+│                       │     │                      │     │                 │
+│ - Candidate subtiles  │     │ - 4x3 mosaics        │     │ - STAC search   │
+│ - Land coverage gate  │     │ - Sampling policy    │     │ - Native reads  │
+└───────────────────────┘     └──────────────────────┘     └─────────────────┘
+                                │
+                                ▼
+                       ┌──────────────────┐
+                       │  main.py         │
+                       │                  │
+                       │ - CLI entry      │
+                       │ - Config loading │
+                       │ - Logging        │
+                       └──────────────────┘
+                                │
+                                ▼
+                       ┌──────────────────┐
+                       │  wallpaper.py    │
+                       │                  │
+                       │ - OS detection   │
+                       │ - Set wallpaper  │
+                       └──────────────────┘
 ```
 
 ---
 
-## Component 1: Island Polygons & Random Bbox Generation (`islands.py`)
+## Component 1: Candidate Subtiles (`data/subtile_candidates.json`)
 
-### Canary Islands Reference Data
+Precomputed list of 10 km subtiles that meet a minimum land coverage threshold. This list is only used for sampling locations and should be updated offline when needed.
 
-The 7 main islands with approximate bounding boxes (WGS84: `[west, south, east, north]`):
+Schema:
 
-| Island | Bbox | Center (approx) | Area (km²) |
-|--------|------|-----------------|------------|
-| **Tenerife** | `[-16.92, 28.00, -16.12, 28.60]` | `28.29, -16.52` | 2,034 |
-| **Fuerteventura** | `[-14.52, 28.02, -13.82, 28.76]` | `28.39, -14.17` | 1,659 |
-| **Gran Canaria** | `[-15.85, 27.73, -15.35, 28.17]` | `27.95, -15.60` | 1,560 |
-| **Lanzarote** | `[-13.95, 28.84, -13.40, 29.25]` | `29.04, -13.67` | 846 |
-| **La Palma** | `[-18.02, 28.45, -17.72, 28.87]` | `28.66, -17.87` | 708 |
-| **La Gomera** | `[-17.36, 28.02, -17.06, 28.22]` | `28.12, -17.21` | 370 |
-| **El Hierro** | `[-18.16, 27.64, -17.88, 27.84]` | `27.74, -18.02` | 269 |
-
-### Implementation Requirements
-
-1. **Store island polygons** - Use simplified GeoJSON polygons for each island (not just bboxes - actual coastline shapes to avoid ocean-only selections). These can be sourced from:
-   - Natural Earth Data (1:10m cultural vectors)
-   - OpenStreetMap exports
-   - Or define simplified polygons manually (10-20 vertices per island is sufficient)
-
-2. **Random bbox generation function**:
-   ```python
-   def generate_random_bbox(
-       island: str | None = None,  # None = random island selection
-       bbox_size_km: float = 15.0,  # Size of bbox in km (square)
-       min_land_coverage: float = 0.3,  # Minimum 30% land in bbox
-       max_attempts: int = 50
-   ) -> tuple[float, float, float, float]:
-       """
-       Returns (west, south, east, north) in WGS84.
-       
-       Algorithm:
-       1. Select island (random if not specified, weighted by area)
-       2. Generate random point within island polygon
-       3. Create bbox of specified size centered on point
-       4. Validate land coverage (retry if too much ocean)
-       5. Return bbox
-       """
-   ```
-
-3. **Coordinate math helpers**:
-   - At ~28°N latitude: 1° longitude ≈ 97 km, 1° latitude ≈ 111 km
-   - For a 15km bbox: ~0.155° longitude, ~0.135° latitude
-   - Use `shapely` for polygon operations
-
-4. **Dependencies**: `shapely`, `geojson` (or just store as dicts)
-
----
-
-## Component 2: Sentinel-2 Data Fetching (`sentinel.py`)
-
-### API Choice: Copernicus Data Space Ecosystem (CDSE)
-
-The old Copernicus Open Access Hub shut down in October 2023. Use the new **CDSE** at `dataspace.copernicus.eu`.
-
-### Authentication
-
-1. Create free account at https://dataspace.copernicus.eu
-2. Generate OAuth2 credentials (client_id, client_secret)
-3. Token endpoint: `https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token`
-4. Tokens expire in 10 minutes, refresh within 60 minutes
-
-### Option A: Sentinel Hub Processing API (Recommended)
-
-Use `sentinelhub-py` library for rendered image output (no band processing needed):
-
-```python
-from sentinelhub import (
-    SHConfig, SentinelHubRequest, BBox, CRS, 
-    MimeType, DataCollection, MosaickingOrder
-)
-
-config = SHConfig()
-config.sh_client_id = "YOUR_CLIENT_ID"
-config.sh_client_secret = "YOUR_CLIENT_SECRET"
-config.sh_token_url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
-config.sh_base_url = "https://sh.dataspace.copernicus.eu"
-
-# Evalscript for true-color RGB with contrast enhancement
-EVALSCRIPT = """
-//VERSION=3
-function setup() {
-    return {
-        input: ["B04", "B03", "B02", "CLM"],
-        output: { bands: 3, sampleType: "AUTO" }
-    };
-}
-
-function evaluatePixel(sample) {
-    // Skip cloudy pixels (optional: make them slightly visible)
-    if (sample.CLM > 0.5) {
-        return [0.7, 0.7, 0.7];  // Gray for clouds
+```json
+{
+  "version": 2,
+  "islands": [
+    {
+      "name": "tenerife",
+      "tiles": [
+        {
+          "tile_id": "28RCS",
+          "tile_mgrs": "28RCS",
+          "subtiles": [
+            {
+              "suffix": "10",
+              "bbox": [-16.79010, 28.24010, -16.67560, 28.33020],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.79010,28.24010,-16.67560,28.33020",
+              "subtile_mgrs": "28RCS10"
+            }
+          ]
+        }
+      ]
     }
-    // Brightness boost (2.5-3.5x typical for Sentinel-2)
-    let gain = 3.0;
-    return [gain * sample.B04, gain * sample.B03, gain * sample.B02];
+  ]
 }
-"""
-
-def fetch_sentinel_image(
-    bbox: tuple[float, float, float, float],
-    output_path: str,
-    resolution: tuple[int, int] = (1920, 1080),
-    max_cloud_cover: int = 20,
-    days_back: int = 30
-) -> bool:
-    """
-    Fetch Sentinel-2 L2A image for bbox.
-    
-    Args:
-        bbox: (west, south, east, north) in WGS84
-        output_path: Where to save the PNG
-        resolution: Output image dimensions
-        max_cloud_cover: Maximum cloud coverage percentage (0-100)
-        days_back: How far back to search for imagery
-    
-    Returns:
-        True if successful, False if no suitable imagery found
-    """
-    from datetime import datetime, timedelta
-    
-    end_date = datetime.now()
-    start_date = end_date - timedelta(days=days_back)
-    
-    request = SentinelHubRequest(
-        evalscript=EVALSCRIPT,
-        input_data=[
-            SentinelHubRequest.input_data(
-                data_collection=DataCollection.SENTINEL2_L2A,
-                time_interval=(start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")),
-                mosaicking_order=MosaickingOrder.LEAST_CC,
-                other_args={"dataFilter": {"maxCloudCoverage": max_cloud_cover}}
-            )
-        ],
-        responses=[SentinelHubRequest.output_response("default", MimeType.PNG)],
-        bbox=BBox(bbox, CRS.WGS84),
-        size=resolution,
-        config=config
-    )
-    
-    data = request.get_data()
-    if data and len(data) > 0 and data[0] is not None:
-        from PIL import Image
-        img = Image.fromarray(data[0])
-        img.save(output_path)
-        return True
-    return False
 ```
-
-### Option B: STAC API + Element 84 Earth Search (No Auth Required)
-
-For simpler setup without CDSE registration:
-
-```python
-from pystac_client import Client
-import rasterio
-from rasterio.windows import from_bounds
-import numpy as np
-from PIL import Image
-
-def fetch_via_stac(
-    bbox: tuple[float, float, float, float],
-    output_path: str,
-    max_cloud_cover: int = 20
-) -> bool:
-    """
-    Fetch via Element 84's free STAC API (no auth needed).
-    """
-    client = Client.open("https://earth-search.aws.element84.com/v1")
-    
-    search = client.search(
-        collections=["sentinel-2-l2a"],
-        bbox=bbox,
-        datetime="2024-01-01/..",  # Adjust as needed
-        query={"eo:cloud_cover": {"lt": max_cloud_cover}},
-        sortby=[{"field": "datetime", "direction": "desc"}],
-        limit=1
-    )
-    
-    items = list(search.items())
-    if not items:
-        return False
-    
-    item = items[0]
-    
-    # Get COG URLs for RGB bands
-    red_url = item.assets["red"].href
-    green_url = item.assets["green"].href  
-    blue_url = item.assets["blue"].href
-    
-    # Read and composite (using rasterio with windowed reads)
-    bands = []
-    for url in [red_url, green_url, blue_url]:
-        with rasterio.open(url) as src:
-            window = from_bounds(*bbox, src.transform)
-            band = src.read(1, window=window)
-            # Normalize to 0-255
-            p2, p98 = np.percentile(band, (2, 98))
-            normalized = np.clip((band - p2) / (p98 - p2) * 255, 0, 255)
-            bands.append(normalized.astype(np.uint8))
-    
-    rgb = np.dstack(bands)
-    Image.fromarray(rgb).save(output_path)
-    return True
-```
-
-### Sentinel-2 Specifications
-
-- **Resolution**: 10m for RGB bands (B02, B03, B04)
-- **Tile size**: 10,980 × 10,980 pixels per tile
-- **Revisit frequency**: 2-5 days depending on latitude (Canaries: ~3-4 days)
-- **Recommended product**: L2A (atmospherically corrected, better colors)
-- **Band mapping**: B04=Red, B03=Green, B02=Blue
-
-### Rate Limits (CDSE Free Tier)
-
-- 10,000 Sentinel Hub requests/month
-- 12 TB downloads/month
-- 300 requests/minute for Sentinel Hub
-- More than sufficient for daily wallpaper updates
 
 ---
 
-## Component 3: Wallpaper Setting (`wallpaper.py`)
+## Component 2: Mosaic Selection (`mosaic_selector.py`)
+
+The selector builds contiguous 4x3 mosaics within each 100 km MGRS tile, then samples without replacement for a given date. A date is only changed after every possible mosaic for that date has been exhausted.
+
+---
+
+## Component 3: Sentinel-2 Data Fetching (`sentinel.py`)
+
+- STAC search is performed by MGRS tile and date (Element 84 Earth Search).
+- Bands are read in native UTM coordinates per subtile.
+- A subtile is accepted only if valid-pixel coverage exceeds a threshold (default 98%).
+- Raw bands are mosaiced first, then true-color is applied once to the final mosaic.
+
+---
+
+## Component 4: Wallpaper Setting (`wallpaper.py`)
 
 ### Cross-Platform Implementation
 
@@ -374,7 +203,7 @@ def _set_wallpaper_windows(image_path: str) -> bool:
 
 ---
 
-## Component 4: Main Script (`main.py`)
+## Component 5: Main Script (`main.py`)
 
 ```python
 #!/usr/bin/env python3
@@ -382,10 +211,10 @@ def _set_wallpaper_windows(image_path: str) -> bool:
 Canary Islands Sentinel-2 Wallpaper Generator
 
 Usage:
-    python main.py                    # Random island, default settings
-    python main.py --island tenerife  # Specific island
-    python main.py --size 20          # 20km bbox
-    python main.py --dry-run          # Preview without setting wallpaper
+    python main.py                     # Random tile mosaic, default settings
+    python main.py --days 60           # Search further back
+    python main.py --candidate-list data/subtile_candidates.json
+    python main.py --dry-run           # Preview without setting wallpaper
 """
 
 import argparse
@@ -394,16 +223,13 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-from islands import generate_random_bbox, ISLANDS
-from sentinel import fetch_sentinel_image
+from sentinel import fetch_tile_mosaic_image
 from wallpaper import set_wallpaper
 
 # Config
-DEFAULT_BBOX_SIZE_KM = 15
 DEFAULT_MAX_CLOUD_COVER = 20
 DEFAULT_DAYS_BACK = 30
 OUTPUT_DIR = Path.home() / ".canary-wallpaper"
-RESOLUTION = (2560, 1440)  # Adjust for your display
 
 logging.basicConfig(
     level=logging.INFO,
@@ -414,8 +240,6 @@ logger = logging.getLogger(__name__)
 
 def main():
     parser = argparse.ArgumentParser(description="Canary Islands satellite wallpaper")
-    parser.add_argument("--island", choices=list(ISLANDS.keys()), help="Specific island")
-    parser.add_argument("--size", type=float, default=DEFAULT_BBOX_SIZE_KM, help="Bbox size in km")
     parser.add_argument("--cloud-cover", type=int, default=DEFAULT_MAX_CLOUD_COVER, help="Max cloud %")
     parser.add_argument("--days", type=int, default=DEFAULT_DAYS_BACK, help="Days to search back")
     parser.add_argument("--dry-run", action="store_true", help="Don't set wallpaper")
@@ -424,23 +248,14 @@ def main():
     
     OUTPUT_DIR.mkdir(exist_ok=True)
     
-    # Generate random bbox
-    logger.info(f"Generating random bbox (island={args.island or 'random'}, size={args.size}km)")
-    bbox, island_name = generate_random_bbox(
-        island=args.island,
-        bbox_size_km=args.size
-    )
-    logger.info(f"Selected: {island_name}, bbox={bbox}")
-    
     # Fetch image
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = args.output or OUTPUT_DIR / f"canary_{island_name}_{timestamp}.png"
+    output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{timestamp}.png"
     
     logger.info(f"Fetching Sentinel-2 imagery (max {args.cloud_cover}% clouds, last {args.days} days)")
-    success = fetch_sentinel_image(
-        bbox=bbox,
+    success = fetch_tile_mosaic_image(
+        candidate_list_path=Path("data/subtile_candidates.json"),
         output_path=str(output_path),
-        resolution=RESOLUTION,
         max_cloud_cover=args.cloud_cover,
         days_back=args.days
     )
@@ -482,7 +297,7 @@ if __name__ == "__main__":
 
 ## Configuration & Credentials
 
-### Config File (`~/.canary-wallpaper/config.yaml`)
+### Config File (`config.yaml`)
 
 ```yaml
 sentinel_hub:
@@ -490,16 +305,12 @@ sentinel_hub:
   client_secret: "your-client-secret"
 
 preferences:
-  bbox_size_km: 15
+  candidate_list: data/subtile_candidates.json
   max_cloud_cover: 20
   days_back: 30
-  resolution: [2560, 1440]
-  
-  # Optional: weight islands by preference (default: by area)
-  island_weights:
-    tenerife: 2.0      # 2x more likely
-    gran_canaria: 1.5
-    # others default to 1.0
+  mosaic_width: 4
+  mosaic_height: 3
+  valid_pixel_min: 0.98
 ```
 
 ### Environment Variables (Alternative)
@@ -587,15 +398,12 @@ Enable with: `systemctl --user enable --now canary-wallpaper.timer`
 ### requirements.txt
 
 ```
-sentinelhub>=3.10.0
-shapely>=2.0.0
 Pillow>=10.0.0
 pyyaml>=6.0
-requests>=2.31.0
-
-# Optional: for STAC approach
 pystac-client>=0.7.0
 rasterio>=1.3.0
+numpy>=1.24.0
+pyobjc-framework-Cocoa>=10.0; sys_platform == "darwin"
 ```
 
 ### Installation
@@ -608,12 +416,11 @@ pip install -r requirements.txt
 
 ## Error Handling Considerations
 
-1. **No imagery found**: Increase `days_back` or `max_cloud_cover`, or try different island
-2. **API auth failure**: Check credentials, token may need refresh
-3. **Rate limits**: Free tier is generous (10k requests/month) but add exponential backoff
+1. **No imagery dates found**: Increase `days_back` or `max_cloud_cover`
+2. **No mosaics available**: Candidate list may be empty or too sparse
+3. **Low valid pixels**: Lower `valid_pixel_min` or update candidate list
 4. **Network errors**: Retry with backoff, cache last successful image as fallback
-5. **Invalid bbox**: Ensure bbox is within island bounds, has sufficient land coverage
-6. **Wallpaper setting fails**: Log error, don't crash - image is still saved
+5. **Wallpaper setting fails**: Log error, image is still saved
 
 ---
 
@@ -621,8 +428,8 @@ pip install -r requirements.txt
 
 - [ ] Web UI for previewing locations before setting
 - [ ] Historical image browser (store metadata of past images)
-- [ ] Multi-monitor support (different island per display)
-- [ ] Seasonal preferences (prefer certain islands at certain times)
+- [ ] Multi-monitor support (different regions per display)
+- [ ] Seasonal preferences (prefer certain regions at certain times)
 - [ ] Integration with liewa for additional satellite sources
 - [ ] Notification when new cloud-free imagery becomes available
 
@@ -631,7 +438,6 @@ pip install -r requirements.txt
 ## References
 
 - Copernicus Data Space Ecosystem: https://dataspace.copernicus.eu
-- Sentinel Hub Python: https://sentinelhub-py.readthedocs.io
 - Element 84 Earth Search STAC: https://earth-search.aws.element84.com/v1
 - Sentinel-2 Band Info: https://sentiwiki.copernicus.eu/web/s2-mission
 - Live-Earth-Wallpapers (inspiration): https://github.com/lennart-rth/Live-Earth-Wallpapers

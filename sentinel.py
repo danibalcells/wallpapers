@@ -3,15 +3,26 @@ Sentinel-2 satellite imagery fetching via STAC API.
 """
 
 import logging
+import random
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
 import rasterio
+import rasterio.windows
 from PIL import Image
 from pystac_client import Client
-from rasterio.warp import reproject, Resampling
-from shapely.geometry import box, shape
+
+from mosaic_selector import (
+    MosaicDefinition,
+    build_mosaics,
+    filter_mosaics,
+    mosaics_containing_seed,
+    pick_mosaic,
+    pick_seed,
+)
+from tiles import CandidateListError, Subtile, load_candidate_subtiles, parse_tile_id, subtile_bbox_utm
 
 logger = logging.getLogger(__name__)
 
@@ -92,274 +103,320 @@ def _apply_saturation(rgb: np.ndarray, saturation: float) -> np.ndarray:
     return np.clip(result, 0, 1)
 
 
-def fetch_sentinel_image(
-    bbox: tuple[float, float, float, float],
+class TileReadError(RuntimeError):
+    pass
+
+
+@dataclass(frozen=True)
+class SubtileBands:
+    subtile: Subtile
+    red: np.ndarray
+    green: np.ndarray
+    blue: np.ndarray
+    valid_fraction: float
+
+
+def fetch_tile_mosaic_image(
+    candidate_list_path: Path,
     output_path: str,
-    resolution: tuple[int, int] = (1920, 1080),
     max_cloud_cover: int = 20,
     days_back: int = 30,
-    max_nodata_pct: float = 5.0,
-    max_defective_pct: float = 20.0,
-    max_degraded_pct: float = 10.0,
-    min_bbox_coverage: float = 0.995,
+    valid_pixel_min: float = 0.98,
+    mosaic_width: int = 4,
+    mosaic_height: int = 3,
+    rng_seed: int | None = None,
+    max_items_per_tile: int = 20,
 ) -> bool:
-    """
-    Fetch Sentinel-2 L2A image for bbox via Element 84 STAC API (no auth needed).
-    
-    Args:
-        bbox: (west, south, east, north) in WGS84
-        output_path: Where to save the PNG
-        resolution: Output image dimensions (width, height)
-        max_cloud_cover: Maximum cloud coverage percentage (0-100)
-        days_back: How far back to search for imagery
-    
-    Returns:
-        True if successful, False if no suitable imagery found
-    """
     try:
-        client = Client.open(STAC_API_URL)
-        
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days_back)
-        datetime_range = f"{start_date.strftime('%Y-%m-%d')}/{end_date.strftime('%Y-%m-%d')}"
-        
-        logger.info(f"Searching for imagery from {datetime_range}")
-        
-        search = client.search(
-            collections=[COLLECTION],
-            bbox=bbox,
-            datetime=datetime_range,
-            query={"eo:cloud_cover": {"lt": max_cloud_cover}},
-            sortby=[{"field": "properties.eo:cloud_cover", "direction": "asc"}],
-            limit=10
-        )
-        
-        items = list(search.items())
-        if not items:
-            logger.warning("No imagery found matching criteria")
-            return False
-        
-        item = _select_acceptable_item(
-            items,
-            bbox=bbox,
-            max_nodata_pct=max_nodata_pct,
-            max_defective_pct=max_defective_pct,
-            max_degraded_pct=max_degraded_pct,
-            min_bbox_coverage=min_bbox_coverage,
-        )
-        if item is None:
-            logger.warning("No imagery found matching quality thresholds")
-            return False
+        candidates = load_candidate_subtiles(candidate_list_path)
+    except CandidateListError as exc:
+        logger.error("%s", exc)
+        return False
+    logger.info("Loaded %d candidate subtiles from %s", len(candidates), candidate_list_path)
 
-        logger.info(f"Found image: {item.id}, cloud cover: {item.properties.get('eo:cloud_cover', 'N/A')}%")
-        
-        red_url = item.assets["red"].href
-        green_url = item.assets["green"].href
-        blue_url = item.assets["blue"].href
-        
-        logger.info("Downloading and processing RGB bands...")
-        bands = {}
-        for band_name, url in [("red", red_url), ("green", green_url), ("blue", blue_url)]:
-            logger.debug(f"Fetching {band_name} band")
-            band_data = _read_band_as_reflectance(url, bbox, resolution)
-            if band_data is None:
-                logger.error(f"Failed to read {band_name} band")
-                return False
-            bands[band_name] = band_data
-        
-        logger.info("Applying true color processing...")
-        rgb = apply_true_color(
-            bands["red"],
-            bands["green"],
-            bands["blue"],
-            **TRUE_COLOR_DEFAULTS
-        )
-        
-        img = Image.fromarray(rgb)
-        
-        if img.size != resolution:
-            img = img.resize(resolution, Image.Resampling.LANCZOS)
-        
-        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-        img.save(output_path, "PNG", optimize=True)
-        logger.info(f"Saved image to {output_path}")
-        
-        return True
-        
-    except Exception as e:
-        logger.error(f"Error fetching Sentinel imagery: {e}")
+    try:
+        mosaics = build_mosaics(candidates, width=mosaic_width, height=mosaic_height)
+    except ValueError as exc:
+        logger.error("%s", exc)
+        return False
+    if not mosaics:
+        logger.error("No %dx%d mosaics available from candidate list", mosaic_width, mosaic_height)
+        return False
+    logger.info("Built %d mosaics for sampling", len(mosaics))
+
+    tile_ids = sorted({subtile.tile_id for subtile in candidates})
+    dates = _list_tile_dates(
+        tile_ids=tile_ids,
+        days_back=days_back,
+        max_cloud_cover=max_cloud_cover,
+        max_items_per_tile=max_items_per_tile,
+    )
+    if not dates:
+        logger.warning("No imagery dates found for candidate tiles")
         return False
 
+    rng = random.Random(rng_seed)
+    for date in dates:
+        invalid_subtiles: set[Subtile] = set()
+        available = filter_mosaics(mosaics, invalid_subtiles)
+        logger.info("Attempting date %s with %d mosaics", date, len(available))
+        while available:
+            seed = pick_seed(candidates, invalid_subtiles, rng)
+            if seed is None:
+                break
+            seed_mosaics = mosaics_containing_seed(available, seed)
+            if not seed_mosaics:
+                invalid_subtiles.add(seed)
+                available = filter_mosaics(mosaics, invalid_subtiles)
+                continue
+            chosen = pick_mosaic(seed_mosaics, rng)
+            if chosen is None:
+                invalid_subtiles.add(seed)
+                available = filter_mosaics(mosaics, invalid_subtiles)
+                continue
+            try:
+                rgb, failed_subtiles = _attempt_mosaic(
+                    mosaic=chosen,
+                    date=date,
+                    max_cloud_cover=max_cloud_cover,
+                    valid_pixel_min=valid_pixel_min,
+                )
+            except TileReadError as exc:
+                logger.warning("%s", exc)
+                failed = set(chosen.subtiles)
+                failed.add(seed)
+                invalid_subtiles.update(failed)
+                available = filter_mosaics(mosaics, invalid_subtiles)
+                continue
+            if rgb is None:
+                failed = set(failed_subtiles)
+                failed.add(seed)
+                invalid_subtiles.update(failed)
+                available = filter_mosaics(mosaics, invalid_subtiles)
+                continue
 
-def _read_band_as_reflectance(
+            output = Path(output_path)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            Image.fromarray(rgb).save(output, "PNG", optimize=True)
+            logger.info("Saved image to %s", output)
+            return True
+
+        logger.info("Exhausted all mosaics for date %s", date)
+
+    logger.error("Failed to fetch imagery for any available date")
+    return False
+
+
+def _read_band_native_bbox(
     url: str,
-    bbox: tuple[float, float, float, float],
-    target_resolution: tuple[int, int]
+    bbox_utm: tuple[float, float, float, float],
 ) -> np.ndarray | None:
-    """
-    Read a band from a COG URL, extracting only the bbox area.
-    
-    Args:
-        url: URL to the Cloud Optimized GeoTIFF
-        bbox: (west, south, east, north) in WGS84
-        target_resolution: Target (width, height) for the output
-    
-    Returns:
-        Float array with reflectance values (0-1 scale), or None on failure.
-        Sentinel-2 L2A values are stored as uint16 with scale factor 10000.
-    """
     try:
-        west, south, east, north = bbox
-        target_width, target_height = target_resolution
-        
         with rasterio.open(url) as src:
-            dst_crs = "EPSG:4326"
-            
-            out_transform = rasterio.transform.from_bounds(
-                west, south, east, north, target_width, target_height
+            window = rasterio.windows.from_bounds(
+                *bbox_utm,
+                transform=src.transform,
             )
-            
-            data = np.zeros((target_height, target_width), dtype=np.float32)
-            
-            reproject(
-                source=rasterio.band(src, 1),
-                destination=data,
-                src_transform=src.transform,
-                src_crs=src.crs,
-                dst_transform=out_transform,
-                dst_crs=dst_crs,
-                resampling=Resampling.cubic
-            )
-            
-            reflectance = data / 10000.0
-            
-            return reflectance
-            
+            data = src.read(1, window=window, boundless=True, fill_value=0)
+        return data.astype(np.float32) / 10000.0
     except Exception as e:
-        logger.error(f"Error reading band from {url}: {e}")
+        logger.error("Error reading native band window from %s: %s", url, e)
         return None
 
 
-def _select_acceptable_item(
-    items: list,
-    bbox: tuple[float, float, float, float],
-    max_nodata_pct: float,
-    max_defective_pct: float,
-    max_degraded_pct: float,
-    min_bbox_coverage: float,
-) -> object | None:
-    bbox_coverage = None
-    for item in items:
-        nodata = item.properties.get("s2:nodata_pixel_percentage")
-        defective = item.properties.get("s2:saturated_defective_pixel_percentage")
-        degraded = item.properties.get("s2:degraded_msi_data_percentage")
-        bbox_coverage = _bbox_coverage_fraction(item, bbox)
-
-        logger.info(
-            "Item %s quality stats: nodata=%s defective=%s degraded=%s bbox_coverage=%s",
-            item.id,
-            "N/A" if nodata is None else f"{nodata:.2f}%",
-            "N/A" if defective is None else f"{defective:.2f}%",
-            "N/A" if degraded is None else f"{degraded:.2f}%",
-            "N/A" if bbox_coverage is None else f"{bbox_coverage * 100:.2f}%",
-        )
-
-        if bbox_coverage is not None and bbox_coverage < min_bbox_coverage:
-            logger.info(
-                "Rejecting %s (bbox coverage %.2f%% < %.2f%%)",
-                item.id,
-                bbox_coverage * 100,
-                min_bbox_coverage * 100,
-            )
-            continue
-        if nodata is not None and nodata > max_nodata_pct:
-            logger.info(
-                "Rejecting %s (nodata %.2f%% > %.2f%%)",
-                item.id,
-                nodata,
-                max_nodata_pct,
-            )
-            continue
-        if defective is not None and defective > max_defective_pct:
-            logger.info(
-                "Rejecting %s (defective %.2f%% > %.2f%%)",
-                item.id,
-                defective,
-                max_defective_pct,
-            )
-            continue
-        if degraded is not None and degraded > max_degraded_pct:
-            logger.info(
-                "Rejecting %s (degraded %.2f%% > %.2f%%)",
-                item.id,
-                degraded,
-                max_degraded_pct,
-            )
-            continue
-        logger.info("Selected item %s", item.id)
-        return item
-    return None
+def _item_date(item: object) -> str | None:
+    item_datetime = getattr(item, "datetime", None)
+    if item_datetime:
+        return item_datetime.date().isoformat()
+    properties = getattr(item, "properties", {})
+    datetime_text = properties.get("datetime")
+    if not datetime_text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(datetime_text.replace("Z", "+00:00"))
+        return parsed.date().isoformat()
+    except ValueError:
+        return None
 
 
-def _bbox_coverage_fraction(
+def _asset_proj_bbox(
     item: object,
-    bbox: tuple[float, float, float, float],
-) -> float | None:
-    geometry = getattr(item, "geometry", None)
-    if not geometry:
+    asset_key: str,
+) -> tuple[float, float, float, float] | None:
+    asset = item.assets.get(asset_key)
+    if asset is None:
         return None
-    try:
-        item_polygon = shape(geometry)
-    except Exception as exc:
-        logger.info("Failed to parse item geometry: %s", exc)
-        return None
-    if item_polygon.is_empty:
-        return None
-    bbox_polygon = box(*bbox)
-    if bbox_polygon.area <= 0:
-        return None
-    intersection = item_polygon.intersection(bbox_polygon)
-    return intersection.area / bbox_polygon.area
+    proj_bbox = asset.extra_fields.get("proj:bbox")
+    if not proj_bbox or len(proj_bbox) != 4:
+        try:
+            with rasterio.open(asset.href) as src:
+                bounds = src.bounds
+            return float(bounds.left), float(bounds.bottom), float(bounds.right), float(bounds.top)
+        except Exception:
+            return None
+    return float(proj_bbox[0]), float(proj_bbox[1]), float(proj_bbox[2]), float(proj_bbox[3])
 
-
-def search_available_imagery(
-    bbox: tuple[float, float, float, float],
-    max_cloud_cover: int = 20,
-    days_back: int = 30,
-    limit: int = 10
-) -> list[dict]:
-    """
-    Search for available Sentinel-2 imagery without downloading.
-    
-    Returns a list of dicts with image metadata.
-    """
-    try:
-        client = Client.open(STAC_API_URL)
-        
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days_back)
-        datetime_range = f"{start_date.strftime('%Y-%m-%d')}/{end_date.strftime('%Y-%m-%d')}"
-        
-        search = client.search(
-            collections=[COLLECTION],
-            bbox=bbox,
-            datetime=datetime_range,
-            query={"eo:cloud_cover": {"lt": max_cloud_cover}},
-            sortby=[{"field": "datetime", "direction": "desc"}],
-            limit=limit
+def _list_tile_dates(
+    tile_ids: list[str],
+    days_back: int,
+    max_cloud_cover: int,
+    max_items_per_tile: int,
+) -> list[str]:
+    dates: set[str] = set()
+    for tile_id in tile_ids:
+        items = _search_tile_items(
+            tile_id=tile_id,
+            days_back=days_back,
+            max_cloud_cover=max_cloud_cover,
+            limit=max_items_per_tile,
         )
-        
-        results = []
-        for item in search.items():
-            results.append({
-                "id": item.id,
-                "datetime": item.datetime.isoformat() if item.datetime else None,
-                "cloud_cover": item.properties.get("eo:cloud_cover"),
-                "bbox": item.bbox
-            })
-        
-        return results
-        
-    except Exception as e:
-        logger.error(f"Error searching imagery: {e}")
-        return []
+        for item in items:
+            date = _item_date(item)
+            if date is not None:
+                dates.add(date)
+    return sorted(dates, reverse=True)
+
+
+def _search_tile_items(
+    tile_id: str,
+    days_back: int,
+    max_cloud_cover: int,
+    limit: int,
+) -> list:
+    utm_zone, latitude_band, grid_square = parse_tile_id(tile_id)
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=days_back)
+    datetime_range = f"{start_date.strftime('%Y-%m-%d')}/{end_date.strftime('%Y-%m-%d')}"
+    client = Client.open(STAC_API_URL)
+    search = client.search(
+        collections=[COLLECTION],
+        datetime=datetime_range,
+        query={
+            "mgrs:utm_zone": {"eq": utm_zone},
+            "mgrs:latitude_band": {"eq": latitude_band},
+            "mgrs:grid_square": {"eq": grid_square},
+            "eo:cloud_cover": {"lt": max_cloud_cover},
+        },
+        sortby=[{"field": "datetime", "direction": "desc"}],
+        limit=limit,
+    )
+    return list(search.items())
+
+
+def _select_item_for_tile_date(
+    tile_id: str,
+    date: str,
+    max_cloud_cover: int,
+) -> object | None:
+    utm_zone, latitude_band, grid_square = parse_tile_id(tile_id)
+    datetime_range = f"{date}T00:00:00Z/{date}T23:59:59Z"
+    client = Client.open(STAC_API_URL)
+    search = client.search(
+        collections=[COLLECTION],
+        datetime=datetime_range,
+        query={
+            "mgrs:utm_zone": {"eq": utm_zone},
+            "mgrs:latitude_band": {"eq": latitude_band},
+            "mgrs:grid_square": {"eq": grid_square},
+            "eo:cloud_cover": {"lt": max_cloud_cover},
+        },
+        sortby=[{"field": "properties.eo:cloud_cover", "direction": "asc"}],
+        limit=5,
+    )
+    items = list(search.items())
+    if not items:
+        return None
+    return items[0]
+
+
+def _attempt_mosaic(
+    mosaic: MosaicDefinition,
+    date: str,
+    max_cloud_cover: int,
+    valid_pixel_min: float,
+) -> tuple[np.ndarray | None, list[Subtile]]:
+    item = _select_item_for_tile_date(mosaic.tile_id, date, max_cloud_cover)
+    if item is None:
+        logger.info("No item for tile %s on %s", mosaic.tile_id, date)
+        return None, list(mosaic.subtiles)
+    tile_bbox = _asset_proj_bbox(item, "red")
+    if tile_bbox is None:
+        raise TileReadError(f"Missing proj:bbox for tile {mosaic.tile_id}")
+
+    bands: list[SubtileBands] = []
+    for subtile in mosaic.subtiles:
+        bbox_utm = subtile_bbox_utm(tile_bbox, subtile)
+        red, green, blue = _read_subtile_bands(item, bbox_utm)
+        valid_fraction = _valid_pixel_fraction(red, green, blue)
+        if valid_fraction < valid_pixel_min:
+            logger.info(
+                "Subtile %s%s valid fraction %.3f < %.3f",
+                subtile.tile_id,
+                subtile.suffix(),
+                valid_fraction,
+                valid_pixel_min,
+            )
+            return None, [subtile]
+        bands.append(
+            SubtileBands(
+                subtile=subtile,
+                red=red,
+                green=green,
+                blue=blue,
+                valid_fraction=valid_fraction,
+            )
+        )
+
+    return _mosaic_bands(bands, mosaic), []
+
+
+def _read_subtile_bands(
+    item: object,
+    bbox_utm: tuple[float, float, float, float],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    assets = item.assets
+    red_asset = assets.get("red")
+    green_asset = assets.get("green")
+    blue_asset = assets.get("blue")
+    if red_asset is None or green_asset is None or blue_asset is None:
+        raise TileReadError(f"Missing RGB assets for item {item.id}")
+    red = _read_band_native_bbox(red_asset.href, bbox_utm)
+    green = _read_band_native_bbox(green_asset.href, bbox_utm)
+    blue = _read_band_native_bbox(blue_asset.href, bbox_utm)
+    if red is None or green is None or blue is None:
+        raise TileReadError(f"Failed to read RGB bands for item {item.id}")
+    return red, green, blue
+
+
+def _valid_pixel_fraction(
+    red: np.ndarray,
+    green: np.ndarray,
+    blue: np.ndarray,
+) -> float:
+    mask = (red > 0) & (green > 0) & (blue > 0)
+    if mask.size == 0:
+        return 0.0
+    return float(mask.mean())
+
+
+def _mosaic_bands(
+    bands: list[SubtileBands],
+    mosaic: MosaicDefinition,
+) -> np.ndarray:
+    if not bands:
+        raise TileReadError("No bands to mosaic")
+    tile_height, tile_width = bands[0].red.shape
+    height = tile_height * mosaic.height
+    width = tile_width * mosaic.width
+    red_mosaic = np.zeros((height, width), dtype=np.float32)
+    green_mosaic = np.zeros((height, width), dtype=np.float32)
+    blue_mosaic = np.zeros((height, width), dtype=np.float32)
+    for band in bands:
+        row_offset = (mosaic.origin_northing + mosaic.height - 1 - band.subtile.northing) * tile_height
+        col_offset = (band.subtile.easting - mosaic.origin_easting) * tile_width
+        row_end = row_offset + tile_height
+        col_end = col_offset + tile_width
+        red_mosaic[row_offset:row_end, col_offset:col_end] = band.red
+        green_mosaic[row_offset:row_end, col_offset:col_end] = band.green
+        blue_mosaic[row_offset:row_end, col_offset:col_end] = band.blue
+    return apply_true_color(red_mosaic, green_mosaic, blue_mosaic, **TRUE_COLOR_DEFAULTS)

@@ -1,8 +1,7 @@
 preferences:
-  bbox_size_min_km: 15
-  bbox_size_max_km: 90
+  candidate_list: data/subtile_candidates.json
   days_back: 30
   max_cloud_cover: 20
-  resolution:
-  - 2880
-  - 2880
+  mosaic_height: 3
+  mosaic_width: 4
+  valid_pixel_min: 0.98

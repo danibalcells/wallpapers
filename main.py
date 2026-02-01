@@ -3,37 +3,32 @@
 Canary Islands Sentinel-2 Wallpaper Generator
 
 Usage:
-    python main.py                    # Random island, default settings
-    python main.py --island tenerife  # Specific island
-    python main.py --size 20          # 20km bbox
-    python main.py --dry-run          # Preview without setting wallpaper
+    python main.py                     # Random tile mosaic, default settings
+    python main.py --days 60           # Search further back
+    python main.py --candidate-list data/subtile_candidates.json
+    python main.py --dry-run           # Preview without setting wallpaper
 """
 
 import argparse
 import logging
-import random
 import sys
 from datetime import datetime
 from pathlib import Path
 
 import yaml
 
-from islands import generate_random_bbox, generate_random_view, ISLANDS, IslandName, ViewMode
-from sentinel import fetch_sentinel_image
+from sentinel import fetch_tile_mosaic_image
 from wallpaper import set_wallpaper
 
-DEFAULT_BBOX_SIZE_MIN_KM = 15
-DEFAULT_BBOX_SIZE_MAX_KM = 90
 DEFAULT_MAX_CLOUD_COVER = 20
 DEFAULT_DAYS_BACK = 30
-DEFAULT_RESOLUTION = (2880, 2880)  # Square, let macOS crop to fill
-DEFAULT_MAX_NODATA_PCT = 5.0
-DEFAULT_MAX_DEFECTIVE_PCT = 20.0
-DEFAULT_MAX_DEGRADED_PCT = 10.0
-DEFAULT_MAX_RETRIES = 20
+DEFAULT_VALID_PIXEL_MIN = 0.98
+DEFAULT_MOSAIC_WIDTH = 4
+DEFAULT_MOSAIC_HEIGHT = 3
 PROJECT_DIR = Path(__file__).parent.resolve()
 OUTPUT_DIR = PROJECT_DIR / "images"
 CONFIG_FILE = PROJECT_DIR / "config.yaml"
+DEFAULT_CANDIDATE_LIST = PROJECT_DIR / "data" / "subtile_candidates.json"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -64,11 +59,12 @@ def save_default_config():
     
     default_config = {
         "preferences": {
-            "bbox_size_min_km": DEFAULT_BBOX_SIZE_MIN_KM,
-            "bbox_size_max_km": DEFAULT_BBOX_SIZE_MAX_KM,
             "max_cloud_cover": DEFAULT_MAX_CLOUD_COVER,
             "days_back": DEFAULT_DAYS_BACK,
-            "resolution": list(DEFAULT_RESOLUTION),
+            "candidate_list": str(DEFAULT_CANDIDATE_LIST),
+            "valid_pixel_min": DEFAULT_VALID_PIXEL_MIN,
+            "mosaic_width": DEFAULT_MOSAIC_WIDTH,
+            "mosaic_height": DEFAULT_MOSAIC_HEIGHT,
         }
     }
     
@@ -94,21 +90,6 @@ def main():
         description="Canary Islands Sentinel-2 satellite wallpaper generator"
     )
     parser.add_argument(
-        "--island",
-        choices=list(ISLANDS.keys()),
-        help="Specific island for single mode (default: random)"
-    )
-    parser.add_argument(
-        "--mode",
-        choices=["single", "pair"],
-        help="View mode: single island or pair of islands (default: random)"
-    )
-    parser.add_argument(
-        "--size",
-        type=float,
-        help="Bbox size in km (default: auto by island)"
-    )
-    parser.add_argument(
         "--cloud-cover",
         type=int,
         help=f"Max cloud %% (default: {DEFAULT_MAX_CLOUD_COVER})"
@@ -119,11 +100,29 @@ def main():
         help=f"Days to search back (default: {DEFAULT_DAYS_BACK})"
     )
     parser.add_argument(
-        "--resolution",
-        nargs=2,
+        "--candidate-list",
+        type=Path,
+        help="Path to candidate subtile list JSON"
+    )
+    parser.add_argument(
+        "--valid-pixel-min",
+        type=float,
+        help=f"Minimum valid pixel fraction per subtile (default: {DEFAULT_VALID_PIXEL_MIN})"
+    )
+    parser.add_argument(
+        "--mosaic-width",
         type=int,
-        metavar=("WIDTH", "HEIGHT"),
-        help="Output resolution (default: 2560 1440)"
+        help=f"Mosaic width in 10km subtiles (default: {DEFAULT_MOSAIC_WIDTH})"
+    )
+    parser.add_argument(
+        "--mosaic-height",
+        type=int,
+        help=f"Mosaic height in 10km subtiles (default: {DEFAULT_MOSAIC_HEIGHT})"
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        help="Random seed for mosaic selection"
     )
     parser.add_argument(
         "--dry-run",
@@ -159,73 +158,38 @@ def main():
     save_default_config()
     config = load_config()
     prefs = config.get("preferences", {})
-    island_weights = prefs.get("island_weights")
-    
-    if args.size:
-        bbox_size = args.size
-    else:
-        bbox_size = None
+    candidate_list = args.candidate_list or Path(prefs.get("candidate_list", str(DEFAULT_CANDIDATE_LIST)))
+    if not candidate_list.is_absolute():
+        candidate_list = PROJECT_DIR / candidate_list
+    valid_pixel_min = args.valid_pixel_min if args.valid_pixel_min is not None else prefs.get("valid_pixel_min", DEFAULT_VALID_PIXEL_MIN)
+    mosaic_width = args.mosaic_width or prefs.get("mosaic_width", DEFAULT_MOSAIC_WIDTH)
+    mosaic_height = args.mosaic_height or prefs.get("mosaic_height", DEFAULT_MOSAIC_HEIGHT)
     max_cloud = args.cloud_cover or prefs.get("max_cloud_cover", DEFAULT_MAX_CLOUD_COVER)
     days_back = args.days or prefs.get("days_back", DEFAULT_DAYS_BACK)
-    resolution = tuple(args.resolution) if args.resolution else tuple(prefs.get("resolution", DEFAULT_RESOLUTION))
+    rng_seed = args.seed
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
-    island_name = args.island
-    view_mode = args.mode
-    aspect_ratio = (1, 1)  # Always square bbox, let OS handle cropping
-    
-    mode_str = view_mode or "random"
-    island_str = island_name or "random"
-    size_str = f"{bbox_size:.1f}km" if bbox_size is not None else "auto"
-    logger.info(f"Generating random bbox (mode={mode_str}, island={island_str}, size={size_str})")
+    logger.info("Selecting %dx%d tile mosaic from %s", mosaic_width, mosaic_height, candidate_list)
 
-    success = False
-    output_path = None
-    for attempt in range(1, DEFAULT_MAX_RETRIES + 1):
-        try:
-            bbox, selected_islands, actual_mode = generate_random_view(
-                mode=view_mode,
-                island=island_name,
-                bbox_size_km=bbox_size,
-                island_weights=island_weights,
-                aspect_ratio=aspect_ratio
-            )
-        except ValueError as e:
-            logger.error(f"Failed to generate bbox: {e}")
-            sys.exit(1)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{timestamp}.png"
 
-        if actual_mode == "single":
-            island_label = selected_islands
-            logger.info(f"Selected: {island_label} (single), bbox={bbox}")
-        else:
-            island_label = f"{selected_islands[0]}_{selected_islands[1]}"
-            logger.info(f"Selected: {selected_islands[0]} + {selected_islands[1]} (pair), bbox={bbox}")
+    logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
+    success = fetch_tile_mosaic_image(
+        candidate_list_path=candidate_list,
+        output_path=str(output_path),
+        max_cloud_cover=max_cloud,
+        days_back=days_back,
+        valid_pixel_min=valid_pixel_min,
+        mosaic_width=mosaic_width,
+        mosaic_height=mosaic_height,
+        rng_seed=rng_seed,
+    )
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_path = args.output or OUTPUT_DIR / f"canary_{island_label}_{timestamp}.png"
-
-        logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
-        logger.info(f"Resolution: {resolution[0]}x{resolution[1]}")
-        logger.info(f"Attempt {attempt}/{DEFAULT_MAX_RETRIES}")
-
-        success = fetch_sentinel_image(
-            bbox=bbox,
-            output_path=str(output_path),
-            resolution=resolution,
-            max_cloud_cover=max_cloud,
-            days_back=days_back,
-            max_nodata_pct=DEFAULT_MAX_NODATA_PCT,
-            max_defective_pct=DEFAULT_MAX_DEFECTIVE_PCT,
-            max_degraded_pct=DEFAULT_MAX_DEGRADED_PCT,
-        )
-
-        if success:
-            break
-
-    if not success or output_path is None:
-        logger.error("Failed to fetch imagery - no suitable scenes found")
-        logger.info("Try increasing --days or --cloud-cover, or try a different island")
+    if not success:
+        logger.error("Failed to fetch imagery - no suitable mosaics found")
+        logger.info("Try increasing --days or --cloud-cover, or update the candidate list")
         sys.exit(1)
 
     logger.info(f"Saved image to {output_path}")

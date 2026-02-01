@@ -1,0 +1,56 @@
+{
+  "tiles": [
+    {
+      "islands": [
+        "la_palma"
+      ],
+      "tile_id": "27RYM"
+    },
+    {
+      "islands": [
+        "la_gomera",
+        "la_palma"
+      ],
+      "tile_id": "28RBS"
+    },
+    {
+      "islands": [
+        "tenerife"
+      ],
+      "tile_id": "28RCS"
+    },
+    {
+      "islands": [
+        "gran_canaria"
+      ],
+      "tile_id": "28RDR"
+    },
+    {
+      "islands": [
+        "gran_canaria"
+      ],
+      "tile_id": "28RDS"
+    },
+    {
+      "islands": [
+        "fuerteventura"
+      ],
+      "tile_id": "28RES"
+    },
+    {
+      "islands": [
+        "fuerteventura",
+        "lanzarote"
+      ],
+      "tile_id": "28RFS"
+    },
+    {
+      "islands": [
+        "la_graciosa",
+        "lanzarote"
+      ],
+      "tile_id": "28RFT"
+    }
+  ],
+  "version": 1
+}
