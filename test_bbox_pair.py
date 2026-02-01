@@ -9,7 +9,7 @@ from typing import Iterable
 from shapely.geometry import box
 from shapely.ops import unary_union
 
-from islands import generate_random_bbox_pair, ISLANDS, IslandName
+from islands import generate_random_bbox_pair, ISLANDS, IslandName, NEIGHBOR_ISLANDS
 
 
 @dataclass(frozen=True)
@@ -68,6 +68,11 @@ def check_bbox_pair(
     west, south, east, north = bbox
     if west >= east or south >= north:
         return BboxCheckResult(False, "invalid_bbox_bounds", islands, bbox, (0.0, 0.0), 0.0)
+
+    if islands[1] not in NEIGHBOR_ISLANDS[islands[0]]:
+        coverages = _island_coverages(bbox, islands)
+        ratio = _bbox_aspect_ratio(bbox)
+        return BboxCheckResult(False, "non_neighbor_pair", islands, bbox, coverages, ratio)
 
     if not _bbox_covers_islands(bbox, islands):
         coverages = _island_coverages(bbox, islands)

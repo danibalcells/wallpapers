@@ -22,11 +22,15 @@ from islands import generate_random_bbox, generate_random_view, ISLANDS, IslandN
 from sentinel import fetch_sentinel_image
 from wallpaper import set_wallpaper
 
-DEFAULT_BBOX_SIZE_MIN_KM = 20
-DEFAULT_BBOX_SIZE_MAX_KM = 80
+DEFAULT_BBOX_SIZE_MIN_KM = 15
+DEFAULT_BBOX_SIZE_MAX_KM = 90
 DEFAULT_MAX_CLOUD_COVER = 20
 DEFAULT_DAYS_BACK = 30
 DEFAULT_RESOLUTION = (2880, 2880)  # Square, let macOS crop to fill
+DEFAULT_MAX_NODATA_PCT = 5.0
+DEFAULT_MAX_DEFECTIVE_PCT = 20.0
+DEFAULT_MAX_DEGRADED_PCT = 10.0
+DEFAULT_MAX_RETRIES = 20
 PROJECT_DIR = Path(__file__).parent.resolve()
 OUTPUT_DIR = PROJECT_DIR / "images"
 CONFIG_FILE = PROJECT_DIR / "config.yaml"
@@ -102,7 +106,7 @@ def main():
     parser.add_argument(
         "--size",
         type=float,
-        help=f"Bbox size in km (default: random {DEFAULT_BBOX_SIZE_MIN_KM}-{DEFAULT_BBOX_SIZE_MAX_KM})"
+        help="Bbox size in km (default: auto by island)"
     )
     parser.add_argument(
         "--cloud-cover",
@@ -160,9 +164,7 @@ def main():
     if args.size:
         bbox_size = args.size
     else:
-        bbox_min = prefs.get("bbox_size_min_km", DEFAULT_BBOX_SIZE_MIN_KM)
-        bbox_max = prefs.get("bbox_size_max_km", DEFAULT_BBOX_SIZE_MAX_KM)
-        bbox_size = random.uniform(bbox_min, bbox_max)
+        bbox_size = None
     max_cloud = args.cloud_cover or prefs.get("max_cloud_cover", DEFAULT_MAX_CLOUD_COVER)
     days_back = args.days or prefs.get("days_back", DEFAULT_DAYS_BACK)
     resolution = tuple(args.resolution) if args.resolution else tuple(prefs.get("resolution", DEFAULT_RESOLUTION))
@@ -175,46 +177,57 @@ def main():
     
     mode_str = view_mode or "random"
     island_str = island_name or "random"
-    logger.info(f"Generating random bbox (mode={mode_str}, island={island_str}, size={bbox_size:.1f}km)")
-    
-    try:
-        bbox, selected_islands, actual_mode = generate_random_view(
-            mode=view_mode,
-            island=island_name,
-            bbox_size_km=bbox_size,
-            island_weights=island_weights,
-            aspect_ratio=aspect_ratio
+    size_str = f"{bbox_size:.1f}km" if bbox_size is not None else "auto"
+    logger.info(f"Generating random bbox (mode={mode_str}, island={island_str}, size={size_str})")
+
+    success = False
+    output_path = None
+    for attempt in range(1, DEFAULT_MAX_RETRIES + 1):
+        try:
+            bbox, selected_islands, actual_mode = generate_random_view(
+                mode=view_mode,
+                island=island_name,
+                bbox_size_km=bbox_size,
+                island_weights=island_weights,
+                aspect_ratio=aspect_ratio
+            )
+        except ValueError as e:
+            logger.error(f"Failed to generate bbox: {e}")
+            sys.exit(1)
+
+        if actual_mode == "single":
+            island_label = selected_islands
+            logger.info(f"Selected: {island_label} (single), bbox={bbox}")
+        else:
+            island_label = f"{selected_islands[0]}_{selected_islands[1]}"
+            logger.info(f"Selected: {selected_islands[0]} + {selected_islands[1]} (pair), bbox={bbox}")
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = args.output or OUTPUT_DIR / f"canary_{island_label}_{timestamp}.png"
+
+        logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
+        logger.info(f"Resolution: {resolution[0]}x{resolution[1]}")
+        logger.info(f"Attempt {attempt}/{DEFAULT_MAX_RETRIES}")
+
+        success = fetch_sentinel_image(
+            bbox=bbox,
+            output_path=str(output_path),
+            resolution=resolution,
+            max_cloud_cover=max_cloud,
+            days_back=days_back,
+            max_nodata_pct=DEFAULT_MAX_NODATA_PCT,
+            max_defective_pct=DEFAULT_MAX_DEFECTIVE_PCT,
+            max_degraded_pct=DEFAULT_MAX_DEGRADED_PCT,
         )
-    except ValueError as e:
-        logger.error(f"Failed to generate bbox: {e}")
-        sys.exit(1)
-    
-    if actual_mode == "single":
-        island_label = selected_islands
-        logger.info(f"Selected: {island_label} (single), bbox={bbox}")
-    else:
-        island_label = f"{selected_islands[0]}_{selected_islands[1]}"
-        logger.info(f"Selected: {selected_islands[0]} + {selected_islands[1]} (pair), bbox={bbox}")
-    
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = args.output or OUTPUT_DIR / f"canary_{island_label}_{timestamp}.png"
-    
-    logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
-    logger.info(f"Resolution: {resolution[0]}x{resolution[1]}")
-    
-    success = fetch_sentinel_image(
-        bbox=bbox,
-        output_path=str(output_path),
-        resolution=resolution,
-        max_cloud_cover=max_cloud,
-        days_back=days_back
-    )
-    
-    if not success:
+
+        if success:
+            break
+
+    if not success or output_path is None:
         logger.error("Failed to fetch imagery - no suitable scenes found")
         logger.info("Try increasing --days or --cloud-cover, or try a different island")
         sys.exit(1)
-    
+
     logger.info(f"Saved image to {output_path}")
     
     # if not args.dry_run:

@@ -1,6 +1,6 @@
 preferences:
-  bbox_size_min_km: 20
-  bbox_size_max_km: 80
+  bbox_size_min_km: 15
+  bbox_size_max_km: 90
   days_back: 30
   max_cloud_cover: 20
   resolution:

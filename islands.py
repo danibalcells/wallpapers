@@ -8,8 +8,8 @@ from shapely.geometry import Polygon, Point, box
 from shapely.ops import unary_union
 
 IslandName = Literal[
-    "tenerife", "fuerteventura", "gran_canaria", "lanzarote", 
-    "la_palma", "la_gomera", "el_hierro"
+    "tenerife", "fuerteventura", "gran_canaria", "lanzarote",
+    "la_palma", "la_gomera", "el_hierro", "la_graciosa"
 ]
 
 ViewMode = Literal["single", "pair"]
@@ -18,69 +18,90 @@ ISLANDS: dict[IslandName, dict] = {
     "tenerife": {
         "area_km2": 2034,
         "polygon": Polygon([
-            (-16.92, 28.00), (-16.85, 28.05), (-16.75, 28.08), (-16.65, 28.12),
+            (-16.971, 27.951), (-16.85, 28.05), (-16.75, 28.08), (-16.65, 28.12),
             (-16.55, 28.18), (-16.45, 28.25), (-16.35, 28.35), (-16.25, 28.42),
-            (-16.12, 28.50), (-16.15, 28.55), (-16.20, 28.58), (-16.30, 28.60),
+            (-16.1, 28.50), (-16.15, 28.55), (-16.20, 28.58), (-16.30, 28.623),
             (-16.45, 28.58), (-16.55, 28.55), (-16.65, 28.50), (-16.75, 28.42),
-            (-16.82, 28.35), (-16.88, 28.25), (-16.90, 28.15), (-16.92, 28.00)
+            (-16.82, 28.35), (-16.88, 28.25), (-16.90, 28.15), (-16.971, 27.951)
         ])
     },
     "fuerteventura": {
         "area_km2": 1659,
         "polygon": Polygon([
-            (-14.52, 28.05), (-14.45, 28.08), (-14.38, 28.15), (-14.30, 28.25),
+            (-14.53, 28.05), (-14.45, 28.08), (-14.38, 28.15), (-14.30, 28.25),
             (-14.22, 28.35), (-14.15, 28.45), (-14.08, 28.55), (-14.00, 28.65),
-            (-13.95, 28.72), (-13.85, 28.76), (-13.82, 28.70), (-13.85, 28.60),
+            (-13.95, 28.72), (-13.85, 28.78), (-13.79, 28.70), (-13.85, 28.60),
             (-13.90, 28.50), (-13.95, 28.40), (-14.02, 28.30), (-14.10, 28.20),
-            (-14.20, 28.12), (-14.30, 28.05), (-14.40, 28.02), (-14.52, 28.05)
+            (-14.20, 28.12), (-14.30, 28.05), (-14.40, 28.03), (-14.53, 28.05)
         ])
     },
     "gran_canaria": {
         "area_km2": 1560,
         "polygon": Polygon([
-            (-15.85, 27.75), (-15.80, 27.78), (-15.70, 27.82), (-15.60, 27.85),
-            (-15.50, 27.88), (-15.40, 27.92), (-15.35, 28.00), (-15.38, 28.08),
-            (-15.45, 28.14), (-15.55, 28.17), (-15.65, 28.15), (-15.75, 28.10),
-            (-15.82, 28.02), (-15.85, 27.92), (-15.85, 27.82), (-15.85, 27.75)
+            (-15.853, 27.725), (-15.80, 27.78), (-15.70, 27.82), (-15.60, 27.85),
+            (-15.50, 27.88), (-15.40, 27.92), (-15.335, 28.00), (-15.38, 28.08),
+            (-15.45, 28.14), (-15.55, 28.2), (-15.65, 28.15), (-15.75, 28.10),
+            (-15.82, 28.02), (-15.853, 27.92), (-15.853, 27.82), (-15.853, 27.725)
         ])
     },
     "lanzarote": {
         "area_km2": 846,
         "polygon": Polygon([
-            (-13.95, 28.85), (-13.88, 28.90), (-13.78, 28.95), (-13.65, 29.02),
-            (-13.55, 29.10), (-13.45, 29.18), (-13.40, 29.25), (-13.45, 29.22),
+            (-13.90294, 28.8232), (-13.88, 28.90), (-13.78, 28.95), (-13.65, 29.02),
+            (-13.55, 29.10), (-13.45, 29.18), (-13.40607, 29.30963), (-13.45, 29.22),
             (-13.55, 29.18), (-13.65, 29.12), (-13.75, 29.05), (-13.85, 28.98),
-            (-13.92, 28.92), (-13.95, 28.85)
+            (-13.90294, 28.92), (-13.90294, 28.8232)
+        ])
+    },
+    "la_graciosa": {
+        "area_km2": 29,
+        "polygon": Polygon([
+            (-13.91, 29.22), (-13.82, 29.22), (-13.82, 29.31), (-13.91, 29.31),
+            (-13.91, 29.22)
         ])
     },
     "la_palma": {
         "area_km2": 708,
         "polygon": Polygon([
-            (-18.02, 28.48), (-17.98, 28.52), (-17.92, 28.58), (-17.85, 28.65),
-            (-17.78, 28.75), (-17.72, 28.85), (-17.75, 28.87), (-17.80, 28.85),
-            (-17.88, 28.78), (-17.95, 28.68), (-18.00, 28.58), (-18.02, 28.48)
+            (-18.02, 28.44), (-17.98, 28.52), (-17.92, 28.58), (-17.85, 28.65),
+            (-17.78, 28.75), (-17.7, 28.85), (-17.75, 28.87), (-17.80, 28.85),
+            (-17.88, 28.78), (-17.95, 28.68), (-18.00, 28.58), (-18.02, 28.44)
         ])
     },
     "la_gomera": {
         "area_km2": 370,
         "polygon": Polygon([
-            (-17.36, 28.05), (-17.30, 28.08), (-17.22, 28.12), (-17.12, 28.15),
-            (-17.06, 28.18), (-17.08, 28.22), (-17.15, 28.20), (-17.25, 28.17),
-            (-17.32, 28.12), (-17.36, 28.05)
+            (-17.3489614, 28.0197564), (-17.30, 28.08), (-17.22, 28.12), (-17.12, 28.15),
+            (-17.0983496, 28.18), (-17.0983496, 28.2187038), (-17.15, 28.20), (-17.25, 28.17),
+            (-17.32, 28.12), (-17.3489614, 28.0197564)
         ])
     },
     "el_hierro": {
         "area_km2": 269,
         "polygon": Polygon([
-            (-18.16, 27.68), (-18.10, 27.72), (-18.02, 27.76), (-17.92, 27.80),
-            (-17.88, 27.84), (-17.92, 27.82), (-18.02, 27.78), (-18.10, 27.72),
-            (-18.16, 27.68)
+            (-18.1611809, 27.6377389), (-18.10, 27.72), (-18.02, 27.76), (-17.92, 27.80),
+            (-17.8828091, 27.8498493), (-17.92, 27.82), (-18.02, 27.78), (-18.10, 27.72),
+            (-18.1611809, 27.6377389)
         ])
     }
 }
 
+NEIGHBOR_ISLANDS: dict[IslandName, tuple[IslandName, ...]] = {
+    "la_palma": ("la_gomera", "el_hierro"),
+    "la_gomera": ("la_palma", "tenerife", "el_hierro"),
+    "tenerife": ("la_gomera", "gran_canaria"),
+    "gran_canaria": ("tenerife", "lanzarote"),
+    "lanzarote": ("gran_canaria", "fuerteventura", "la_graciosa"),
+    "la_graciosa": ("lanzarote",),
+    "fuerteventura": ("lanzarote",),
+    "el_hierro": ("la_palma", "la_gomera"),
+}
 LATITUDE_KM = 111.0
 LONGITUDE_KM_AT_28N = 97.0
+MIN_BBOX_WIDTH_KM_SMALL = 15.0
+MIN_BBOX_WIDTH_KM_LARGE = 40.0
+MAX_BBOX_WIDTH_KM = 90.0
+SMALL_WIDTH_ISLANDS: set[IslandName] = {"tenerife", "la_palma"}
 
 
 def _km_to_degrees(width_km: float, height_km: float) -> tuple[float, float]:
@@ -88,6 +109,12 @@ def _km_to_degrees(width_km: float, height_km: float) -> tuple[float, float]:
     lon_delta = width_km / LONGITUDE_KM_AT_28N
     lat_delta = height_km / LATITUDE_KM
     return lon_delta, lat_delta
+
+
+def _get_bbox_width_bounds_km(island: IslandName) -> tuple[float, float]:
+    if island in SMALL_WIDTH_ISLANDS:
+        return MIN_BBOX_WIDTH_KM_SMALL, MAX_BBOX_WIDTH_KM
+    return MIN_BBOX_WIDTH_KM_LARGE, MAX_BBOX_WIDTH_KM
 
 
 def _select_random_island(
@@ -140,7 +167,9 @@ def _get_combined_bounds(islands: list[IslandName]) -> tuple[float, float, float
 
 def _select_two_random_islands(
     weights: dict[str, float] | None = None,
-    temperature: float = 0.0
+    temperature: float = 0.0,
+    island1: IslandName | None = None,
+    island2: IslandName | None = None
 ) -> tuple[IslandName, IslandName]:
     """
     Select two different random islands, with area-based weighting controlled by temperature.
@@ -149,26 +178,33 @@ def _select_two_random_islands(
         weights: Optional custom weights for island selection
         temperature: Controls area weighting (0=uniform, 1=proportional to area)
     """
+    if island1 is not None and island2 is not None:
+        if island2 not in NEIGHBOR_ISLANDS[island1]:
+            raise ValueError("Island pair must be neighbors")
+        return island1, island2
+
     islands = list(ISLANDS.keys())
-    
+    if island1 is None:
+        if weights is not None:
+            island_weights = [weights.get(name, 1.0) for name in islands]
+        else:
+            areas = [ISLANDS[name]["area_km2"] for name in islands]
+            island_weights = [area ** temperature for area in areas]
+        island1 = random.choices(islands, weights=island_weights, k=1)[0]
+
+    neighbors = list(NEIGHBOR_ISLANDS[island1])
+    if island2 is not None:
+        if island2 not in neighbors:
+            raise ValueError("Island pair must be neighbors")
+        return island1, island2
+
     if weights is not None:
-        island_weights = [weights.get(name, 1.0) for name in islands]
+        neighbor_weights = [weights.get(name, 1.0) for name in neighbors]
     else:
-        areas = [ISLANDS[name]["area_km2"] for name in islands]
-        island_weights = [area ** temperature for area in areas]
-    
-    first = random.choices(islands, weights=island_weights, k=1)[0]
-    
-    remaining_islands = [i for i in islands if i != first]
-    if weights is not None:
-        remaining_weights = [weights.get(name, 1.0) for name in remaining_islands]
-    else:
-        remaining_areas = [ISLANDS[name]["area_km2"] for name in remaining_islands]
-        remaining_weights = [area ** temperature for area in remaining_areas]
-    
-    second = random.choices(remaining_islands, weights=remaining_weights, k=1)[0]
-    
-    return first, second
+        neighbor_areas = [ISLANDS[name]["area_km2"] for name in neighbors]
+        neighbor_weights = [area ** temperature for area in neighbor_areas]
+    island2 = random.choices(neighbors, weights=neighbor_weights, k=1)[0]
+    return island1, island2
 
 
 def generate_random_bbox_pair(
@@ -201,16 +237,13 @@ def generate_random_bbox_pair(
     Returns:
         Tuple of (bbox, (island1, island2)) where bbox is (west, south, east, north) in WGS84
     """
-    if island1 is None or island2 is None:
-        selected1, selected2 = _select_two_random_islands(island_weights, island_selection_temperature)
-        island1 = island1 or selected1
-        island2 = island2 or selected2
-        if island1 == island2:
-            island2 = selected2 if selected2 != island1 else selected1
-    
-    if island1 == island2:
-        raise ValueError("Must select two different islands")
-    
+    island1, island2 = _select_two_random_islands(
+        weights=island_weights,
+        temperature=island_selection_temperature,
+        island1=island1,
+        island2=island2
+    )
+
     combined_minx, combined_miny, combined_maxx, combined_maxy = _get_combined_bounds([island1, island2])
     combined_width = combined_maxx - combined_minx
     combined_height = combined_maxy - combined_miny
@@ -223,31 +256,21 @@ def generate_random_bbox_pair(
     
     for _ in range(max_attempts):
         padding_ratio = random.uniform(min_padding_ratio, max_padding_ratio)
-        
         padded_width = combined_width * (1 + padding_ratio)
         padded_height = combined_height * (1 + padding_ratio)
-        
+
         if padded_width / padded_height > ar_width / ar_height:
             bbox_width = padded_width
             bbox_height = bbox_width * (ar_height / ar_width)
         else:
             bbox_height = padded_height
             bbox_width = bbox_height * (ar_width / ar_height)
-        
-        max_offset_x = (bbox_width - combined_width) / 2
-        max_offset_y = (bbox_height - combined_height) / 2
-        
-        offset_x = random.uniform(-max_offset_x, max_offset_x) * 0.5
-        offset_y = random.uniform(-max_offset_y, max_offset_y) * 0.5
-        
-        center_x = combined_center_x + offset_x
-        center_y = combined_center_y + offset_y
-        
-        west = center_x - bbox_width / 2
-        east = center_x + bbox_width / 2
-        south = center_y - bbox_height / 2
-        north = center_y + bbox_height / 2
-        
+
+        west = combined_center_x - bbox_width / 2
+        east = combined_center_x + bbox_width / 2
+        south = combined_center_y - bbox_height / 2
+        north = combined_center_y + bbox_height / 2
+
         bbox_polygon = box(west, south, east, north)
         island_coverages = [
             _calculate_island_coverage(bbox_polygon, island_polygons[0]),
@@ -255,25 +278,28 @@ def generate_random_bbox_pair(
         ]
         if all(coverage >= min_island_coverage for coverage in island_coverages):
             return (west, south, east, north), (island1, island2)
-    
-    bbox_width = combined_width * 1.2
-    bbox_height = combined_height * 1.2
-    if bbox_width / bbox_height > ar_width / ar_height:
+
+    padding_ratio = max_padding_ratio
+    padded_width = combined_width * (1 + padding_ratio)
+    padded_height = combined_height * (1 + padding_ratio)
+    if padded_width / padded_height > ar_width / ar_height:
+        bbox_width = padded_width
         bbox_height = bbox_width * (ar_height / ar_width)
     else:
+        bbox_height = padded_height
         bbox_width = bbox_height * (ar_width / ar_height)
-    
+
     west = combined_center_x - bbox_width / 2
     east = combined_center_x + bbox_width / 2
     south = combined_center_y - bbox_height / 2
     north = combined_center_y + bbox_height / 2
-    
+
     return (west, south, east, north), (island1, island2)
 
 
 def generate_random_bbox(
     island: IslandName | None = None,
-    bbox_size_km: float = 15.0,
+    bbox_size_km: float | None = None,
     min_land_coverage: float = 0.3,
     max_attempts: int = 50,
     island_weights: dict[str, float] | None = None,
@@ -285,7 +311,8 @@ def generate_random_bbox(
     
     Args:
         island: Specific island name, or None for random selection
-        bbox_size_km: Height of bbox in km (width calculated from aspect ratio)
+        bbox_size_km: Height of bbox in km (width calculated from aspect ratio). If None,
+            width is sampled per-island and height is derived from aspect ratio.
         min_land_coverage: Minimum fraction of land in bbox (0-1)
         max_attempts: Maximum attempts to find valid bbox
         island_weights: Optional custom weights for island selection
@@ -302,8 +329,13 @@ def generate_random_bbox(
     island_data = ISLANDS[selected_island]
     island_polygon = island_data["polygon"]
     
-    height_km = bbox_size_km
-    width_km = bbox_size_km * (aspect_ratio[0] / aspect_ratio[1])
+    if bbox_size_km is None:
+        min_width_km, max_width_km = _get_bbox_width_bounds_km(selected_island)
+        width_km = random.uniform(min_width_km, max_width_km)
+        height_km = width_km * (aspect_ratio[1] / aspect_ratio[0])
+    else:
+        height_km = bbox_size_km
+        width_km = bbox_size_km * (aspect_ratio[0] / aspect_ratio[1])
     
     lon_delta, lat_delta = _km_to_degrees(width_km, height_km)
     half_lon = lon_delta / 2
@@ -341,7 +373,7 @@ def generate_random_view(
     mode: ViewMode | None = None,
     single_mode_probability: float = 0.5,
     island: IslandName | None = None,
-    bbox_size_km: float = 15.0,
+    bbox_size_km: float | None = None,
     min_land_coverage_single: float = 0.3,
     min_island_coverage_pair: float = 0.3,
     min_padding_ratio_pair: float = 0.1,
@@ -358,7 +390,8 @@ def generate_random_view(
         mode: Force "single" or "pair" mode, or None for random selection
         single_mode_probability: Probability of choosing single mode when mode is None
         island: Specific island for single mode (ignored in pair mode)
-        bbox_size_km: Height of bbox in km for single mode
+        bbox_size_km: Height of bbox in km for single mode. If None, width is
+            sampled per-island and height is derived from aspect ratio.
         min_land_coverage_single: Minimum land coverage for single mode
         min_island_coverage_pair: Minimum island coverage for pair mode
         min_padding_ratio_pair: Min padding ratio for pair mode

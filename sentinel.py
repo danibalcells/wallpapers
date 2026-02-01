@@ -11,6 +11,7 @@ import rasterio
 from PIL import Image
 from pystac_client import Client
 from rasterio.warp import reproject, Resampling
+from shapely.geometry import box, shape
 
 logger = logging.getLogger(__name__)
 
@@ -96,7 +97,11 @@ def fetch_sentinel_image(
     output_path: str,
     resolution: tuple[int, int] = (1920, 1080),
     max_cloud_cover: int = 20,
-    days_back: int = 30
+    days_back: int = 30,
+    max_nodata_pct: float = 5.0,
+    max_defective_pct: float = 20.0,
+    max_degraded_pct: float = 10.0,
+    min_bbox_coverage: float = 0.995,
 ) -> bool:
     """
     Fetch Sentinel-2 L2A image for bbox via Element 84 STAC API (no auth needed).
@@ -134,7 +139,18 @@ def fetch_sentinel_image(
             logger.warning("No imagery found matching criteria")
             return False
         
-        item = items[0]
+        item = _select_acceptable_item(
+            items,
+            bbox=bbox,
+            max_nodata_pct=max_nodata_pct,
+            max_defective_pct=max_defective_pct,
+            max_degraded_pct=max_degraded_pct,
+            min_bbox_coverage=min_bbox_coverage,
+        )
+        if item is None:
+            logger.warning("No imagery found matching quality thresholds")
+            return False
+
         logger.info(f"Found image: {item.id}, cloud cover: {item.properties.get('eo:cloud_cover', 'N/A')}%")
         
         red_url = item.assets["red"].href
@@ -222,6 +238,88 @@ def _read_band_as_reflectance(
     except Exception as e:
         logger.error(f"Error reading band from {url}: {e}")
         return None
+
+
+def _select_acceptable_item(
+    items: list,
+    bbox: tuple[float, float, float, float],
+    max_nodata_pct: float,
+    max_defective_pct: float,
+    max_degraded_pct: float,
+    min_bbox_coverage: float,
+) -> object | None:
+    bbox_coverage = None
+    for item in items:
+        nodata = item.properties.get("s2:nodata_pixel_percentage")
+        defective = item.properties.get("s2:saturated_defective_pixel_percentage")
+        degraded = item.properties.get("s2:degraded_msi_data_percentage")
+        bbox_coverage = _bbox_coverage_fraction(item, bbox)
+
+        logger.info(
+            "Item %s quality stats: nodata=%s defective=%s degraded=%s bbox_coverage=%s",
+            item.id,
+            "N/A" if nodata is None else f"{nodata:.2f}%",
+            "N/A" if defective is None else f"{defective:.2f}%",
+            "N/A" if degraded is None else f"{degraded:.2f}%",
+            "N/A" if bbox_coverage is None else f"{bbox_coverage * 100:.2f}%",
+        )
+
+        if bbox_coverage is not None and bbox_coverage < min_bbox_coverage:
+            logger.info(
+                "Rejecting %s (bbox coverage %.2f%% < %.2f%%)",
+                item.id,
+                bbox_coverage * 100,
+                min_bbox_coverage * 100,
+            )
+            continue
+        if nodata is not None and nodata > max_nodata_pct:
+            logger.info(
+                "Rejecting %s (nodata %.2f%% > %.2f%%)",
+                item.id,
+                nodata,
+                max_nodata_pct,
+            )
+            continue
+        if defective is not None and defective > max_defective_pct:
+            logger.info(
+                "Rejecting %s (defective %.2f%% > %.2f%%)",
+                item.id,
+                defective,
+                max_defective_pct,
+            )
+            continue
+        if degraded is not None and degraded > max_degraded_pct:
+            logger.info(
+                "Rejecting %s (degraded %.2f%% > %.2f%%)",
+                item.id,
+                degraded,
+                max_degraded_pct,
+            )
+            continue
+        logger.info("Selected item %s", item.id)
+        return item
+    return None
+
+
+def _bbox_coverage_fraction(
+    item: object,
+    bbox: tuple[float, float, float, float],
+) -> float | None:
+    geometry = getattr(item, "geometry", None)
+    if not geometry:
+        return None
+    try:
+        item_polygon = shape(geometry)
+    except Exception as exc:
+        logger.info("Failed to parse item geometry: %s", exc)
+        return None
+    if item_polygon.is_empty:
+        return None
+    bbox_polygon = box(*bbox)
+    if bbox_polygon.area <= 0:
+        return None
+    intersection = item_polygon.intersection(bbox_polygon)
+    return intersection.area / bbox_polygon.area
 
 
 def search_available_imagery(
