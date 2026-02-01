@@ -11,6 +11,7 @@ Usage:
 
 import argparse
 import logging
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -48,6 +49,17 @@ def load_config() -> dict:
     except Exception as e:
         logger.warning(f"Failed to load config: {e}")
         return {}
+
+
+def parse_shape(value: str) -> tuple[int, int]:
+    match = re.fullmatch(r"(\d+)x(\d+)", value.strip().lower())
+    if not match:
+        raise argparse.ArgumentTypeError("Expected shape as WxH, e.g. 4x3")
+    width = int(match.group(1))
+    height = int(match.group(2))
+    if width < 1 or height < 1 or width > 10 or height > 10:
+        raise argparse.ArgumentTypeError("Shape width and height must be between 1 and 10")
+    return width, height
 
 
 def save_default_config():
@@ -120,6 +132,11 @@ def main():
         help=f"Mosaic height in 10km subtiles (default: {DEFAULT_MOSAIC_HEIGHT})"
     )
     parser.add_argument(
+        "--shape",
+        type=parse_shape,
+        help=f"Mosaic shape WxH (default: {DEFAULT_MOSAIC_WIDTH}x{DEFAULT_MOSAIC_HEIGHT})",
+    )
+    parser.add_argument(
         "--seed",
         type=int,
         help="Random seed for mosaic selection"
@@ -162,8 +179,11 @@ def main():
     if not candidate_list.is_absolute():
         candidate_list = PROJECT_DIR / candidate_list
     valid_pixel_min = args.valid_pixel_min if args.valid_pixel_min is not None else prefs.get("valid_pixel_min", DEFAULT_VALID_PIXEL_MIN)
-    mosaic_width = args.mosaic_width or prefs.get("mosaic_width", DEFAULT_MOSAIC_WIDTH)
-    mosaic_height = args.mosaic_height or prefs.get("mosaic_height", DEFAULT_MOSAIC_HEIGHT)
+    if args.shape is None:
+        mosaic_width = args.mosaic_width or prefs.get("mosaic_width", DEFAULT_MOSAIC_WIDTH)
+        mosaic_height = args.mosaic_height or prefs.get("mosaic_height", DEFAULT_MOSAIC_HEIGHT)
+    else:
+        mosaic_width, mosaic_height = args.shape
     max_cloud = args.cloud_cover or prefs.get("max_cloud_cover", DEFAULT_MAX_CLOUD_COVER)
     days_back = args.days or prefs.get("days_back", DEFAULT_DAYS_BACK)
     rng_seed = args.seed

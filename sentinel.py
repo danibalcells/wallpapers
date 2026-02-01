@@ -174,6 +174,15 @@ def fetch_tile_mosaic_image(
                 invalid_subtiles.add(seed)
                 available = filter_mosaics(mosaics, invalid_subtiles)
                 continue
+            logger.info(
+                "Processing tile %s for date %s (mosaic origin %d,%d size %dx%d)",
+                chosen.tile_id,
+                date,
+                chosen.origin_easting,
+                chosen.origin_northing,
+                chosen.width,
+                chosen.height,
+            )
             try:
                 rgb, failed_subtiles = _attempt_mosaic(
                     mosaic=chosen,
@@ -297,10 +306,14 @@ def _search_tile_items(
             "mgrs:grid_square": {"eq": grid_square},
             "eo:cloud_cover": {"lt": max_cloud_cover},
         },
-        sortby=[{"field": "datetime", "direction": "desc"}],
         limit=limit,
     )
-    return list(search.items())
+    items = list(search.items())
+    items.sort(
+        key=lambda item: getattr(item, "datetime", None) or getattr(item, "properties", {}).get("datetime"),
+        reverse=True,
+    )
+    return items
 
 
 def _select_item_for_tile_date(
