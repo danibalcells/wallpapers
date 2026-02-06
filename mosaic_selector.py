@@ -85,6 +85,23 @@ def filter_mosaics(
     return filtered
 
 
+def filter_mosaics_by_land(
+    mosaics: Iterable[MosaicDefinition],
+    land_fractions: dict[Subtile, float],
+    min_land_per_subtile: float,
+    min_subtiles_with_land: int,
+) -> list[MosaicDefinition]:
+    filtered: list[MosaicDefinition] = []
+    for mosaic in mosaics:
+        count = sum(
+            1 for subtile in mosaic.subtiles
+            if land_fractions.get(subtile, 0.0) >= min_land_per_subtile
+        )
+        if count >= min_subtiles_with_land:
+            filtered.append(mosaic)
+    return filtered
+
+
 def pick_seed(
     candidates: list[Subtile],
     invalid_subtiles: set[Subtile],

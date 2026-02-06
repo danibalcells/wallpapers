@@ -171,18 +171,20 @@ def main() -> None:
                     continue
                 subtile_polygon = box(*subtile_bbox_wgs84)
                 subtile_land = _land_fraction(subtile_polygon, land_union)
-                if subtile_land < args.min_subtile_land:
-                    continue
-                valid_subtiles.append(subtile)
+                valid_subtiles.append((subtile, subtile_land))
                 subtile_tags[subtile] = _island_tags(subtile_polygon, islands)
                 subtile_bboxes[subtile] = subtile_bbox_wgs84
 
     valid_tiles = sorted(set(valid_tiles))
-    valid_subtiles = sorted(set(valid_subtiles), key=lambda st: (st.tile_id, st.easting, st.northing))
-    logger.info("Keeping %d tiles and %d subtiles", len(valid_tiles), len(valid_subtiles))
+    valid_subtiles_unique: dict[Subtile, float] = {}
+    for subtile, land in valid_subtiles:
+        if subtile not in valid_subtiles_unique:
+            valid_subtiles_unique[subtile] = land
+    valid_subtiles_sorted = sorted(valid_subtiles_unique.items(), key=lambda item: (item[0].tile_id, item[0].easting, item[0].northing))
+    logger.info("Keeping %d tiles and %d subtiles", len(valid_tiles), len(valid_subtiles_sorted))
 
     island_tiles: dict[str, dict[str, list[dict[str, object]]]] = {}
-    for subtile in valid_subtiles:
+    for subtile, land_fraction in valid_subtiles_sorted:
         tags = subtile_tags.get(subtile, [])
         if not tags:
             tags = ["unassigned"]
@@ -192,6 +194,7 @@ def main() -> None:
             "bbox": [bbox[0], bbox[1], bbox[2], bbox[3]],
             "bounds_url": _bounds_url(bbox),
             "subtile_mgrs": _subtile_mgrs(subtile.tile_id, subtile.suffix()),
+            "land_fraction": round(land_fraction, 4),
         }
         for tag in tags:
             tiles = island_tiles.setdefault(tag, {})

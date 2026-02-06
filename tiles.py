@@ -34,7 +34,7 @@ def parse_subtile_suffix(suffix: str) -> tuple[int, int]:
     return int(suffix[0]), int(suffix[1])
 
 
-def load_candidate_subtiles(path: Path) -> list[Subtile]:
+def _parse_candidate_list(path: Path) -> tuple[list[Subtile], dict[Subtile, float]]:
     if not path.exists():
         raise CandidateListError(f"Candidate list file not found: {path}")
     try:
@@ -42,6 +42,7 @@ def load_candidate_subtiles(path: Path) -> list[Subtile]:
     except json.JSONDecodeError as exc:
         raise CandidateListError(f"Invalid JSON in candidate list: {exc}") from exc
     parsed: list[Subtile] = []
+    land_fractions: dict[Subtile, float] = {}
     if not isinstance(raw, dict):
         raise CandidateListError("Candidate list must be an object")
     if "islands" in raw:
@@ -68,7 +69,11 @@ def load_candidate_subtiles(path: Path) -> list[Subtile]:
                     if not isinstance(suffix, str):
                         raise CandidateListError("Candidate list subtiles require suffix")
                     easting, northing = parse_subtile_suffix(suffix)
-                    parsed.append(Subtile(tile_id=tile_id, easting=easting, northing=northing))
+                    subtile = Subtile(tile_id=tile_id, easting=easting, northing=northing)
+                    parsed.append(subtile)
+                    land_fraction = entry.get("land_fraction")
+                    if isinstance(land_fraction, (int, float)):
+                        land_fractions[subtile] = float(land_fraction)
     elif "subtiles" in raw:
         subtiles = raw.get("subtiles")
         if not isinstance(subtiles, list):
@@ -81,13 +86,26 @@ def load_candidate_subtiles(path: Path) -> list[Subtile]:
             if not isinstance(tile_id, str) or not isinstance(suffix, str):
                 raise CandidateListError("Candidate list entries require tile_id and suffix")
             easting, northing = parse_subtile_suffix(suffix)
-            parsed.append(Subtile(tile_id=tile_id, easting=easting, northing=northing))
+            subtile = Subtile(tile_id=tile_id, easting=easting, northing=northing)
+            parsed.append(subtile)
+            land_fraction = entry.get("land_fraction")
+            if isinstance(land_fraction, (int, float)):
+                land_fractions[subtile] = float(land_fraction)
     else:
         raise CandidateListError("Candidate list must include islands or subtiles")
     parsed = list(dict.fromkeys(parsed))
     if not parsed:
         raise CandidateListError("Candidate list is empty")
+    return parsed, land_fractions
+
+
+def load_candidate_subtiles(path: Path) -> list[Subtile]:
+    parsed, _ = _parse_candidate_list(path)
     return parsed
+
+
+def load_candidate_subtiles_with_land(path: Path) -> tuple[list[Subtile], dict[Subtile, float]]:
+    return _parse_candidate_list(path)
 
 
 def subtile_bbox_utm(

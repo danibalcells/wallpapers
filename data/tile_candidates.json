@@ -2,12 +2,6 @@
   "tiles": [
     {
       "islands": [
-        "la_palma"
-      ],
-      "tile_id": "27RYM"
-    },
-    {
-      "islands": [
         "la_gomera",
         "la_palma"
       ],
@@ -36,20 +30,6 @@
         "fuerteventura"
       ],
       "tile_id": "28RES"
-    },
-    {
-      "islands": [
-        "fuerteventura",
-        "lanzarote"
-      ],
-      "tile_id": "28RFS"
-    },
-    {
-      "islands": [
-        "la_graciosa",
-        "lanzarote"
-      ],
-      "tile_id": "28RFT"
     }
   ],
   "version": 1

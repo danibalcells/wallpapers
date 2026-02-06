@@ -26,6 +26,8 @@ DEFAULT_DAYS_BACK = 30
 DEFAULT_VALID_PIXEL_MIN = 0.98
 DEFAULT_MOSAIC_WIDTH = 4
 DEFAULT_MOSAIC_HEIGHT = 3
+DEFAULT_MIN_LAND_PER_SUBTILE = 0.05
+DEFAULT_MIN_SUBTILES_WITH_LAND = 2
 PROJECT_DIR = Path(__file__).parent.resolve()
 OUTPUT_DIR = PROJECT_DIR / "images"
 CONFIG_FILE = PROJECT_DIR / "config.yaml"
@@ -77,6 +79,8 @@ def save_default_config():
             "valid_pixel_min": DEFAULT_VALID_PIXEL_MIN,
             "mosaic_width": DEFAULT_MOSAIC_WIDTH,
             "mosaic_height": DEFAULT_MOSAIC_HEIGHT,
+            "min_land_per_subtile": DEFAULT_MIN_LAND_PER_SUBTILE,
+            "min_subtiles_with_land": DEFAULT_MIN_SUBTILES_WITH_LAND,
         }
     }
     
@@ -142,6 +146,16 @@ def main():
         help="Random seed for mosaic selection"
     )
     parser.add_argument(
+        "--min-land-per-subtile",
+        type=float,
+        help=f"Minimum land fraction per subtile to count as 'has land' (default: {DEFAULT_MIN_LAND_PER_SUBTILE})"
+    )
+    parser.add_argument(
+        "--min-subtiles-with-land",
+        type=int,
+        help=f"Minimum number of subtiles with land required per mosaic (default: {DEFAULT_MIN_SUBTILES_WITH_LAND})"
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Don't set wallpaper, just save image"
@@ -187,6 +201,8 @@ def main():
     max_cloud = args.cloud_cover or prefs.get("max_cloud_cover", DEFAULT_MAX_CLOUD_COVER)
     days_back = args.days or prefs.get("days_back", DEFAULT_DAYS_BACK)
     rng_seed = args.seed
+    min_land_per_subtile = args.min_land_per_subtile if args.min_land_per_subtile is not None else prefs.get("min_land_per_subtile", DEFAULT_MIN_LAND_PER_SUBTILE)
+    min_subtiles_with_land = args.min_subtiles_with_land if args.min_subtiles_with_land is not None else prefs.get("min_subtiles_with_land", DEFAULT_MIN_SUBTILES_WITH_LAND)
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
@@ -205,6 +221,8 @@ def main():
         mosaic_width=mosaic_width,
         mosaic_height=mosaic_height,
         rng_seed=rng_seed,
+        min_land_per_subtile=min_land_per_subtile,
+        min_subtiles_with_land=min_subtiles_with_land,
     )
 
     if not success:

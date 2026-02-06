@@ -2,11 +2,13 @@
 Sentinel-2 satellite imagery fetching via STAC API.
 """
 
+import json
 import logging
 import random
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import rasterio
@@ -18,16 +20,18 @@ from mosaic_selector import (
     MosaicDefinition,
     build_mosaics,
     filter_mosaics,
+    filter_mosaics_by_land,
     mosaics_containing_seed,
     pick_mosaic,
     pick_seed,
 )
-from tiles import CandidateListError, Subtile, load_candidate_subtiles, parse_tile_id, subtile_bbox_utm
+from tiles import CandidateListError, Subtile, load_candidate_subtiles_with_land, parse_tile_id, subtile_bbox_utm
 
 logger = logging.getLogger(__name__)
 
 STAC_API_URL = "https://earth-search.aws.element84.com/v1"
 COLLECTION = "sentinel-2-l2a"
+CACHE_PATH = Path(__file__).parent / "data" / "tile_status_cache.json"
 
 TRUE_COLOR_DEFAULTS = {
     "max_r": 3.0,
@@ -35,6 +39,8 @@ TRUE_COLOR_DEFAULTS = {
     "saturation": 1.2,
     "gamma": 1.8,
     "gamma_offset": 0.01,
+    "highlight_knee": 0.72,
+    "highlight_strength": 5.0,
 }
 
 
@@ -47,6 +53,8 @@ def apply_true_color(
     saturation: float = 1.2,
     gamma: float = 1.8,
     gamma_offset: float = 0.01,
+    highlight_knee: float = 0.82,
+    highlight_strength: float = 2.0,
 ) -> np.ndarray:
     """
     Apply Copernicus-style true color processing to RGB bands.
@@ -62,6 +70,8 @@ def apply_true_color(
         saturation: Saturation multiplier (1.0 = no change)
         gamma: Gamma correction value
         gamma_offset: Offset added before gamma correction
+        highlight_knee: Start of highlight compression in [0, 1]
+        highlight_strength: Compression strength for highlights
     
     Returns:
         RGB image as uint8 numpy array with shape (height, width, 3)
@@ -75,6 +85,9 @@ def apply_true_color(
     rgb = np.clip(rgb, 0, 1)
     
     logger.info(f"After gain ({gain}x) - min: {rgb.min():.4f}, max: {rgb.max():.4f}, mean: {rgb.mean():.4f}")
+    
+    if highlight_strength > 0 and highlight_knee < 1.0:
+        rgb = _compress_highlights(rgb, highlight_knee, highlight_strength)
     
     if saturation != 1.0:
         rgb = _apply_saturation(rgb, saturation)
@@ -103,6 +116,24 @@ def _apply_saturation(rgb: np.ndarray, saturation: float) -> np.ndarray:
     return np.clip(result, 0, 1)
 
 
+def _compress_highlights(rgb: np.ndarray, knee: float, strength: float) -> np.ndarray:
+    if knee <= 0.0:
+        knee = 0.0
+    if knee >= 1.0 or strength <= 0.0:
+        return rgb
+    x = np.clip(rgb, 0, 1)
+    t = float(knee)
+    s = float(strength)
+    denom = 1.0 - np.exp(-s)
+    if denom <= 0.0:
+        return x
+    u = (x - t) / (1.0 - t)
+    u = np.clip(u, 0.0, 1.0)
+    comp = 1.0 - np.exp(-s * u)
+    y = t + (1.0 - t) * (comp / denom)
+    return np.where(x <= t, x, y)
+
+
 class TileReadError(RuntimeError):
     pass
 
@@ -116,6 +147,84 @@ class SubtileBands:
     valid_fraction: float
 
 
+def _empty_cache() -> dict[str, Any]:
+    return {"version": 2, "tile_dates": {}, "subtiles": {}, "mosaics": {}}
+
+
+def _load_cache(path: Path) -> dict[str, Any]:
+    try:
+        if not path.exists():
+            return _empty_cache()
+        return json.loads(path.read_text())
+    except Exception:
+        return _empty_cache()
+
+
+def _save_cache(path: Path, cache: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache, indent=2, sort_keys=True))
+
+
+def _cache_get_tile_item_status(cache: dict[str, Any], date: str, tile_id: str) -> str | None:
+    return (
+        cache.get("tile_dates", {})
+        .get(date, {})
+        .get(tile_id, {})
+        .get("item")
+    )
+
+
+def _cache_set_tile_item_status(cache: dict[str, Any], date: str, tile_id: str, status: str) -> None:
+    cache.setdefault("tile_dates", {}).setdefault(date, {}).setdefault(tile_id, {})["item"] = status
+
+
+def _cache_get_subtile_status(cache: dict[str, Any], date: str, subtile: Subtile) -> str | None:
+    return (
+        cache.get("subtiles", {})
+        .get(date, {})
+        .get(subtile.tile_id, {})
+        .get(subtile.suffix())
+    )
+
+
+def _cache_set_subtile_status(cache: dict[str, Any], date: str, subtile: Subtile, status: str) -> None:
+    cache.setdefault("subtiles", {}).setdefault(date, {}).setdefault(subtile.tile_id, {})[subtile.suffix()] = status
+
+
+def _mosaic_key(mosaic: MosaicDefinition) -> str:
+    return f"{mosaic.tile_id}:{mosaic.origin_easting},{mosaic.origin_northing}:{mosaic.width}x{mosaic.height}"
+
+
+def _cache_get_used_mosaics(cache: dict[str, Any], date: str) -> set[str]:
+    used = cache.get("mosaics", {}).get(date, [])
+    if isinstance(used, list):
+        return set(used)
+    if isinstance(used, set):
+        return used
+    return set()
+
+
+def _cache_add_used_mosaic(cache: dict[str, Any], date: str, mosaic_key: str) -> None:
+    mosaics = cache.setdefault("mosaics", {}).setdefault(date, [])
+    if isinstance(mosaics, list):
+        if mosaic_key not in mosaics:
+            mosaics.append(mosaic_key)
+        return
+    if isinstance(mosaics, set):
+        mosaics.add(mosaic_key)
+
+
+def _available_mosaics(
+    mosaics: list[MosaicDefinition],
+    invalid_subtiles: set[Subtile],
+    used_mosaics: set[str],
+) -> list[MosaicDefinition]:
+    available = filter_mosaics(mosaics, invalid_subtiles)
+    if not used_mosaics:
+        return available
+    return [mosaic for mosaic in available if _mosaic_key(mosaic) not in used_mosaics]
+
+
 def fetch_tile_mosaic_image(
     candidate_list_path: Path,
     output_path: str,
@@ -126,9 +235,11 @@ def fetch_tile_mosaic_image(
     mosaic_height: int = 3,
     rng_seed: int | None = None,
     max_items_per_tile: int = 20,
+    min_land_per_subtile: float = 0.05,
+    min_subtiles_with_land: int = 2,
 ) -> bool:
     try:
-        candidates = load_candidate_subtiles(candidate_list_path)
+        candidates, land_fractions = load_candidate_subtiles_with_land(candidate_list_path)
     except CandidateListError as exc:
         logger.error("%s", exc)
         return False
@@ -143,6 +254,12 @@ def fetch_tile_mosaic_image(
         logger.error("No %dx%d mosaics available from candidate list", mosaic_width, mosaic_height)
         return False
     logger.info("Built %d mosaics for sampling", len(mosaics))
+    if land_fractions:
+        mosaics = filter_mosaics_by_land(mosaics, land_fractions, min_land_per_subtile, min_subtiles_with_land)
+        if not mosaics:
+            logger.error("No mosaics with at least %d subtiles having >= %.1f%% land", min_subtiles_with_land, min_land_per_subtile * 100)
+            return False
+        logger.info("After land filter: %d mosaics", len(mosaics))
 
     tile_ids = sorted({subtile.tile_id for subtile in candidates})
     dates = _list_tile_dates(
@@ -155,24 +272,33 @@ def fetch_tile_mosaic_image(
         logger.warning("No imagery dates found for candidate tiles")
         return False
 
+    cache = _load_cache(CACHE_PATH)
     rng = random.Random(rng_seed)
     for date in dates:
         invalid_subtiles: set[Subtile] = set()
-        available = filter_mosaics(mosaics, invalid_subtiles)
+        for subtile in candidates:
+            if _cache_get_subtile_status(cache, date, subtile) == "invalid":
+                invalid_subtiles.add(subtile)
+        used_mosaics = _cache_get_used_mosaics(cache, date)
+        available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
         logger.info("Attempting date %s with %d mosaics", date, len(available))
         while available:
             seed = pick_seed(candidates, invalid_subtiles, rng)
             if seed is None:
                 break
+            if _cache_get_tile_item_status(cache, date, seed.tile_id) == "none":
+                invalid_subtiles.add(seed)
+                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
+                continue
             seed_mosaics = mosaics_containing_seed(available, seed)
             if not seed_mosaics:
                 invalid_subtiles.add(seed)
-                available = filter_mosaics(mosaics, invalid_subtiles)
+                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                 continue
             chosen = pick_mosaic(seed_mosaics, rng)
             if chosen is None:
                 invalid_subtiles.add(seed)
-                available = filter_mosaics(mosaics, invalid_subtiles)
+                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                 continue
             logger.info(
                 "Processing tile %s for date %s (mosaic origin %d,%d size %dx%d)",
@@ -189,30 +315,35 @@ def fetch_tile_mosaic_image(
                     date=date,
                     max_cloud_cover=max_cloud_cover,
                     valid_pixel_min=valid_pixel_min,
+                    cache=cache,
                 )
             except TileReadError as exc:
                 logger.warning("%s", exc)
                 failed = set(chosen.subtiles)
                 failed.add(seed)
                 invalid_subtiles.update(failed)
-                available = filter_mosaics(mosaics, invalid_subtiles)
+                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                 continue
             if rgb is None:
                 failed = set(failed_subtiles)
                 failed.add(seed)
                 invalid_subtiles.update(failed)
-                available = filter_mosaics(mosaics, invalid_subtiles)
+                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                 continue
 
             output = Path(output_path)
             output.parent.mkdir(parents=True, exist_ok=True)
             Image.fromarray(rgb).save(output, "PNG", optimize=True)
             logger.info("Saved image to %s", output)
+            _cache_add_used_mosaic(cache, date, _mosaic_key(chosen))
+            _save_cache(CACHE_PATH, cache)
             return True
 
         logger.info("Exhausted all mosaics for date %s", date)
+        _save_cache(CACHE_PATH, cache)
 
     logger.error("Failed to fetch imagery for any available date")
+    _save_cache(CACHE_PATH, cache)
     return False
 
 
@@ -347,21 +478,30 @@ def _attempt_mosaic(
     date: str,
     max_cloud_cover: int,
     valid_pixel_min: float,
+    cache: dict[str, Any],
 ) -> tuple[np.ndarray | None, list[Subtile]]:
+    if _cache_get_tile_item_status(cache, date, mosaic.tile_id) == "none":
+        return None, list(mosaic.subtiles)
     item = _select_item_for_tile_date(mosaic.tile_id, date, max_cloud_cover)
     if item is None:
+        _cache_set_tile_item_status(cache, date, mosaic.tile_id, "none")
         logger.info("No item for tile %s on %s", mosaic.tile_id, date)
         return None, list(mosaic.subtiles)
+    _cache_set_tile_item_status(cache, date, mosaic.tile_id, "ok")
     tile_bbox = _asset_proj_bbox(item, "red")
     if tile_bbox is None:
         raise TileReadError(f"Missing proj:bbox for tile {mosaic.tile_id}")
 
     bands: list[SubtileBands] = []
     for subtile in mosaic.subtiles:
+        cached_status = _cache_get_subtile_status(cache, date, subtile)
+        if cached_status == "invalid":
+            return None, [subtile]
         bbox_utm = subtile_bbox_utm(tile_bbox, subtile)
         red, green, blue = _read_subtile_bands(item, bbox_utm)
         valid_fraction = _valid_pixel_fraction(red, green, blue)
         if valid_fraction < valid_pixel_min:
+            _cache_set_subtile_status(cache, date, subtile, "invalid")
             logger.info(
                 "Subtile %s%s valid fraction %.3f < %.3f",
                 subtile.tile_id,
@@ -370,6 +510,7 @@ def _attempt_mosaic(
                 valid_pixel_min,
             )
             return None, [subtile]
+        _cache_set_subtile_status(cache, date, subtile, "valid")
         bands.append(
             SubtileBands(
                 subtile=subtile,
