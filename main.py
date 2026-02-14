@@ -13,15 +13,17 @@ import argparse
 import logging
 import re
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 import yaml
 
+from PIL import Image
+
 from sentinel import fetch_tile_mosaic_image
 from wallpaper import set_wallpaper
 
-DEFAULT_MAX_CLOUD_COVER = 20
+DEFAULT_MAX_CLOUD_COVER = 100
 DEFAULT_DAYS_BACK = 30
 DEFAULT_VALID_PIXEL_MIN = 0.98
 DEFAULT_MOSAIC_WIDTH = 4
@@ -90,8 +92,19 @@ def save_default_config():
     logger.info(f"Created default config at {CONFIG_FILE}")
 
 
+def count_images_generated_today(directory: Path) -> int:
+    today_str = date.today().strftime("%Y%m%d")
+    count = 0
+    for path in directory.glob("canary_mosaic_*_*.png"):
+        parts = path.stem.split("_")
+        if len(parts) >= 5:
+            gen_date = parts[-2]
+            if gen_date == today_str:
+                count += 1
+    return count
+
+
 def cleanup_old_images(directory: Path, keep: int = 10):
-    """Remove old wallpaper images, keeping the most recent `keep` files."""
     images = sorted(directory.glob("canary_*.png"), key=lambda p: p.stat().st_mtime)
     for old_image in images[:-keep]:
         try:
@@ -177,6 +190,11 @@ def main():
         help="Number of old images to keep (default: 10)"
     )
     parser.add_argument(
+        "--max-per-day",
+        type=int,
+        help="Skip generation if this many images were already generated today"
+    )
+    parser.add_argument(
         "-v", "--verbose",
         action="store_true",
         help="Enable verbose logging"
@@ -205,16 +223,19 @@ def main():
     min_subtiles_with_land = args.min_subtiles_with_land if args.min_subtiles_with_land is not None else prefs.get("min_subtiles_with_land", DEFAULT_MIN_SUBTILES_WITH_LAND)
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    max_per_day = args.max_per_day
+    if max_per_day is not None:
+        existing = count_images_generated_today(OUTPUT_DIR)
+        if existing >= max_per_day:
+            logger.info("Already generated %d image(s) today (max %d), skipping", existing, max_per_day)
+            sys.exit(0)
     
     logger.info("Selecting %dx%d tile mosaic from %s", mosaic_width, mosaic_height, candidate_list)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{timestamp}.png"
-
     logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
-    success = fetch_tile_mosaic_image(
+    result = fetch_tile_mosaic_image(
         candidate_list_path=candidate_list,
-        output_path=str(output_path),
         max_cloud_cover=max_cloud,
         days_back=days_back,
         valid_pixel_min=valid_pixel_min,
@@ -225,11 +246,21 @@ def main():
         min_subtiles_with_land=min_subtiles_with_land,
     )
 
-    if not success:
+    if result is None:
         logger.error("Failed to fetch imagery - no suitable mosaics found")
         logger.info("Try increasing --days or --cloud-cover, or update the candidate list")
         sys.exit(1)
 
+    mosaic = result.mosaic
+    top_left_northing = mosaic.origin_northing + mosaic.height - 1
+    top_left_tile = f"{mosaic.tile_id}{mosaic.origin_easting}{top_left_northing}"
+    capture_date = result.date.replace("-", "")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{capture_date}_{top_left_tile}_{timestamp}.png"
+
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    Image.fromarray(result.image).save(output_path, "PNG", optimize=True)
     logger.info(f"Saved image to {output_path}")
     
     # if not args.dry_run:

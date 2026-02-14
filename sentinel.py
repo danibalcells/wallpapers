@@ -139,6 +139,13 @@ class TileReadError(RuntimeError):
 
 
 @dataclass(frozen=True)
+class MosaicResult:
+    image: np.ndarray
+    date: str
+    mosaic: MosaicDefinition
+
+
+@dataclass(frozen=True)
 class SubtileBands:
     subtile: Subtile
     red: np.ndarray
@@ -227,7 +234,6 @@ def _available_mosaics(
 
 def fetch_tile_mosaic_image(
     candidate_list_path: Path,
-    output_path: str,
     max_cloud_cover: int = 20,
     days_back: int = 30,
     valid_pixel_min: float = 0.98,
@@ -237,28 +243,28 @@ def fetch_tile_mosaic_image(
     max_items_per_tile: int = 20,
     min_land_per_subtile: float = 0.05,
     min_subtiles_with_land: int = 2,
-) -> bool:
+) -> MosaicResult | None:
     try:
         candidates, land_fractions = load_candidate_subtiles_with_land(candidate_list_path)
     except CandidateListError as exc:
         logger.error("%s", exc)
-        return False
+        return None
     logger.info("Loaded %d candidate subtiles from %s", len(candidates), candidate_list_path)
 
     try:
         mosaics = build_mosaics(candidates, width=mosaic_width, height=mosaic_height)
     except ValueError as exc:
         logger.error("%s", exc)
-        return False
+        return None
     if not mosaics:
         logger.error("No %dx%d mosaics available from candidate list", mosaic_width, mosaic_height)
-        return False
+        return None
     logger.info("Built %d mosaics for sampling", len(mosaics))
     if land_fractions:
         mosaics = filter_mosaics_by_land(mosaics, land_fractions, min_land_per_subtile, min_subtiles_with_land)
         if not mosaics:
             logger.error("No mosaics with at least %d subtiles having >= %.1f%% land", min_subtiles_with_land, min_land_per_subtile * 100)
-            return False
+            return None
         logger.info("After land filter: %d mosaics", len(mosaics))
 
     tile_ids = sorted({subtile.tile_id for subtile in candidates})
@@ -270,7 +276,7 @@ def fetch_tile_mosaic_image(
     )
     if not dates:
         logger.warning("No imagery dates found for candidate tiles")
-        return False
+        return None
 
     cache = _load_cache(CACHE_PATH)
     rng = random.Random(rng_seed)
@@ -331,20 +337,16 @@ def fetch_tile_mosaic_image(
                 available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                 continue
 
-            output = Path(output_path)
-            output.parent.mkdir(parents=True, exist_ok=True)
-            Image.fromarray(rgb).save(output, "PNG", optimize=True)
-            logger.info("Saved image to %s", output)
             _cache_add_used_mosaic(cache, date, _mosaic_key(chosen))
             _save_cache(CACHE_PATH, cache)
-            return True
+            return MosaicResult(image=rgb, date=date, mosaic=chosen)
 
         logger.info("Exhausted all mosaics for date %s", date)
         _save_cache(CACHE_PATH, cache)
 
     logger.error("Failed to fetch imagery for any available date")
     _save_cache(CACHE_PATH, cache)
-    return False
+    return None
 
 
 def _read_band_native_bbox(

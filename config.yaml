@@ -1,7 +1,7 @@
 preferences:
   candidate_list: data/subtile_candidates.json
   days_back: 30
-  max_cloud_cover: 20
+  max_cloud_cover: 40
   mosaic_height: 3
   mosaic_width: 4
   valid_pixel_min: 0.98
