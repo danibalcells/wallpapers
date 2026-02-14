@@ -82,7 +82,7 @@ def apply_true_color(
     
     gain = 2.5
     rgb = rgb * gain
-    rgb = np.clip(rgb, 0, 1)
+    rgb = np.maximum(rgb, 0.0)
     
     logger.info(f"After gain ({gain}x) - min: {rgb.min():.4f}, max: {rgb.max():.4f}, mean: {rgb.mean():.4f}")
     
@@ -120,14 +120,16 @@ def _compress_highlights(rgb: np.ndarray, knee: float, strength: float) -> np.nd
     if knee <= 0.0:
         knee = 0.0
     if knee >= 1.0 or strength <= 0.0:
-        return rgb
-    x = np.clip(rgb, 0, 1)
+        return np.clip(rgb, 0, 1)
+    x = np.maximum(rgb, 0.0)
     t = float(knee)
     s = float(strength)
+    max_val = max(float(x.max()), 1.0)
+    range_above = max(max_val - t, 1e-6)
     denom = 1.0 - np.exp(-s)
     if denom <= 0.0:
-        return x
-    u = (x - t) / (1.0 - t)
+        return np.clip(x, 0, 1)
+    u = (x - t) / range_above
     u = np.clip(u, 0.0, 1.0)
     comp = 1.0 - np.exp(-s * u)
     y = t + (1.0 - t) * (comp / denom)
