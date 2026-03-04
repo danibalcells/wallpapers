@@ -1,6 +1,167 @@
 {
   "islands": [
     {
+      "name": "el_hierro",
+      "tiles": [
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -18.263645495847992,
+                27.637141838720687,
+                -18.16007557908559,
+                27.725262823677745
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.26365,27.63714,-18.16008,27.72526",
+              "land_fraction": 0.0002,
+              "subtile_mgrs": "27RYL76",
+              "suffix": "76"
+            },
+            {
+              "bbox": [
+                -18.261395429127983,
+                27.727315526039174,
+                -18.15773168566307,
+                27.815427386176008
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.26140,27.72732,-18.15773,27.81543",
+              "land_fraction": 0.0005,
+              "subtile_mgrs": "27RYL77",
+              "suffix": "77"
+            },
+            {
+              "bbox": [
+                -18.16239826578828,
+                27.635105713520268,
+                -18.0587562196896,
+                27.723144897006957
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.16240,27.63511,-18.05876,27.72314",
+              "land_fraction": 0.2185,
+              "subtile_mgrs": "27RYL86",
+              "suffix": "86"
+            },
+            {
+              "bbox": [
+                -18.160065212753697,
+                27.72527163211033,
+                -18.056328992984554,
+                27.813301396775703
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.16007,27.72527,-18.05633,27.81330",
+              "land_fraction": 0.3864,
+              "subtile_mgrs": "27RYL87",
+              "suffix": "87"
+            },
+            {
+              "bbox": [
+                -18.061161847463776,
+                27.632995828496544,
+                -17.957448095054065,
+                27.72095295961032
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.06116,27.63300,-17.95745,27.72095",
+              "land_fraction": 0.5941,
+              "subtile_mgrs": "27RYL96",
+              "suffix": "96"
+            },
+            {
+              "bbox": [
+                -18.05874584614788,
+                27.723153697231318,
+                -17.954937574699112,
+                27.811101115222638
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05875,27.72315,-17.95494,27.81110",
+              "land_fraction": 0.7234,
+              "subtile_mgrs": "27RYL97",
+              "suffix": "97"
+            },
+            {
+              "bbox": [
+                -18.056318609986004,
+                27.81331019604254,
+                -17.952415393780893,
+                27.901247883906173
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05632,27.81331,-17.95242,27.90125",
+              "land_fraction": 0.0546,
+              "subtile_mgrs": "27RYL98",
+              "suffix": "98"
+            }
+          ],
+          "tile_id": "27RYL",
+          "tile_mgrs": "27RYL"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -18.040063375432876,
+                27.630812213702175,
+                -17.94126404307141,
+                27.72314446601805
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.04006,27.63081,-17.94126,27.72314",
+              "land_fraction": 0.5608,
+              "subtile_mgrs": "28RBR06",
+              "suffix": "06"
+            },
+            {
+              "bbox": [
+                -18.04256228565504,
+                27.720961751601397,
+                -17.94369128643919,
+                27.81330096414609
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.04256,27.72096,-17.94369,27.81330",
+              "land_fraction": 0.7967,
+              "subtile_mgrs": "28RBR07",
+              "suffix": "07"
+            },
+            {
+              "bbox": [
+                -18.04507281550133,
+                27.811109906226722,
+                -17.946129804320673,
+                27.903456088766788
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.04507,27.81111,-17.94613,27.90346",
+              "land_fraction": 0.0829,
+              "subtile_mgrs": "28RBR08",
+              "suffix": "08"
+            },
+            {
+              "bbox": [
+                -17.94125415385212,
+                27.723153697231318,
+                -17.84228859597693,
+                27.81542696840789
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.94125,27.72315,-17.84229,27.81543",
+              "land_fraction": 0.2955,
+              "subtile_mgrs": "28RBR17",
+              "suffix": "17"
+            },
+            {
+              "bbox": [
+                -17.943681390013996,
+                27.81331019604254,
+                -17.844643394197423,
+                27.905590168789427
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.94368,27.81331,-17.84464,27.90559",
+              "land_fraction": 0.1488,
+              "subtile_mgrs": "28RBR18",
+              "suffix": "18"
+            }
+          ],
+          "tile_id": "28RBR",
+          "tile_mgrs": "28RBR"
+        }
+      ]
+    },
+    {
       "name": "fuerteventura",
       "tiles": [
         {
@@ -272,6 +433,132 @@
           ],
           "tile_id": "28RES",
           "tile_mgrs": "28RES"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.980204155927739,
+                28.29225972095357,
+                -13.877301706043447,
+                28.381702400658494
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.98020,28.29226,-13.87730,28.38170",
+              "land_fraction": 0.0235,
+              "subtile_mgrs": "28RFS03",
+              "suffix": "03"
+            },
+            {
+              "bbox": [
+                -13.979341880643368,
+                28.382513879496962,
+                -13.876348886172245,
+                28.471952328510838
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97934,28.38251,-13.87635,28.47195",
+              "land_fraction": 0.4138,
+              "subtile_mgrs": "28RFS04",
+              "suffix": "04"
+            },
+            {
+              "bbox": [
+                -13.978475622128933,
+                28.472766817986567,
+                -13.875391669329282,
+                28.56220102874115
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97848,28.47277,-13.87539,28.56220",
+              "land_fraction": 0.8415,
+              "subtile_mgrs": "28RFS05",
+              "suffix": "05"
+            },
+            {
+              "bbox": [
+                -13.977605365998548,
+                28.56301853384929,
+                -13.874430039588727,
+                28.652448498760123
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97761,28.56302,-13.87443,28.65245",
+              "land_fraction": 1.0,
+              "subtile_mgrs": "28RFS06",
+              "suffix": "06"
+            },
+            {
+              "bbox": [
+                -13.976731097771745,
+                28.65326902452344,
+                -13.873463980920013,
+                28.742694735989677
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97673,28.65327,-13.87346,28.74269",
+              "land_fraction": 0.8337,
+              "subtile_mgrs": "28RFS07",
+              "suffix": "07"
+            },
+            {
+              "bbox": [
+                -13.975852802872831,
+                28.743518287458645,
+                -13.872493477187108,
+                28.832939737862993
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97585,28.74352,-13.87249,28.83294",
+              "land_fraction": 0.0476,
+              "subtile_mgrs": "28RFS08",
+              "suffix": "08"
+            },
+            {
+              "bbox": [
+                -13.87633857717933,
+                28.47196126905395,
+                -13.773172075706283,
+                28.56131551246678
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87634,28.47196,-13.77317,28.56132",
+              "land_fraction": 0.0053,
+              "subtile_mgrs": "28RFS15",
+              "suffix": "15"
+            },
+            {
+              "bbox": [
+                -13.875381351199662,
+                28.562209968845416,
+                -13.772123091342664,
+                28.65155967392456
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87538,28.56221,-13.77212,28.65156",
+              "land_fraction": 0.2935,
+              "subtile_mgrs": "28RFS16",
+              "suffix": "16"
+            },
+            {
+              "bbox": [
+                -13.874419712280725,
+                28.652457438424747,
+                -13.771069275858606,
+                28.74180259706156
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87442,28.65246,-13.77107,28.74180",
+              "land_fraction": 0.6724,
+              "subtile_mgrs": "28RFS17",
+              "suffix": "17"
+            },
+            {
+              "bbox": [
+                -13.873453644391796,
+                28.74270367521388,
+                -13.770010611654222,
+                28.83204427928046
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87345,28.74270,-13.77001,28.83204",
+              "land_fraction": 0.1332,
+              "subtile_mgrs": "28RFS18",
+              "suffix": "18"
+            }
+          ],
+          "tile_id": "28RFS",
+          "tile_mgrs": "28RFS"
         }
       ]
     },
@@ -700,8 +987,121 @@
       ]
     },
     {
+      "name": "la_graciosa",
+      "tiles": [
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.971400411396676,
+                29.194746097589373,
+                -13.867573710323256,
+                29.284146127838483
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97140,29.19475,-13.86757,29.28415",
+              "land_fraction": 0.2932,
+              "subtile_mgrs": "28RFT03",
+              "suffix": "03"
+            },
+            {
+              "bbox": [
+                -13.97049764495807,
+                29.284987941174517,
+                -13.866576191349356,
+                29.3743836643043
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97050,29.28499,-13.86658,29.37438",
+              "land_fraction": 0.1169,
+              "subtile_mgrs": "28RFT04",
+              "suffix": "04"
+            },
+            {
+              "bbox": [
+                -13.868556301898186,
+                29.193916277863277,
+                -13.764643935678395,
+                29.283233986475086
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.86856,29.19392,-13.76464,29.28323",
+              "land_fraction": 0.3308,
+              "subtile_mgrs": "28RFT13",
+              "suffix": "13"
+            },
+            {
+              "bbox": [
+                -13.867563317586393,
+                29.28415506440355,
+                -13.763555803011439,
+                29.37346816926455
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.86756,29.28416,-13.76356,29.37347",
+              "land_fraction": 0.1323,
+              "subtile_mgrs": "28RFT14",
+              "suffix": "14"
+            }
+          ],
+          "tile_id": "28RFT",
+          "tile_mgrs": "28RFT"
+        }
+      ]
+    },
+    {
       "name": "la_palma",
       "tiles": [
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -18.041517023533462,
+                28.35422022032637,
+                -17.937035107433836,
+                28.442099166493374
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.04152,28.35422,-17.93704,28.44210",
+              "land_fraction": 0.0001,
+              "subtile_mgrs": "27RYM94",
+              "suffix": "94"
+            },
+            {
+              "bbox": [
+                -18.03901001906776,
+                28.44436702971254,
+                -17.934430132318067,
+                28.53223612479627
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.03901,28.44437,-17.93443,28.53224",
+              "land_fraction": 0.169,
+              "subtile_mgrs": "27RYM95",
+              "suffix": "95"
+            },
+            {
+              "bbox": [
+                -18.036491455325795,
+                28.534512440691604,
+                -17.931813158972183,
+                28.622371667133617
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.03649,28.53451,-17.93181,28.62237",
+              "land_fraction": 0.557,
+              "subtile_mgrs": "27RYM96",
+              "suffix": "96"
+            },
+            {
+              "bbox": [
+                -18.03396129054825,
+                28.624656449731663,
+                -17.929184143932932,
+                28.712505789902437
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.03396,28.62466,-17.92918,28.71251",
+              "land_fraction": 0.242,
+              "subtile_mgrs": "27RYM97",
+              "suffix": "97"
+            }
+          ],
+          "tile_id": "27RYM",
+          "tile_mgrs": "27RYM"
+        },
         {
           "subtiles": [
             {
@@ -855,8 +1255,283 @@
       ]
     },
     {
+      "name": "lanzarote",
+      "tiles": [
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.974970466630204,
+                28.833766320116034,
+                -13.871518512147787,
+                28.923183501824564
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97497,28.83377,-13.87152,28.92318",
+              "land_fraction": 0.011,
+              "subtile_mgrs": "28RFS09",
+              "suffix": "09"
+            },
+            {
+              "bbox": [
+                -13.872483131396686,
+                28.832948676646,
+                -13.768947081013804,
+                28.922284717995023
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87248,28.83295,-13.76895,28.92228",
+              "land_fraction": 0.7017,
+              "subtile_mgrs": "28RFS19",
+              "suffix": "19"
+            },
+            {
+              "bbox": [
+                -13.770000257493908,
+                28.832053209949535,
+                -13.666380534128615,
+                28.921307835056925
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.77000,28.83205,-13.66638,28.92131",
+              "land_fraction": 0.2449,
+              "subtile_mgrs": "28RFS29",
+              "suffix": "29"
+            },
+            {
+              "bbox": [
+                -13.667522250050007,
+                28.831079932998076,
+                -13.563819277985946,
+                28.920252867175694
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66752,28.83108,-13.56382,28.92025",
+              "land_fraction": 0.0043,
+              "subtile_mgrs": "28RFS39",
+              "suffix": "39"
+            }
+          ],
+          "tile_id": "28RFS",
+          "tile_mgrs": "28RFS"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.871508157053011,
+                28.923192440165565,
+                -13.767878666105013,
+                29.012523910630144
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87151,28.92319,-13.76788,29.01252",
+              "land_fraction": 0.6207,
+              "subtile_mgrs": "28RFT10",
+              "suffix": "10"
+            },
+            {
+              "bbox": [
+                -13.870528705011449,
+                29.013434963228363,
+                -13.766805348978064,
+                29.102761854621853
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87053,29.01343,-13.76681,29.10276",
+              "land_fraction": 0.1555,
+              "subtile_mgrs": "28RFT11",
+              "suffix": "11"
+            },
+            {
+              "bbox": [
+                -13.768936717510261,
+                28.922293648192632,
+                -13.665223164955584,
+                29.011543407452677
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76894,28.92229,-13.66522,29.01154",
+              "land_fraction": 1.0,
+              "subtile_mgrs": "28RFT20",
+              "suffix": "20"
+            },
+            {
+              "bbox": [
+                -13.767868293215793,
+                29.012532840355455,
+                -13.66406048557693,
+                29.101777725060014
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76787,29.01253,-13.66406,29.10178",
+              "land_fraction": 0.795,
+              "subtile_mgrs": "28RFT21",
+              "suffix": "21"
+            },
+            {
+              "bbox": [
+                -13.766794966660562,
+                29.102770783874025,
+                -13.662892476422675,
+                29.19201078529224
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76679,29.10277,-13.66289,29.19201",
+              "land_fraction": 0.001,
+              "subtile_mgrs": "28RFT22",
+              "suffix": "22"
+            },
+            {
+              "bbox": [
+                -13.666370162258747,
+                28.921316757083595,
+                -13.56257297399042,
+                29.01048453003178
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66637,28.92132,-13.56257,29.01048",
+              "land_fraction": 0.8401,
+              "subtile_mgrs": "28RFT30",
+              "suffix": "30"
+            },
+            {
+              "bbox": [
+                -13.665212783661184,
+                29.011552328977505,
+                -13.561320951929904,
+                29.10071493146422
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66521,29.01155,-13.56132,29.10071",
+              "land_fraction": 1.0,
+              "subtile_mgrs": "28RFT31",
+              "suffix": "31"
+            },
+            {
+              "bbox": [
+                -13.664050094815261,
+                29.1017866460821,
+                -13.560063190733368,
+                29.190944068849742
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66405,29.10179,-13.56006,29.19094",
+              "land_fraction": 0.2617,
+              "subtile_mgrs": "28RFT32",
+              "suffix": "32"
+            },
+            {
+              "bbox": [
+                -13.563808897792331,
+                28.92026178100399,
+                -13.459928501067258,
+                29.00934729373762
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.56381,28.92026,-13.45993,29.00935",
+              "land_fraction": 0.285,
+              "subtile_mgrs": "28RFT40",
+              "suffix": "40"
+            },
+            {
+              "bbox": [
+                -13.562562584333586,
+                29.01049344332865,
+                -13.458587157395739,
+                29.09957348927904
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.56256,29.01049,-13.45859,29.09957",
+              "land_fraction": 0.9473,
+              "subtile_mgrs": "28RFT41",
+              "suffix": "41"
+            },
+            {
+              "bbox": [
+                -13.561310552766967,
+                29.100723844228714,
+                -13.457239665366659,
+                29.189798413609118
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.56131,29.10072,-13.45724,29.18980",
+              "land_fraction": 0.7421,
+              "subtile_mgrs": "28RFT42",
+              "suffix": "42"
+            },
+            {
+              "bbox": [
+                -13.56005278202129,
+                29.19095298108089,
+                -13.455886002260181,
+                29.280022064075823
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.56005,29.19095,-13.45589,29.28002",
+              "land_fraction": 0.1229,
+              "subtile_mgrs": "28RFT43",
+              "suffix": "43"
+            },
+            {
+              "bbox": [
+                -13.459918103090866,
+                29.009356198779166,
+                -13.35585951119433,
+                29.09835341509008
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.45992,29.00936,-13.35586,29.09835",
+              "land_fraction": 0.0276,
+              "subtile_mgrs": "28RFT51",
+              "suffix": "51"
+            },
+            {
+              "bbox": [
+                -13.45857674987458,
+                29.099582393758524,
+                -13.354422311052371,
+                29.18857383623623
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.45858,29.09958,-13.35442,29.18857",
+              "land_fraction": 0.1481,
+              "subtile_mgrs": "28RFT52",
+              "suffix": "52"
+            },
+            {
+              "bbox": [
+                -13.457229248257555,
+                29.189807317525542,
+                -13.352978529251313,
+                29.278792975820103
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.45723,29.18981,-13.35298,29.27879",
+              "land_fraction": 0.0549,
+              "subtile_mgrs": "28RFT53",
+              "suffix": "53"
+            }
+          ],
+          "tile_id": "28RFT",
+          "tile_mgrs": "28RFT"
+        }
+      ]
+    },
+    {
       "name": "tenerife",
       "tiles": [
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -17.032381388282865,
+                27.919983879222723,
+                -16.932427791323562,
+                28.011658284635875
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.03238,27.91998,-16.93243,28.01166",
+              "land_fraction": 0.1173,
+              "subtile_mgrs": "28RCR09",
+              "suffix": "09"
+            },
+            {
+              "bbox": [
+                -16.93081061661556,
+                27.921445541240423,
+                -16.830765168778505,
+                28.01305038063938
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.93081,27.92145,-16.83077,28.01305",
+              "land_fraction": 0.0567,
+              "subtile_mgrs": "28RCR19",
+              "suffix": "19"
+            }
+          ],
+          "tile_id": "28RCR",
+          "tile_mgrs": "28RCR"
+        },
         {
           "subtiles": [
             {
@@ -1352,52 +2027,286 @@
           "subtiles": [
             {
               "bbox": [
-                -18.050128898262006,
-                27.99140205103531,
-                -17.951040823456694,
-                28.083762203187014
+                -18.265885134732876,
+                27.54696681028847,
+                -18.16240862274035,
+                27.635096904161223
               ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05013,27.99140,-17.95104,28.08376",
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.26589,27.54697,-18.16241,27.63510",
               "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS00",
-              "suffix": "00"
+              "subtile_mgrs": "27RYL75",
+              "suffix": "75"
             },
             {
               "bbox": [
-                -18.05267453394675,
-                28.081546033923487,
-                -17.95351340528213,
-                28.173913185852946
+                -18.259134897882767,
+                27.81748786879414,
+                -18.15537690419041,
+                27.90559058814448
               ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05267,28.08155,-17.95351,28.17391",
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.25913,27.81749,-18.15538,27.90559",
               "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS01",
-              "suffix": "01"
+              "subtile_mgrs": "27RYL78",
+              "suffix": "78"
             },
             {
               "bbox": [
-                -18.05523195480003,
-                28.171688618947574,
-                -17.955997422766643,
-                28.26406278074435
+                -18.16472050704631,
+                27.54493844142861,
+                -18.061172211591106,
+                27.63298702731633
               ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05523,28.17169,-17.95600,28.26406",
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.16472,27.54494,-18.06117,27.63299",
               "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS02",
-              "suffix": "02"
+              "subtile_mgrs": "27RYL85",
+              "suffix": "85"
             },
             {
               "bbox": [
-                -18.05780120288782,
-                28.261829802475017,
-                -17.95849291685868,
-                28.354210984310363
+                -18.157721309909018,
+                27.81543619368051,
+                -18.053890491843063,
+                27.903456523039736
               ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05780,28.26183,-17.95849,28.35421",
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.15772,27.81544,-18.05389,27.90346",
               "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS03",
-              "suffix": "03"
+              "subtile_mgrs": "27RYL88",
+              "suffix": "88"
             },
+            {
+              "bbox": [
+                -18.15536651897171,
+                27.9055993947193,
+                -18.051440676372717,
+                27.993610272222714
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.15537,27.90560,-18.05144,27.99361",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYL89",
+              "suffix": "89"
+            },
+            {
+              "bbox": [
+                -18.06356665330902,
+                27.542836593427484,
+                -17.95994699582743,
+                27.630803420725822
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.06357,27.54284,-17.95995,27.63080",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYL95",
+              "suffix": "95"
+            },
+            {
+              "bbox": [
+                -18.05388009934508,
+                27.903465321347383,
+                -17.94988151104943,
+                27.99139326201041
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.05388,27.90347,-17.94988,27.99139",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYL99",
+              "suffix": "99"
+            }
+          ],
+          "tile_id": "27RYL",
+          "tile_mgrs": "27RYL"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -18.143427885362662,
+                28.356394869515075,
+                -18.039020469466124,
+                28.4443582371957
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.14343,28.35639,-18.03902,28.44436",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM84",
+              "suffix": "84"
+            },
+            {
+              "bbox": [
+                -18.14100694777742,
+                28.44654983400375,
+                -18.036501915526397,
+                28.534503649145893
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.14101,28.44655,-18.03650,28.53450",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM85",
+              "suffix": "85"
+            },
+            {
+              "bbox": [
+                -18.138574847005906,
+                28.53670341357005,
+                -18.03397176059502,
+                28.62464765915881
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.13857,28.53670,-18.03397,28.62465",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM86",
+              "suffix": "86"
+            },
+            {
+              "bbox": [
+                -18.136131542711446,
+                28.62685560475643,
+                -18.031429962638782,
+                28.71479026370883
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.13613,28.62686,-18.03143,28.71479",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM87",
+              "suffix": "87"
+            },
+            {
+              "bbox": [
+                -18.133676994292614,
+                28.717006404111984,
+                -18.02887647934853,
+                28.804931459276563
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.13368,28.71701,-18.02888,28.80493",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM88",
+              "suffix": "88"
+            },
+            {
+              "bbox": [
+                -18.031419482701743,
+                28.71479905330707,
+                -17.926543043451765,
+                28.802638489505657
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.03142,28.71480,-17.92654,28.80264",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "27RYM98",
+              "suffix": "98"
+            }
+          ],
+          "tile_id": "27RYM",
+          "tile_mgrs": "27RYM"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -18.037576044119458,
+                27.54066129619173,
+                -17.938848034584147,
+                27.6329865979655
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.03758,27.54066,-17.93885,27.63299",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR05",
+              "suffix": "05"
+            },
+            {
+              "bbox": [
+                -18.04759500595361,
+                27.90125667392154,
+                -17.94857963660853,
+                27.99360983630376
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-18.04760,27.90126,-17.94858,27.99361",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR09",
+              "suffix": "09"
+            },
+            {
+              "bbox": [
+                -17.93643334669098,
+                27.542836593427484,
+                -17.837611625635628,
+                27.635096489559373
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.93643,27.54284,-17.83761,27.63510",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR15",
+              "suffix": "15"
+            },
+            {
+              "bbox": [
+                -17.938838152536224,
+                27.632995828496544,
+                -17.839944685883882,
+                27.725262407494036
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.93884,27.63300,-17.83994,27.72526",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR16",
+              "suffix": "16"
+            },
+            {
+              "bbox": [
+                -17.94611990065492,
+                27.903465321347383,
+                -17.8470091190787,
+                27.995752005133948
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.94612,27.90347,-17.84701,27.99575",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR19",
+              "suffix": "19"
+            },
+            {
+              "bbox": [
+                -17.83760173421172,
+                27.635105713520268,
+                -17.738614478893187,
+                27.727306308050945
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.83760,27.63511,-17.73861,27.72731",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR26",
+              "suffix": "26"
+            },
+            {
+              "bbox": [
+                -17.839934787246303,
+                27.72527163211033,
+                -17.740875017429136,
+                27.817478650176508
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.83993,27.72527,-17.74088,27.81748",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR27",
+              "suffix": "27"
+            },
+            {
+              "bbox": [
+                -17.842278690090982,
+                27.81543619368051,
+                -17.743146057455576,
+                27.90764964429501
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.84228,27.81544,-17.74315,27.90765",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR28",
+              "suffix": "28"
+            },
+            {
+              "bbox": [
+                -17.84463348102829,
+                27.9055993947193,
+                -17.745427636144814,
+                27.997819286970998
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.84463,27.90560,-17.74543,27.99782",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RBR29",
+              "suffix": "29"
+            }
+          ],
+          "tile_id": "28RBR",
+          "tile_mgrs": "28RBR"
+        },
+        {
+          "subtiles": [
             {
               "bbox": [
                 -18.070826343557258,
@@ -1421,54 +2330,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RBS09",
               "suffix": "09"
-            },
-            {
-              "bbox": [
-                -17.948569725667465,
-                27.99361906956947,
-                -17.849385809406485,
-                28.085912473943523
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.94857,27.99362,-17.84939,28.08591",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS10",
-              "suffix": "10"
-            },
-            {
-              "bbox": [
-                -17.95103090520544,
-                28.083771437138804,
-                -17.851773504220642,
-                28.176071571727014
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.95103,28.08377,-17.85177,28.17607",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS11",
-              "suffix": "11"
-            },
-            {
-              "bbox": [
-                -17.953503479685715,
-                28.17392242049182,
-                -17.854172242816862,
-                28.266229295000002
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.95350,28.17392,-17.85417,28.26623",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS12",
-              "suffix": "12"
-            },
-            {
-              "bbox": [
-                -17.955987489789965,
-                28.264072016071292,
-                -17.85658206474846,
-                28.35638564028483
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.95599,28.26407,-17.85658,28.35639",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS13",
-              "suffix": "13"
             },
             {
               "bbox": [
@@ -1508,66 +2369,6 @@
             },
             {
               "bbox": [
-                -17.846999198591455,
-                27.995761231722,
-                -17.74771979091267,
-                28.087987574776108
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.84700,27.99576,-17.74772,28.08799",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS20",
-              "suffix": "20"
-            },
-            {
-              "bbox": [
-                -17.8493758815661,
-                28.085921701190696,
-                -17.75002255942013,
-                28.178154504289136
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.84938,28.08592,-17.75002,28.17815",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS21",
-              "suffix": "21"
-            },
-            {
-              "bbox": [
-                -17.851763568991974,
-                28.17608079963425,
-                -17.752335979575054,
-                28.26832007209597
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.85176,28.17608,-17.75234,28.26832",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS22",
-              "suffix": "22"
-            },
-            {
-              "bbox": [
-                -17.854162300164656,
-                28.266238523568262,
-                -17.754660089533825,
-                28.35848427478964
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.85416,28.26624,-17.75466,28.35848",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS23",
-              "suffix": "23"
-            },
-            {
-              "bbox": [
-                -17.856572114637338,
-                28.356394869515075,
-                -17.756994927703094,
-                28.44864710897021
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.85657,28.35639,-17.75699,28.44865",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS24",
-              "suffix": "24"
-            },
-            {
-              "bbox": [
                 -17.85899305222258,
                 28.44654983400375,
                 -17.759340532741465,
@@ -1592,78 +2393,6 @@
             },
             {
               "bbox": [
-                -17.74541770614643,
-                27.99782850685012,
-                -17.646043158720488,
-                28.08998747596275
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.74542,27.99783,-17.64604,28.08999",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS30",
-              "suffix": "30"
-            },
-            {
-              "bbox": [
-                -17.747709853518305,
-                28.08799679528731,
-                -17.64826096301369,
-                28.180161953672805
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.74771,28.08800,-17.64826,28.18016",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS31",
-              "suffix": "31"
-            },
-            {
-              "bbox": [
-                -17.750012614594482,
-                28.178163725433343,
-                -17.650489026571204,
-                28.27033508202065
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.75001,28.17816,-17.65049,28.27034",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS32",
-              "suffix": "32"
-            },
-            {
-              "bbox": [
-                -17.75232602728269,
-                28.268329293874096,
-                -17.652727386150804,
-                28.36050685766744
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.75233,28.26833,-17.65273,28.36051",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS33",
-              "suffix": "33"
-            },
-            {
-              "bbox": [
-                -17.75465012973922,
-                28.35849349720259,
-                -17.654976078751368,
-                28.45067727728175
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.75465,28.35849,-17.65498,28.45068",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS34",
-              "suffix": "34"
-            },
-            {
-              "bbox": [
-                -17.756984960370584,
-                28.448656332018928,
-                -17.65723514161457,
-                28.54084633753961
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.75698,28.44866,-17.65724,28.54085",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS35",
-              "suffix": "35"
-            },
-            {
-              "bbox": [
                 -17.759330557835284,
                 28.538817794930285,
                 -17.659504612226502,
@@ -1685,90 +2414,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RBS37",
               "suffix": "37"
-            },
-            {
-              "bbox": [
-                -17.64382563769896,
-                27.999820865375803,
-                -17.544356303822042,
-                28.091912148852472
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.64383,27.99982,-17.54436,28.09191",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS40",
-              "suffix": "40"
-            },
-            {
-              "bbox": [
-                -17.646033211807453,
-                28.08999668970674,
-                -17.546489107382953,
-                28.182093891087728
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.64603,28.09000,-17.54649,28.18209",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS41",
-              "suffix": "41"
-            },
-            {
-              "bbox": [
-                -17.648251008626477,
-                28.180171168022664,
-                -17.548631777585555,
-                28.272274295843843
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.64825,28.18017,-17.54863,28.27227",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS42",
-              "suffix": "42"
-            },
-            {
-              "bbox": [
-                -17.650479064674226,
-                28.27034429697726,
-                -17.550784349787364,
-                28.362453359847567
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.65048,28.27034,-17.55078,28.36245",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS43",
-              "suffix": "43"
-            },
-            {
-              "bbox": [
-                -17.652717416708356,
-                28.360516073231672,
-                -17.552946859577855,
-                28.452631079833427
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.65272,28.36052,-17.55295,28.45263",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS44",
-              "suffix": "44"
-            },
-            {
-              "bbox": [
-                -17.654966101727638,
-                28.450686493454505,
-                -17.55511934278006,
-                28.542807452543755
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.65497,28.45069,-17.55512,28.54281",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS45",
-              "suffix": "45"
-            },
-            {
-              "bbox": [
-                -17.657225156973613,
-                28.540855554321784,
-                -17.557301835452172,
-                28.632982474728635
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.65723,28.54086,-17.55730,28.63298",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS46",
-              "suffix": "46"
             },
             {
               "bbox": [
@@ -1808,126 +2453,6 @@
             },
             {
               "bbox": [
-                -17.542223382860776,
-                28.001738278786902,
-                -17.44265961744726,
-                28.093761565866426
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.54222,28.00174,-17.44266,28.09376",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS50",
-              "suffix": "50"
-            },
-            {
-              "bbox": [
-                -17.544346347425805,
-                28.091921355798092,
-                -17.444707385149,
-                28.183950288820945
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.54435,28.09192,-17.44471,28.18395",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS51",
-              "suffix": "51"
-            },
-            {
-              "bbox": [
-                -17.546479143469764,
-                28.182103098612032,
-                -17.446764626639442,
-                28.274137685717903
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.54648,28.18210,-17.44676,28.27414",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS52",
-              "suffix": "52"
-            },
-            {
-              "bbox": [
-                -17.548621806119662,
-                28.27228350394766,
-                -17.44883137587426,
-                28.36432375334713
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.54862,28.27228,-17.44883,28.36432",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS53",
-              "suffix": "53"
-            },
-            {
-              "bbox": [
-                -17.550774370732903,
-                28.362462568531736,
-                -17.45090766703191,
-                28.454508488506548
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.55077,28.36246,-17.45091,28.45451",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS54",
-              "suffix": "54"
-            },
-            {
-              "bbox": [
-                -17.552936872898837,
-                28.45264028909882,
-                -17.452993534515183,
-                28.544691888002202
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.55294,28.45264,-17.45299,28.54469",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS55",
-              "suffix": "55"
-            },
-            {
-              "bbox": [
-                -17.555109348440386,
-                28.54281666239122,
-                -17.45508901295276,
-                28.63487394864827
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.55511,28.54282,-17.45509,28.63487",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS56",
-              "suffix": "56"
-            },
-            {
-              "bbox": [
-                -17.55729183341562,
-                28.63299168515904,
-                -17.45719413720074,
-                28.72505466726697
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.55729,28.63299,-17.45719,28.72505",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS57",
-              "suffix": "57"
-            },
-            {
-              "bbox": [
-                -17.55948436411941,
-                28.723165354160127,
-                -17.459308942344233,
-                28.815234040688622
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.55948,28.72317,-17.45931,28.81523",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS58",
-              "suffix": "58"
-            },
-            {
-              "bbox": [
-                -17.561686977085063,
-                28.81333766616008,
-                -17.461433463698974,
-                28.905412065751698
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.56169,28.81334,-17.46143,28.90541",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS59",
-              "suffix": "59"
-            },
-            {
-              "bbox": [
                 -17.44264965160345,
                 28.09377076598261,
                 -17.3429161891633,
@@ -1952,90 +2477,6 @@
             },
             {
               "bbox": [
-                -17.446754645640503,
-                28.274146886937757,
-                -17.34686886007578,
-                28.36611801127209
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.44675,28.27415,-17.34687,28.36612",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS63",
-              "suffix": "63"
-            },
-            {
-              "bbox": [
-                -17.448821387243765,
-                28.364332955120013,
-                -17.348858898198056,
-                28.456309476276523
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.44882,28.36433,-17.34886,28.45631",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS64",
-              "suffix": "64"
-            },
-            {
-              "bbox": [
-                -17.450897670733713,
-                28.454517690833274,
-                -17.350858115334,
-                28.54649961675928
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.45090,28.45452,-17.35086,28.54650",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS65",
-              "suffix": "65"
-            },
-            {
-              "bbox": [
-                -17.45298353051302,
-                28.544701090883596,
-                -17.352866544681195,
-                28.636688429596017
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.45298,28.54470,-17.35287,28.63669",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS66",
-              "suffix": "66"
-            },
-            {
-              "bbox": [
-                -17.455079001210233,
-                28.634883152085152,
-                -17.35488421965528,
-                28.726875911670767
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.45508,28.63488,-17.35488,28.72688",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS67",
-              "suffix": "67"
-            },
-            {
-              "bbox": [
-                -17.45718411768134,
-                28.72506387126016,
-                -17.356911173891486,
-                28.81706205987601
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.45718,28.72506,-17.35691,28.81706",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS68",
-              "suffix": "68"
-            },
-            {
-              "bbox": [
-                -17.45929891501134,
-                28.815243245239,
-                -17.358947441246126,
-                28.907246871112623
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.45930,28.81524,-17.35895,28.90725",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS69",
-              "suffix": "69"
-            },
-            {
-              "bbox": [
                 -17.342906206305567,
                 28.18574031401776,
                 -17.24300219610182,
@@ -2045,90 +2486,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RBS72",
               "suffix": "72"
-            },
-            {
-              "bbox": [
-                -17.344877977490214,
-                28.275934419183592,
-                -17.24489719828055,
-                28.367836107818263
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.34488,28.27593,-17.24490,28.36784",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS73",
-              "suffix": "73"
-            },
-            {
-              "bbox": [
-                -17.346858861905403,
-                28.366127206102533,
-                -17.24680095038669,
-                28.45803401721389
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.34686,28.36613,-17.24680,28.45803",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS74",
-              "suffix": "74"
-            },
-            {
-              "bbox": [
-                -17.348848892316944,
-                28.45631867163338,
-                -17.248713483977973,
-                28.548230612759728
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.34885,28.45632,-17.24871,28.54823",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS75",
-              "suffix": "75"
-            },
-            {
-              "bbox": [
-                -17.350848101705726,
-                28.546508812643342,
-                -17.250634830819397,
-                28.638425891390305
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.35085,28.54651,-17.25063,28.63843",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS76",
-              "suffix": "76"
-            },
-            {
-              "bbox": [
-                -17.352856523269203,
-                28.636697626008054,
-                -17.252565022884625,
-                28.728619850048883
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.35286,28.63670,-17.25257,28.72862",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS77",
-              "suffix": "77"
-            },
-            {
-              "bbox": [
-                -17.35487419042289,
-                28.72688510861158,
-                -17.25450409235746,
-                28.818812485687427
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.35487,28.72689,-17.25450,28.81881",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS78",
-              "suffix": "78"
-            },
-            {
-              "bbox": [
-                -17.3569011368019,
-                28.817071257346388,
-                -17.25645207163331,
-                28.909003795266685
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.35690,28.81707,-17.25645,28.90900",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS79",
-              "suffix": "79"
             },
             {
               "bbox": [
@@ -2156,78 +2513,6 @@
             },
             {
               "bbox": [
-                -17.244887190606605,
-                28.36784529567522,
-                -17.144734221124775,
-                28.459682086485333
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.24489,28.36785,-17.14473,28.45968",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS84",
-              "suffix": "84"
-            },
-            {
-              "bbox": [
-                -17.2467909349591,
-                28.458043205569776,
-                -17.146560039406648,
-                28.549884851049722
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.24679,28.45804,-17.14656,28.54988",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS85",
-              "suffix": "85"
-            },
-            {
-              "bbox": [
-                -17.248703460760147,
-                28.548239801615278,
-                -17.14839427176886,
-                28.64008630895631
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.24870,28.54824,-17.14839,28.64009",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS86",
-              "suffix": "86"
-            },
-            {
-              "bbox": [
-                -17.25062479977461,
-                28.63843508074627,
-                -17.15023694874167,
-                28.73028645720495
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.25062,28.63844,-17.15024,28.73029",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS87",
-              "suffix": "87"
-            },
-            {
-              "bbox": [
-                -17.25255498397604,
-                28.728629039906004,
-                -17.152088101056002,
-                28.820485292804513
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.25255,28.72863,-17.15209,28.82049",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS88",
-              "suffix": "88"
-            },
-            {
-              "bbox": [
-                -17.25449404554811,
-                28.81882167604648,
-                -17.153947759644836,
-                28.910682812772947
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.25449,28.81882,-17.15395,28.91068",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS89",
-              "suffix": "89"
-            },
-            {
-              "bbox": [
                 -17.1357202999149,
                 28.00865794840691,
                 -17.035782389601554,
@@ -2249,82 +2534,64 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RBS93",
               "suffix": "93"
-            },
-            {
-              "bbox": [
-                -17.142906769451233,
-                28.369487199124816,
-                -17.04265910814652,
-                28.461253660354583
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.14291,28.36949,-17.04266,28.46125",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS94",
-              "suffix": "94"
-            },
-            {
-              "bbox": [
-                -17.144724196187305,
-                28.459691267809237,
-                -17.044398180788242,
-                28.551462307777825
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.14472,28.45969,-17.04440,28.55146",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS95",
-              "suffix": "95"
-            },
-            {
-              "bbox": [
-                -17.14655000663599,
-                28.549894032845707,
-                -17.046145268141224,
-                28.641669658326926
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.14655,28.54989,-17.04615,28.64167",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS96",
-              "suffix": "96"
-            },
-            {
-              "bbox": [
-                -17.148384231128134,
-                28.640095491225075,
-                -17.047900399290924,
-                28.731875709055704
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.14838,28.64010,-17.04790,28.73188",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS97",
-              "suffix": "97"
-            },
-            {
-              "bbox": [
-                -17.150226900193864,
-                28.73029563994719,
-                -17.04966360351399,
-                28.822080457027322
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.15023,28.73030,-17.04966,28.82208",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS98",
-              "suffix": "98"
-            },
-            {
-              "bbox": [
-                -17.152078044563975,
-                28.820494476020983,
-                -17.051434910279596,
-                28.912283899314307
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.15208,28.82049,-17.05143,28.91228",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RBS99",
-              "suffix": "99"
             }
           ],
           "tile_id": "28RBS",
           "tile_mgrs": "28RBS"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -17.03069762763423,
+                27.82976623651434,
+                -16.93082061372449,
+                27.92143637656086
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.03070,27.82977,-16.93082,27.92144",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RCR08",
+              "suffix": "08"
+            },
+            {
+              "bbox": [
+                -16.92921087333929,
+                27.831222365719434,
+                -16.829242424608154,
+                27.92282321434714
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.92921,27.83122,-16.82924,27.92282",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RCR18",
+              "suffix": "18"
+            },
+            {
+              "bbox": [
+                -16.82771671867778,
+                27.832603946857567,
+                -16.72765719872629,
+                27.924135201120393
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.82772,27.83260,-16.72766,27.92414",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RCR28",
+              "suffix": "28"
+            },
+            {
+              "bbox": [
+                -16.829232418352227,
+                27.922832372067973,
+                -16.729095484449005,
+                28.014367341953186
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.82923,27.92283,-16.72910,28.01437",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RCR29",
+              "suffix": "29"
+            }
+          ],
+          "tile_id": "28RCR",
+          "tile_mgrs": "28RCR"
         },
         {
           "subtiles": [
@@ -2378,66 +2645,6 @@
             },
             {
               "bbox": [
-                -17.04264907373593,
-                28.461262834615592,
-                -16.94222830749026,
-                28.552962960195885
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.04265,28.46126,-16.94223,28.55296",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS05",
-              "suffix": "05"
-            },
-            {
-              "bbox": [
-                -17.044388138501635,
-                28.55147148248327,
-                -16.943888220748775,
-                28.64317591664365
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.04439,28.55147,-16.94389,28.64318",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS06",
-              "suffix": "06"
-            },
-            {
-              "bbox": [
-                -17.046135217941558,
-                28.641678833477453,
-                -16.945555776798933,
-                28.73338758263184
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.04614,28.64168,-16.94556,28.73339",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS07",
-              "suffix": "07"
-            },
-            {
-              "bbox": [
-                -17.04789034114102,
-                28.731884884651986,
-                -16.94723100346178,
-                28.823597955275293
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.04789,28.73188,-16.94723,28.82360",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS08",
-              "suffix": "08"
-            },
-            {
-              "bbox": [
-                -17.049653537376557,
-                28.822089633070057,
-                -16.948913928741348,
-                28.91380703169844
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-17.04965,28.82209,-16.94891,28.91381",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS09",
-              "suffix": "09"
-            },
-            {
-              "bbox": [
                 -16.938921263006097,
                 28.37254235426153,
                 -16.83848532295806,
@@ -2459,54 +2666,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RCS15",
               "suffix": "15"
-            },
-            {
-              "bbox": [
-                -16.942218255724754,
-                28.552972127779917,
-                -16.841623530595,
-                28.644605062157495
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.94222,28.55297,-16.84162,28.64461",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS16",
-              "suffix": "16"
-            },
-            {
-              "bbox": [
-                -16.943878161027342,
-                28.643185084645026,
-                -16.843203483724775,
-                28.73482205607896
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.94388,28.64319,-16.84320,28.73482",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS17",
-              "suffix": "17"
-            },
-            {
-              "bbox": [
-                -16.94554570908424,
-                28.73339675105118,
-                -16.8447907048236,
-                28.825037765588124
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.94555,28.73340,-16.84479,28.82504",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS18",
-              "suffix": "18"
-            },
-            {
-              "bbox": [
-                -16.947220927716362,
-                28.82360712411325,
-                -16.846385220429067,
-                28.915252187858705
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.94722,28.82361,-16.84639,28.91525",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS19",
-              "suffix": "19"
             },
             {
               "bbox": [
@@ -2534,42 +2693,6 @@
             },
             {
               "bbox": [
-                -16.841613461389137,
-                28.64461422297889,
-                -16.74084392271049,
-                28.73617910865834
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.84161,28.64461,-16.74084,28.73618",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS27",
-              "suffix": "27"
-            },
-            {
-              "bbox": [
-                -16.84319340648275,
-                28.73483121729047,
-                -16.742343111707896,
-                28.826399867126607
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.84319,28.73483,-16.74234,28.82640",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS28",
-              "suffix": "28"
-            },
-            {
-              "bbox": [
-                -16.844780619507784,
-                28.825046927190357,
-                -16.74384919092726,
-                28.916619346854993
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.84478,28.82505,-16.74385,28.91662",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS29",
-              "suffix": "29"
-            },
-            {
-              "bbox": [
                 -16.737856044654027,
                 28.555742919879822,
                 -16.637072826916434,
@@ -2579,42 +2702,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RCS36",
               "suffix": "36"
-            },
-            {
-              "bbox": [
-                -16.739341520212292,
-                28.645966227840503,
-                -16.63847749657154,
-                28.73745872074776
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.73934,28.64597,-16.63848,28.73746",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS37",
-              "suffix": "37"
-            },
-            {
-              "bbox": [
-                -16.740833835978766,
-                28.736188262631227,
-                -16.639888628397753,
-                28.827684240173443
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.74083,28.73619,-16.63989,28.82768",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS38",
-              "suffix": "38"
-            },
-            {
-              "bbox": [
-                -16.742333016859448,
-                28.826409021462275,
-                -16.641306245996265,
-                28.91790848887449
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.74233,28.82641,-16.64131,28.91791",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS39",
-              "suffix": "39"
             },
             {
               "bbox": [
@@ -2654,30 +2741,6 @@
             },
             {
               "bbox": [
-                -16.638467400387903,
-                28.737467867451358,
-                -16.537427659341216,
-                28.82889086613399
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.63847,28.73747,-16.53743,28.82889",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS48",
-              "suffix": "48"
-            },
-            {
-              "bbox": [
-                -16.639878524054588,
-                28.82769338721181,
-                -16.538756791562545,
-                28.919119595232488
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.63988,28.82769,-16.53876,28.91912",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS49",
-              "suffix": "49"
-            },
-            {
-              "bbox": [
                 -16.525726454905197,
                 28.016784923049023,
                 -16.425238245022967,
@@ -2699,42 +2762,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RCS57",
               "suffix": "57"
-            },
-            {
-              "bbox": [
-                -16.536094502689604,
-                28.738670013245947,
-                -16.434960609141655,
-                28.83001972753692
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.53609,28.73867,-16.43496,28.83002",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS58",
-              "suffix": "58"
-            },
-            {
-              "bbox": [
-                -16.53741754554142,
-                28.828900005844407,
-                -16.43620123370897,
-                28.92025264837306
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.53742,28.82890,-16.43620,28.92025",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS59",
-              "suffix": "59"
-            },
-            {
-              "bbox": [
-                -16.424037925274245,
-                28.017876364231228,
-                -16.323459292541248,
-                28.109131453780915
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.42404,28.01788,-16.32346,28.10913",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS60",
-              "suffix": "60"
             },
             {
               "bbox": [
@@ -2762,54 +2789,6 @@
             },
             {
               "bbox": [
-                -16.433715546017567,
-                28.739794682628126,
-                -16.33248788254811,
-                28.831070808035022
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.43372,28.73979,-16.33249,28.83107",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS68",
-              "suffix": "68"
-            },
-            {
-              "bbox": [
-                -16.434950485923476,
-                28.83002885988887,
-                -16.333639978665094,
-                28.921307631869794
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.43495,28.83003,-16.33364,28.92131",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS69",
-              "suffix": "69"
-            },
-            {
-              "bbox": [
-                -16.322343900444785,
-                28.01889260164164,
-                -16.221675218594406,
-                28.110076040685634
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.32234,28.01889,-16.22168,28.11008",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS70",
-              "suffix": "70"
-            },
-            {
-              "bbox": [
-                -16.323449225171558,
-                28.10914057675075,
-                -16.222700324427315,
-                28.200326353714054
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.32345,28.10914,-16.22270,28.20033",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS71",
-              "suffix": "71"
-            },
-            {
-              "bbox": [
                 -16.324559671345867,
                 28.199387323539316,
                 -16.223730175169823,
@@ -2834,66 +2813,6 @@
             },
             {
               "bbox": [
-                -16.33133093365014,
-                28.74084185932957,
-                -16.230009884445614,
-                28.832044092405713
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.33133,28.74084,-16.23001,28.83204",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS78",
-              "suffix": "78"
-            },
-            {
-              "bbox": [
-                -16.33247774994996,
-                28.831079932998076,
-                -16.23107343279742,
-                28.922284530426325
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.33248,28.83108,-16.23107,28.92228",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS79",
-              "suffix": "79"
-            },
-            {
-              "bbox": [
-                -16.220644772396412,
-                28.019833620707555,
-                -16.11988641667815,
-                28.11094511117071
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.22064,28.01983,-16.11989,28.11095",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS80",
-              "suffix": "80"
-            },
-            {
-              "bbox": [
-                -16.221665142217105,
-                28.110085156460848,
-                -16.120826157227125,
-                28.20119870561326
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.22167,28.11009,-16.12083,28.20120",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS81",
-              "suffix": "81"
-            },
-            {
-              "bbox": [
-                -16.222690239987948,
-                28.200335469709277,
-                -16.121770247670618,
-                28.29145108026801
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.22269,28.20034,-16.12177,28.29145",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS82",
-              "suffix": "82"
-            },
-            {
-              "bbox": [
                 -16.223720082630592,
                 28.29058455778911,
                 -16.122718703624837,
@@ -2915,66 +2834,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RCS87",
               "suffix": "87"
-            },
-            {
-              "bbox": [
-                -16.22894106900073,
-                28.741811528201232,
-                -16.12752701984551,
-                28.832939566551627
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.22894,28.74181,-16.12753,28.83294",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS88",
-              "suffix": "88"
-            },
-            {
-              "bbox": [
-                -16.229999742506056,
-                28.832053209949535,
-                -16.128502002599635,
-                28.923183329877038
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.23000,28.83205,-16.12850,28.92318",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS89",
-              "suffix": "89"
-            },
-            {
-              "bbox": [
-                -16.118940933227446,
-                28.0206994079335,
-                -16.018093280398546,
-                28.111738652757822
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.11894,28.02070,-16.01809,28.11174",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS90",
-              "suffix": "90"
-            },
-            {
-              "bbox": [
-                -16.119876331330904,
-                28.110954219721503,
-                -16.018947640149385,
-                28.201995243480116
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.11988,28.11095,-16.01895,28.20200",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS91",
-              "suffix": "91"
-            },
-            {
-              "bbox": [
-                -16.120816063776758,
-                28.201207814356096,
-                -16.019805954677782,
-                28.292250619328634
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.12082,28.20121,-16.01981,28.29225",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS92",
-              "suffix": "92"
             },
             {
               "bbox": [
@@ -3023,30 +2882,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RCS97",
               "suffix": "97"
-            },
-            {
-              "bbox": [
-                -16.126546355608173,
-                28.74270367521388,
-                -16.025039693875776,
-                28.833757217501223
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.12655,28.74270,-16.02504,28.83376",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS98",
-              "suffix": "98"
-            },
-            {
-              "bbox": [
-                -16.12751686860328,
-                28.832948676646,
-                -16.025926094682887,
-                28.924004017187507
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.12752,28.83295,-16.02593,28.92400",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RCS99",
-              "suffix": "99"
             }
           ],
           "tile_id": "28RCS",
@@ -3054,78 +2889,6 @@
         },
         {
           "subtiles": [
-            {
-              "bbox": [
-                -16.008942361924962,
-                27.118845826337466,
-                -15.908799578376849,
-                27.209797636266988
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.00894,27.11885,-15.90880,27.20980",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR00",
-              "suffix": "00"
-            },
-            {
-              "bbox": [
-                -16.0097541224563,
-                27.209115606287376,
-                -15.90953363241451,
-                27.300068898424964
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.00975,27.20912,-15.90953,27.30007",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR01",
-              "suffix": "01"
-            },
-            {
-              "bbox": [
-                -16.010569687520416,
-                27.299384200660246,
-                -15.910271122707519,
-                27.3903389764942
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01057,27.29938,-15.91027,27.39034",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR02",
-              "suffix": "02"
-            },
-            {
-              "bbox": [
-                -16.011389070330676,
-                27.389651606736823,
-                -15.91101206122761,
-                27.480607867789928
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01139,27.38965,-15.91101,27.48061",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR03",
-              "suffix": "03"
-            },
-            {
-              "bbox": [
-                -16.012212284187008,
-                27.479917821808996,
-                -15.911756460024964,
-                27.57087556963865
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01221,27.47992,-15.91176,27.57088",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR04",
-              "suffix": "04"
-            },
-            {
-              "bbox": [
-                -16.013039342476517,
-                27.570182843179794,
-                -15.91250433122877,
-                27.661142079378138
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01304,27.57018,-15.91250,27.66114",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR05",
-              "suffix": "05"
-            },
             {
               "bbox": [
                 -16.013870258674043,
@@ -3176,150 +2939,6 @@
             },
             {
               "bbox": [
-                -15.908058933073091,
-                27.119534285243873,
-                -15.80783159504276,
-                27.21041604255712
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.90806,27.11953,-15.80783,27.21042",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR10",
-              "suffix": "10"
-            },
-            {
-              "bbox": [
-                -15.908789554976568,
-                27.20980672892893,
-                -15.80848411839013,
-                27.300689691958098
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.90879,27.20981,-15.80848,27.30069",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR11",
-              "suffix": "11"
-            },
-            {
-              "bbox": [
-                -15.909523601204762,
-                27.300077991221386,
-                -15.8091396963873,
-                27.39096216103566
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.90952,27.30008,-15.80914,27.39096",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR12",
-              "suffix": "12"
-            },
-            {
-              "bbox": [
-                -15.910261083651337,
-                27.390348069425237,
-                -15.809798339677142,
-                27.481233447125955
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91026,27.39035,-15.80980,27.48123",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR13",
-              "suffix": "13"
-            },
-            {
-              "bbox": [
-                -15.911002014287902,
-                27.480616960855713,
-                -15.810460058972287,
-                27.571503547576476
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91100,27.48062,-15.81046,27.57150",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR14",
-              "suffix": "14"
-            },
-            {
-              "bbox": [
-                -15.911746405164525,
-                27.57088466283932,
-                -15.81112486505559,
-                27.66177245974612
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91175,27.57088,-15.81112,27.66177",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR15",
-              "suffix": "15"
-            },
-            {
-              "bbox": [
-                -15.80717209172558,
-                27.120150301028954,
-                -15.70686056764393,
-                27.210961716703086
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.80717,27.12015,-15.70686,27.21096",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR20",
-              "suffix": "20"
-            },
-            {
-              "bbox": [
-                -15.807821563185028,
-                27.210425128184802,
-                -15.7074315497275,
-                27.301237472599702
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.80782,27.21043,-15.70743,27.30124",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR21",
-              "suffix": "21"
-            },
-            {
-              "bbox": [
-                -15.80847407868371,
-                27.300698777692563,
-                -15.708005204786032,
-                27.39151205149568
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.80847,27.30070,-15.70801,27.39151",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR22",
-              "suffix": "22"
-            },
-            {
-              "bbox": [
-                -15.809129648795087,
-                27.390971246877,
-                -15.708581542133079,
-                27.481785450745612
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.80913,27.39097,-15.70858,27.48179",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR23",
-              "suffix": "23"
-            },
-            {
-              "bbox": [
-                -15.809788284161908,
-                27.481242533074262,
-                -15.709160571143236,
-                27.572057667715523
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.80979,27.48124,-15.70916,27.57206",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR24",
-              "suffix": "24"
-            },
-            {
-              "bbox": [
-                -15.810449995496676,
-                27.57151263363184,
-                -15.709742301252561,
-                27.662328699782933
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81045,27.57151,-15.70974,27.66233",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR25",
-              "suffix": "25"
-            },
-            {
-              "bbox": [
                 -15.811114793582119,
                 27.661781545908646,
                 -15.710326741958982,
@@ -3332,78 +2951,6 @@
             },
             {
               "bbox": [
-                -15.706282216854861,
-                27.12069386494826,
-                -15.6058868765331,
-                27.211434650950437
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70628,27.12069,-15.60589,27.21143",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR30",
-              "suffix": "30"
-            },
-            {
-              "bbox": [
-                -15.706850527365722,
-                27.210970795267635,
-                -15.606376308100018,
-                27.301712232557303
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70685,27.21097,-15.60638,27.30171",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR31",
-              "suffix": "31"
-            },
-            {
-              "bbox": [
-                -15.70742150156151,
-                27.30124655124328,
-                -15.606868030906424,
-                27.391988640043593
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70742,27.30125,-15.60687,27.39199",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR32",
-              "suffix": "32"
-            },
-            {
-              "bbox": [
-                -15.707995148695018,
-                27.391521130218347,
-                -15.607362052936146,
-                27.482263870779867
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70800,27.39152,-15.60736,27.48226",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR33",
-              "suffix": "33"
-            },
-            {
-              "bbox": [
-                -15.708571478079671,
-                27.481794529547415,
-                -15.607858382225329,
-                27.57253792214823
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70857,27.48179,-15.60786,27.57254",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR34",
-              "suffix": "34"
-            },
-            {
-              "bbox": [
-                -15.709150499089938,
-                27.57206674659651,
-                -15.608357026862818,
-                27.662810791542366
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.70915,27.57207,-15.60836,27.66281",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR35",
-              "suffix": "35"
-            },
-            {
-              "bbox": [
                 -15.709732221161747,
                 27.662337778743172,
                 -15.608857994990492,
@@ -3413,78 +2960,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDR36",
               "suffix": "36"
-            },
-            {
-              "bbox": [
-                -15.605389687501749,
-                27.121164969285346,
-                -15.504910902123227,
-                27.21183483857806
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60539,27.12116,-15.50491,27.21183",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR40",
-              "suffix": "40"
-            },
-            {
-              "bbox": [
-                -15.605876827871526,
-                27.211443722423063,
-                -15.50531877524171,
-                27.30211396507681
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60588,27.21144,-15.50532,27.30211",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR41",
-              "suffix": "41"
-            },
-            {
-              "bbox": [
-                -15.6063662515117,
-                27.301721304081173,
-                -15.505728557812224,
-                27.392391919892184
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60637,27.30172,-15.50573,27.39239",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR42",
-              "suffix": "42"
-            },
-            {
-              "bbox": [
-                -15.606857966353976,
-                27.39199771161871,
-                -15.506140256488523,
-                27.482668700408283
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60686,27.39200,-15.50614,27.48267",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR43",
-              "suffix": "43"
-            },
-            {
-              "bbox": [
-                -15.60735198038206,
-                27.482272942406244,
-                -15.506553877967956,
-                27.572944304020805
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60735,27.48227,-15.50655,27.57294",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR44",
-              "suffix": "44"
-            },
-            {
-              "bbox": [
-                -15.607848301631973,
-                27.572546993825874,
-                -15.506969428991793,
-                27.663218728137082
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.60785,27.57255,-15.50697,27.66322",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR45",
-              "suffix": "45"
             },
             {
               "bbox": [
@@ -3512,90 +2987,6 @@
             },
             {
               "bbox": [
-                -15.504494882766876,
-                27.121563607352034,
-                -15.40393302487891,
-                27.212162273898425
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50449,27.12156,-15.40393,27.21216",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR50",
-              "suffix": "50"
-            },
-            {
-              "bbox": [
-                -15.504900845115548,
-                27.211843902930084,
-                -15.404259332938585,
-                27.302442664442786
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50490,27.21184,-15.40426,27.30244",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR51",
-              "suffix": "51"
-            },
-            {
-              "bbox": [
-                -15.505308710268443,
-                27.302123029452243,
-                -15.404587168619518,
-                27.392721885298016
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50531,27.30212,-15.40459,27.39272",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR52",
-              "suffix": "52"
-            },
-            {
-              "bbox": [
-                -15.505718484835857,
-                27.392400984290987,
-                -15.404916537245084,
-                27.48299993385927
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50572,27.39240,-15.40492,27.48300",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR53",
-              "suffix": "53"
-            },
-            {
-              "bbox": [
-                -15.506130175471402,
-                27.482677764830413,
-                -15.405247444173547,
-                27.573276807533386
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50613,27.48268,-15.40525,27.57328",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR54",
-              "suffix": "54"
-            },
-            {
-              "bbox": [
-                -15.506543788872307,
-                27.572953368466223,
-                -15.405579894798306,
-                27.663552503738885
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50654,27.57295,-15.40558,27.66355",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR55",
-              "suffix": "55"
-            },
-            {
-              "bbox": [
-                -15.50695933177971,
-                27.66322779260577,
-                -15.405913894548126,
-                27.753827019906026
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50696,27.66323,-15.40591,27.75383",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR56",
-              "suffix": "56"
-            },
-            {
-              "bbox": [
                 -15.507376810978945,
                 27.75350103466806,
                 -15.406249448887378,
@@ -3608,90 +2999,6 @@
             },
             {
               "bbox": [
-                -15.403598181802167,
-                27.121889773488668,
-                -15.302953625307783,
-                27.212416952257776
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40360,27.12189,-15.30295,27.21242",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR60",
-              "suffix": "60"
-            },
-            {
-              "bbox": [
-                -15.403922959562518,
-                27.21217133110127,
-                -15.303198363019979,
-                27.30269832597866
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40392,27.21217,-15.30320,27.30270",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR61",
-              "suffix": "61"
-            },
-            {
-              "bbox": [
-                -15.40424925961789,
-                27.30245172164115,
-                -15.303444246487997,
-                27.392978531561575
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40425,27.30245,-15.30344,27.39298",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR62",
-              "suffix": "62"
-            },
-            {
-              "bbox": [
-                -15.404577087256873,
-                27.39273094249182,
-                -15.303691279704601,
-                27.48325756641031
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40458,27.39273,-15.30369,27.48326",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR63",
-              "suffix": "63"
-            },
-            {
-              "bbox": [
-                -15.4049064478027,
-                27.483008991048436,
-                -15.303939466688742,
-                27.573535427940357
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40491,27.48301,-15.30394,27.57354",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR64",
-              "suffix": "64"
-            },
-            {
-              "bbox": [
-                -15.40523734661351,
-                27.57328586471783,
-                -15.304188811485698,
-                27.663812113578935
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40524,27.57329,-15.30419,27.66381",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR65",
-              "suffix": "65"
-            },
-            {
-              "bbox": [
-                -15.405569789082573,
-                27.66356156091853,
-                -15.304439318167294,
-                27.75408762076504
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40557,27.66356,-15.30444,27.75409",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR66",
-              "suffix": "66"
-            },
-            {
-              "bbox": [
                 -15.405903780638516,
                 27.75383607708079,
                 -15.304690990832048,
@@ -3701,102 +3008,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDR67",
               "suffix": "67"
-            },
-            {
-              "bbox": [
-                -15.302699963802283,
-                27.12214346306436,
-                -15.201973083951911,
-                27.212598870036338
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30270,27.12214,-15.20197,27.21260",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR70",
-              "suffix": "70"
-            },
-            {
-              "bbox": [
-                -15.3029435517202,
-                27.21242600228297,
-                -15.20213624734988,
-                27.30288094604687
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30294,27.21243,-15.20214,27.30288",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR71",
-              "suffix": "71"
-            },
-            {
-              "bbox": [
-                -15.303188281389508,
-                27.30270737597143,
-                -15.202300174612242,
-                27.393161855027483
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30319,27.30271,-15.20230,27.39316",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR72",
-              "suffix": "72"
-            },
-            {
-              "bbox": [
-                -15.303434156776856,
-                27.39298758152181,
-                -15.202464868400982,
-                27.483441594388125
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30343,27.39299,-15.20246,27.48344",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR73",
-              "suffix": "73"
-            },
-            {
-              "bbox": [
-                -15.30368118187487,
-                27.48326661633789,
-                -15.202630331395534,
-                27.57372016155046
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30368,27.48327,-15.20263,27.57372",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR74",
-              "suffix": "74"
-            },
-            {
-              "bbox": [
-                -15.303929360702362,
-                27.573544477835146,
-                -15.202796566292907,
-                27.663997553947915
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30393,27.57354,-15.20280,27.66400",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR75",
-              "suffix": "75"
-            },
-            {
-              "bbox": [
-                -15.304178697304494,
-                27.66382116344081,
-                -15.202963575807779,
-                27.75427376902575
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30418,27.66382,-15.20296,27.75427",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR76",
-              "suffix": "76"
-            },
-            {
-              "bbox": [
-                -15.304429195752942,
-                27.754096670593892,
-                -15.203131362672657,
-                27.84454880424103
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30443,27.75410,-15.20313,27.84455",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR77",
-              "suffix": "77"
             },
             {
               "bbox": [
@@ -3821,246 +3032,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDR79",
               "suffix": "79"
-            },
-            {
-              "bbox": [
-                -15.201800607996097,
-                27.122324672477113,
-                -15.100991781379163,
-                27.21270802464843
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20180,27.12232,-15.10099,27.21271",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR80",
-              "suffix": "80"
-            },
-            {
-              "bbox": [
-                -15.201963002130793,
-                27.2126079128555,
-                -15.101073367818278,
-                27.30299052204905
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20196,27.21261,-15.10107,27.30299",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR81",
-              "suffix": "81"
-            },
-            {
-              "bbox": [
-                -15.202126157447427,
-                27.302889988805628,
-                -15.101155336213022,
-                27.39327185308464
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20213,27.30289,-15.10116,27.39327",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR82",
-              "suffix": "82"
-            },
-            {
-              "bbox": [
-                -15.202290076590529,
-                27.39317089772569,
-                -15.101237687894479,
-                27.48355201516881
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20229,27.39317,-15.10124,27.48355",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR83",
-              "suffix": "83"
-            },
-            {
-              "bbox": [
-                -15.202454762221953,
-                27.483450637025598,
-                -15.101320424202463,
-                27.57383100572694
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20245,27.48345,-15.10132,27.57383",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR84",
-              "suffix": "84"
-            },
-            {
-              "bbox": [
-                -15.202620217021002,
-                27.57372920412703,
-                -15.101403546485574,
-                27.664108822196198
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20262,27.57373,-15.10140,27.66411",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR85",
-              "suffix": "85"
-            },
-            {
-              "bbox": [
-                -15.202786443684541,
-                27.664006596463434,
-                -15.101487056101254,
-                27.754385462025574
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20279,27.66401,-15.10149,27.75439",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR86",
-              "suffix": "86"
-            },
-            {
-              "bbox": [
-                -15.202953444927136,
-                27.75428281148003,
-                -15.10157095441585,
-                27.844660922675907
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20295,27.75428,-15.10157,27.84466",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR87",
-              "suffix": "87"
-            },
-            {
-              "bbox": [
-                -15.203121223481142,
-                27.844557846633915,
-                -15.101655242804679,
-                27.93493520161988
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20312,27.84456,-15.10166,27.93494",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR88",
-              "suffix": "88"
-            },
-            {
-              "bbox": [
-                -15.203289782096853,
-                27.934831699393982,
-                -15.101739922652069,
-                28.0252082963421
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20329,27.93483,-15.10174,28.02521",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR89",
-              "suffix": "89"
-            },
-            {
-              "bbox": [
-                -15.100900493638125,
-                27.122433399153966,
-                -15.000010098174648,
-                27.212744414542545
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10090,27.12243,-15.00001,27.21274",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR90",
-              "suffix": "90"
-            },
-            {
-              "bbox": [
-                -15.100981691362307,
-                27.21271706023328,
-                -15.000010106332498,
-                27.30302705242611
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10098,27.21272,-15.00001,27.30303",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR91",
-              "suffix": "91"
-            },
-            {
-              "bbox": [
-                -15.101063269681767,
-                27.302999557545483,
-                -15.00001011452854,
-                27.393308524166297
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10106,27.30300,-15.00001,27.39331",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR92",
-              "suffix": "92"
-            },
-            {
-              "bbox": [
-                -15.101145229918789,
-                27.39328088849244,
-                -15.000010122762907,
-                27.483588827177947
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10115,27.39328,-15.00001,27.48359",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR93",
-              "suffix": "93"
-            },
-            {
-              "bbox": [
-                -15.101227573404339,
-                27.483561050487772,
-                -15.000010131035733,
-                27.573867958887682
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10123,27.48356,-15.00001,27.57387",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR94",
-              "suffix": "94"
-            },
-            {
-              "bbox": [
-                -15.10131030147809,
-                27.573840040956846,
-                -15.000010139347152,
-                27.664145916733908
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10131,27.57384,-15.00001,27.66415",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR95",
-              "suffix": "95"
-            },
-            {
-              "bbox": [
-                -15.10139341548851,
-                27.664117857336844,
-                -15.000010147697305,
-                27.754422698166877
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10139,27.66412,-15.00001,27.75442",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR96",
-              "suffix": "96"
-            },
-            {
-              "bbox": [
-                -15.101476916792906,
-                27.75439449707674,
-                -15.00001015608632,
-                27.84469830064867
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10148,27.75439,-15.00001,27.84470",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR97",
-              "suffix": "97"
-            },
-            {
-              "bbox": [
-                -15.101560806757492,
-                27.84466995763739,
-                -15.000010164514338,
-                27.934972721653235
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10156,27.84467,-15.00001,27.93497",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR98",
-              "suffix": "98"
-            },
-            {
-              "bbox": [
-                -15.101645086757442,
-                27.934944236491475,
-                -15.000010172981499,
-                28.025245958666456
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10165,27.93494,-15.00001,28.02525",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDR99",
-              "suffix": "99"
             }
           ],
           "tile_id": "28RDR",
@@ -4068,126 +3039,6 @@
         },
         {
           "subtiles": [
-            {
-              "bbox": [
-                -16.01723277514582,
-                28.021489950901774,
-                -15.916296203462872,
-                28.11245665405217
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01723,28.02149,-15.91630,28.11246",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS00",
-              "suffix": "00"
-            },
-            {
-              "bbox": [
-                -16.018083186119178,
-                28.111747754054523,
-                -15.917065168309543,
-                28.202715955864317
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01808,28.11175,-15.91707,28.20272",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS01",
-              "suffix": "01"
-            },
-            {
-              "bbox": [
-                -16.018937537725975,
-                28.20200434494083,
-                -15.917837692724145,
-                28.29297404724943
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01894,28.20200,-15.91784,28.29297",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS02",
-              "suffix": "02"
-            },
-            {
-              "bbox": [
-                -16.019795844072227,
-                28.29225972095357,
-                -15.918613789487436,
-                28.383230925636322
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.01980,28.29226,-15.91861,28.38323",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS03",
-              "suffix": "03"
-            },
-            {
-              "bbox": [
-                -16.020658119356597,
-                28.382513879496962,
-                -15.919393471464138,
-                28.473486588465256
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02066,28.38251,-15.91939,28.47349",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS04",
-              "suffix": "04"
-            },
-            {
-              "bbox": [
-                -16.02152437787103,
-                28.472766817986567,
-                -15.92017675160353,
-                28.56374103318798
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02152,28.47277,-15.92018,28.56374",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS05",
-              "suffix": "05"
-            },
-            {
-              "bbox": [
-                -16.022394634001422,
-                28.56301853384929,
-                -15.920963642940038,
-                28.65399425726778
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02239,28.56302,-15.92096,28.65399",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS06",
-              "suffix": "06"
-            },
-            {
-              "bbox": [
-                -16.023268902228217,
-                28.65326902452344,
-                -15.921754158593814,
-                28.74424625817941
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02327,28.65327,-15.92175,28.74425",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS07",
-              "suffix": "07"
-            },
-            {
-              "bbox": [
-                -16.024147197127135,
-                28.743518287458645,
-                -15.922548311771331,
-                28.834497033409225
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02415,28.74352,-15.92255,28.83450",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS08",
-              "suffix": "08"
-            },
-            {
-              "bbox": [
-                -16.02502953336976,
-                28.833766320116034,
-                -15.923346115766003,
-                28.924746580455096
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-16.02503,28.83377,-15.92335,28.92475",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS09",
-              "suffix": "09"
-            },
             {
               "bbox": [
                 -15.916286100289351,
@@ -4199,102 +3050,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDS11",
               "suffix": "11"
-            },
-            {
-              "bbox": [
-                -15.91705505695119,
-                28.20272505001327,
-                -15.815865858435826,
-                28.293621353618867
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91706,28.20273,-15.81587,28.29362",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS12",
-              "suffix": "12"
-            },
-            {
-              "bbox": [
-                -15.917827573142711,
-                28.29298314153449,
-                -15.816555755593033,
-                28.383880665836013
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91783,28.29298,-15.81656,28.38388",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS13",
-              "suffix": "13"
-            },
-            {
-              "bbox": [
-                -15.918603661644532,
-                28.38324002005763,
-                -15.81724883982407,
-                28.474138766518553
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91860,28.38324,-15.81725,28.47414",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS14",
-              "suffix": "14"
-            },
-            {
-              "bbox": [
-                -15.919383335321244,
-                28.473495683022996,
-                -15.817945122640896,
-                28.564395653140494
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.91938,28.47350,-15.81795,28.56440",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS15",
-              "suffix": "15"
-            },
-            {
-              "bbox": [
-                -15.920166607121994,
-                28.563750127882333,
-                -15.818644615631175,
-                28.65465132318745
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.92017,28.56375,-15.81864,28.65465",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS16",
-              "suffix": "16"
-            },
-            {
-              "bbox": [
-                -15.92095349008107,
-                28.654003352098915,
-                -15.819347330458777,
-                28.744905774156678
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.92095,28.65400,-15.81935,28.74491",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS17",
-              "suffix": "17"
-            },
-            {
-              "bbox": [
-                -15.921743997318481,
-                28.74425535314752,
-                -15.820053278864325,
-                28.835159003557095
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.92174,28.74426,-15.82005,28.83516",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS18",
-              "suffix": "18"
-            },
-            {
-              "bbox": [
-                -15.92253814204058,
-                28.834506128514484,
-                -15.820762472665718,
-                28.925411008909318
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.92254,28.83451,-15.82076,28.92541",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS19",
-              "suffix": "19"
             },
             {
               "bbox": [
@@ -4310,90 +3065,6 @@
             },
             {
               "bbox": [
-                -15.815855729916889,
-                28.29363044053446,
-                -15.714494534637327,
-                28.38445398894472
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81586,28.29363,-15.71449,28.38445",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS23",
-              "suffix": "23"
-            },
-            {
-              "bbox": [
-                -15.816545618771666,
-                28.383889752859645,
-                -15.715101009610823,
-                28.474714240785026
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81655,28.38389,-15.71510,28.47471",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS24",
-              "suffix": "24"
-            },
-            {
-              "bbox": [
-                -15.817238694661608,
-                28.47414785365036,
-                -15.71571028351752,
-                28.564973282134826
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81724,28.47415,-15.71571,28.56497",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS25",
-              "suffix": "25"
-            },
-            {
-              "bbox": [
-                -15.817934969098534,
-                28.564404740380596,
-                -15.716322366497785,
-                28.655231110499482
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81793,28.56440,-15.71632,28.65523",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS26",
-              "suffix": "26"
-            },
-            {
-              "bbox": [
-                -15.818634453669967,
-                28.65466041053599,
-                -15.716937268758679,
-                28.745487723396078
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81863,28.65466,-15.71694,28.74549",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS27",
-              "suffix": "27"
-            },
-            {
-              "bbox": [
-                -15.81933716003964,
-                28.744914861613776,
-                -15.717555000574439,
-                28.83574311835347
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.81934,28.74491,-15.71756,28.83574",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS28",
-              "suffix": "28"
-            },
-            {
-              "bbox": [
-                -15.820043099948034,
-                28.835168091122902,
-                -15.718175572286928,
-                28.925997292912314
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.82004,28.83517,-15.71818,28.92600",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS29",
-              "suffix": "29"
-            },
-            {
-              "bbox": [
                 -15.713279812145888,
                 28.203938943266806,
                 -15.611913059770131,
@@ -4403,90 +3074,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDS32",
               "suffix": "32"
-            },
-            {
-              "bbox": [
-                -15.713880711105002,
-                28.294201608636953,
-                -15.612430524833504,
-                28.384950886701038
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71388,28.29420,-15.61243,28.38495",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS33",
-              "suffix": "33"
-            },
-            {
-              "bbox": [
-                -15.714484388876173,
-                28.384463068541145,
-                -15.612950380475416,
-                28.4752130029631
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71448,28.38446,-15.61295,28.47521",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS34",
-              "suffix": "34"
-            },
-            {
-              "bbox": [
-                -15.715090855467603,
-                28.474723320461308,
-                -15.613472635331695,
-                28.565473911829102
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71509,28.47472,-15.61347,28.56547",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS35",
-              "suffix": "35"
-            },
-            {
-              "bbox": [
-                -15.715700120953274,
-                28.564982361891047,
-                -15.613997298094954,
-                28.65573361082151
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71570,28.56498,-15.61400,28.65573",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS36",
-              "suffix": "36"
-            },
-            {
-              "bbox": [
-                -15.716312195473412,
-                28.655240190335725,
-                -15.61452437751499,
-                28.74599209747459
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71631,28.65524,-15.61452,28.74599",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS37",
-              "suffix": "37"
-            },
-            {
-              "bbox": [
-                -15.71692708923495,
-                28.74549680331243,
-                -15.61505388239918,
-                28.836249369334475
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71693,28.74550,-15.61505,28.83625",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS38",
-              "suffix": "38"
-            },
-            {
-              "bbox": [
-                -15.717544812511978,
-                28.835752198350043,
-                -15.615585821612866,
-                28.926505423959224
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.71754,28.83575,-15.61559,28.92651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS39",
-              "suffix": "39"
             },
             {
               "bbox": [
@@ -4502,90 +3089,6 @@
             },
             {
               "bbox": [
-                -15.611902913491946,
-                28.294696637620646,
-                -15.510364124460544,
-                28.38537135194444
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61190,28.29470,-15.51036,28.38537",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS43",
-              "suffix": "43"
-            },
-            {
-              "bbox": [
-                -15.612420370171387,
-                28.384959958840838,
-                -15.51079735213511,
-                28.475635045857455
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61242,28.38496,-15.51080,28.47564",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS44",
-              "suffix": "44"
-            },
-            {
-              "bbox": [
-                -15.612940217390394,
-                28.475222075154388,
-                -15.511232579248418,
-                28.565897534993052
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61294,28.47522,-15.51123,28.56590",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS45",
-              "suffix": "45"
-            },
-            {
-              "bbox": [
-                -15.613462463784659,
-                28.565482984071913,
-                -15.511669813044945,
-                28.65615881688815
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61346,28.56548,-15.51167,28.65616",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS46",
-              "suffix": "46"
-            },
-            {
-              "bbox": [
-                -15.613987118046659,
-                28.655742683115886,
-                -15.512109060816812,
-                28.746418889091583
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61399,28.65574,-15.51211,28.74642",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS47",
-              "suffix": "47"
-            },
-            {
-              "bbox": [
-                -15.614514188926048,
-                28.746001169820563,
-                -15.512550329904142,
-                28.8366777491641
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61451,28.74600,-15.51255,28.83668",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS48",
-              "suffix": "48"
-            },
-            {
-              "bbox": [
-                -15.615043685230056,
-                28.836258441732117,
-                -15.512993627695364,
-                28.926935394678445
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.61504,28.83626,-15.51299,28.92694",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS49",
-              "suffix": "49"
-            },
-            {
-              "bbox": [
                 -15.509493491971948,
                 28.204849424305586,
                 -15.407950733201352,
@@ -4595,90 +3098,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDS52",
               "suffix": "52"
-            },
-            {
-              "bbox": [
-                -15.509922733927947,
-                28.295115520359754,
-                -15.408295731853816,
-                28.385715378615526
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.50992,28.29512,-15.40830,28.38572",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS53",
-              "suffix": "53"
-            },
-            {
-              "bbox": [
-                -15.510353960936428,
-                28.3853804165983,
-                -15.408642324363942,
-                28.475980363379254
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51035,28.38538,-15.40864,28.47598",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS54",
-              "suffix": "54"
-            },
-            {
-              "bbox": [
-                -15.51078718014739,
-                28.475644110534386,
-                -15.408990516489867,
-                28.56624414550825
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51079,28.47564,-15.40899,28.56624",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS55",
-              "suffix": "55"
-            },
-            {
-              "bbox": [
-                -15.511222398757841,
-                28.56590659969304,
-                -15.409340314027588,
-                28.6565067225513
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51122,28.56591,-15.40934,28.65651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS56",
-              "suffix": "56"
-            },
-            {
-              "bbox": [
-                -15.51165962401211,
-                28.656167881611196,
-                -15.409691722811232,
-                28.746768092069114
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51166,28.65617,-15.40969,28.74677",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS57",
-              "suffix": "57"
-            },
-            {
-              "bbox": [
-                -15.512098863202182,
-                28.746427953837674,
-                -15.410044748713323,
-                28.837028251634436
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51210,28.74643,-15.41004,28.83703",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS58",
-              "suffix": "58"
-            },
-            {
-              "bbox": [
-                -15.512540123668032,
-                28.836686813933255,
-                -15.410399397645044,
-                28.927287198832023
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.51254,28.83669,-15.41040,28.92729",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS59",
-              "suffix": "59"
             },
             {
               "bbox": [
@@ -4706,90 +3125,6 @@
             },
             {
               "bbox": [
-                -15.407940569319248,
-                28.29545825082433,
-                -15.306225745395695,
-                28.385982961756294
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40794,28.29546,-15.30623,28.38598",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS63",
-              "suffix": "63"
-            },
-            {
-              "bbox": [
-                -15.40828555950682,
-                28.38572443575424,
-                -15.306485696983293,
-                28.47624895054638
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40829,28.38572,-15.30649,28.47625",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS64",
-              "suffix": "64"
-            },
-            {
-              "bbox": [
-                -15.408632143512788,
-                28.475989420512565,
-                -15.306746848325876,
-                28.566513738368396
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40863,28.47599,-15.30675,28.56651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS65",
-              "suffix": "65"
-            },
-            {
-              "bbox": [
-                -15.408980327095147,
-                28.566253202636116,
-                -15.307009203770706,
-                28.65677732278034
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40898,28.56625,-15.30701,28.65678",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS66",
-              "suffix": "66"
-            },
-            {
-              "bbox": [
-                -15.409330116049754,
-                28.65651577967366,
-                -15.30727276769365,
-                28.747039701352175
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40933,28.65652,-15.30727,28.74704",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS67",
-              "suffix": "67"
-            },
-            {
-              "bbox": [
-                -15.409681516210597,
-                28.746777149185906,
-                -15.307537544499365,
-                28.837300871665956
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.40968,28.74678,-15.30754,28.83730",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS68",
-              "suffix": "68"
-            },
-            {
-              "bbox": [
-                -15.410034533450052,
-                28.837037308745643,
-                -15.307803538621512,
-                28.92756083131581
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.41003,28.83704,-15.30780,28.92756",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS69",
-              "suffix": "69"
-            },
-            {
-              "bbox": [
                 -15.305187703294745,
                 28.024916095904555,
                 -15.203639414961927,
@@ -4811,342 +3146,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RDS71",
               "suffix": "71"
-            },
-            {
-              "bbox": [
-                -15.305699260078637,
-                28.205456440762013,
-                -15.203982054146277,
-                28.295906194206875
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30570,28.20546,-15.20398,28.29591",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS72",
-              "suffix": "72"
-            },
-            {
-              "bbox": [
-                -15.305956816618766,
-                28.295724824080448,
-                -15.204154563506153,
-                28.386174097510274
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30596,28.29572,-15.20415,28.38617",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS73",
-              "suffix": "73"
-            },
-            {
-              "bbox": [
-                -15.306215564265086,
-                28.385992011350755,
-                -15.204327869852397,
-                28.476440803483634
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30622,28.38599,-15.20433,28.47644",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS74",
-              "suffix": "74"
-            },
-            {
-              "bbox": [
-                -15.30647550730811,
-                28.47625800010693,
-                -15.204501976064405,
-                28.56670630967947
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30648,28.47626,-15.20450,28.56671",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS75",
-              "suffix": "75"
-            },
-            {
-              "bbox": [
-                -15.306736650066561,
-                28.566522787894932,
-                -15.204676885040513,
-                28.65697061366234
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30674,28.56652,-15.20468,28.65697",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS76",
-              "suffix": "76"
-            },
-            {
-              "bbox": [
-                -15.306998996887563,
-                28.656786372272755,
-                -15.204852599698121,
-                28.747233713008853
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30700,28.65679,-15.20485,28.74723",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS77",
-              "suffix": "77"
-            },
-            {
-              "bbox": [
-                -15.307262552146836,
-                28.74704875081037,
-                -15.205029122973833,
-                28.83749560530769
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30726,28.74705,-15.20503,28.83750",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS78",
-              "suffix": "78"
-            },
-            {
-              "bbox": [
-                -15.3075273202489,
-                28.837309921089858,
-                -15.205206457823587,
-                28.927756288159678
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.30753,28.83731,-15.20521,28.92776",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS79",
-              "suffix": "79"
-            },
-            {
-              "bbox": [
-                -15.203459123542597,
-                28.02510436724103,
-                -15.101824995351448,
-                28.115480204339057
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20346,28.02510,-15.10182,28.11548",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS80",
-              "suffix": "80"
-            },
-            {
-              "bbox": [
-                -15.203629250604893,
-                28.11537584766773,
-                -15.101910462305392,
-                28.205750923119222
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20363,28.11538,-15.10191,28.20575",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS81",
-              "suffix": "81"
-            },
-            {
-              "bbox": [
-                -15.203800166088536,
-                28.205646138178682,
-                -15.101996324925679,
-                28.296020450202974
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20380,28.20565,-15.10200,28.29602",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS82",
-              "suffix": "82"
-            },
-            {
-              "bbox": [
-                -15.203971872816764,
-                28.29591523629044,
-                -15.10208258463338,
-                28.386288783122726
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20397,28.29592,-15.10208,28.38629",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS83",
-              "suffix": "83"
-            },
-            {
-              "bbox": [
-                -15.204144373631348,
-                28.386183139531504,
-                -15.102169242858887,
-                28.47655591942288
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20414,28.38618,-15.10217,28.47656",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS84",
-              "suffix": "84"
-            },
-            {
-              "bbox": [
-                -15.204317671392735,
-                28.47644984544238,
-                -15.102256301042008,
-                28.56682185665987
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20432,28.47645,-15.10226,28.56682",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS85",
-              "suffix": "85"
-            },
-            {
-              "bbox": [
-                -15.204491768980189,
-                28.56671535157558,
-                -15.102343760632015,
-                28.657086592402223
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20449,28.56672,-15.10234,28.65709",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS86",
-              "suffix": "86"
-            },
-            {
-              "bbox": [
-                -15.204666669291896,
-                28.65697965549568,
-                -15.102431623087712,
-                28.747350124230493
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20467,28.65698,-15.10243,28.74735",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS87",
-              "suffix": "87"
-            },
-            {
-              "bbox": [
-                -15.204842375245121,
-                28.74724275477926,
-                -15.102519889877513,
-                28.837612449737367
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20484,28.74724,-15.10252,28.83761",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS88",
-              "suffix": "88"
-            },
-            {
-              "bbox": [
-                -15.205018889776314,
-                28.837504647015045,
-                -15.102608562479489,
-                28.927873566527673
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.20502,28.83750,-15.10261,28.92787",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS89",
-              "suffix": "89"
-            },
-            {
-              "bbox": [
-                -15.101729758176953,
-                28.025217331123603,
-                -15.00001018148794,
-                28.115518009186093
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10173,28.02522,-15.00001,28.11552",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS90",
-              "suffix": "90"
-            },
-            {
-              "bbox": [
-                -15.101814822409311,
-                28.115489239030264,
-                -15.000010190033807,
-                28.205788870721886
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10181,28.11549,-15.00001,28.20579",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS91",
-              "suffix": "91"
-            },
-            {
-              "bbox": [
-                -15.10190028085695,
-                28.205759957719927,
-                -15.000010198619234,
-                28.296058540795528
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10190,28.20576,-15.00001,28.29606",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS92",
-              "suffix": "92"
-            },
-            {
-              "bbox": [
-                -15.10198613493152,
-                28.29602948471298,
-                -15.000010207244365,
-                28.386327016940715
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10199,28.29603,-15.00001,28.38633",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS93",
-              "suffix": "93"
-            },
-            {
-              "bbox": [
-                -15.102072386053932,
-                28.38629781754183,
-                -15.000010215909347,
-                28.476594296703148
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10207,28.38630,-15.00001,28.47659",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS94",
-              "suffix": "94"
-            },
-            {
-              "bbox": [
-                -15.102159035654452,
-                28.47656495375089,
-                -15.00001022461432,
-                28.566860377640584
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10216,28.47656,-15.00001,28.56686",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS95",
-              "suffix": "95"
-            },
-            {
-              "bbox": [
-                -15.10224608517274,
-                28.56683089089659,
-                -15.000010233359426,
-                28.657125257322846
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10225,28.56683,-15.00001,28.65713",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS96",
-              "suffix": "96"
-            },
-            {
-              "bbox": [
-                -15.10233353605792,
-                28.657095626547456,
-                -15.000010242144818,
-                28.747388933331827
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10233,28.65710,-15.00001,28.74739",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS97",
-              "suffix": "97"
-            },
-            {
-              "bbox": [
-                -15.102421389768654,
-                28.74735915828404,
-                -15.00001025097064,
-                28.83765140326154
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10242,28.74736,-15.00001,28.83765",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS98",
-              "suffix": "98"
-            },
-            {
-              "bbox": [
-                -15.102509647773209,
-                28.83762148369906,
-                -15.000010259837039,
-                28.927912664718153
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.10251,28.83762,-15.00001,28.92791",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RDS99",
-              "suffix": "99"
             }
           ],
           "tile_id": "28RDS",
@@ -5154,486 +3153,6 @@
         },
         {
           "subtiles": [
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.02525498593124,
-                -14.898195367585014,
-                28.11548021945796
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.02525,-14.89820,28.11548",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES00",
-              "suffix": "00"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.115527036332107,
-                -14.89810991772266,
-                28.205750938295207
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.11553,-14.89811,28.20575",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES01",
-              "suffix": "01"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.205797897748884,
-                -14.898024072273081,
-                28.296020465436147
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.20580,-14.89802,28.29602",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES02",
-              "suffix": "02"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.296067567703258,
-                -14.897937829815504,
-                28.38628879841318
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.29607,-14.89794,28.38629",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES03",
-              "suffix": "03"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.386336043728924,
-                -14.89785118891981,
-                28.476555934770705
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.38634,-14.89785,28.47656",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES04",
-              "suffix": "04"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.476603323371602,
-                -14.89776414814649,
-                28.56682187206517
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.47660,-14.89776,28.56682",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES05",
-              "suffix": "05"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.566869404189035,
-                -14.897676706046555,
-                28.657086607865075
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.56687,-14.89768,28.65709",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES06",
-              "suffix": "06"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.65713428375105,
-                -14.897588861161493,
-                28.74735013975101
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.65713,-14.89759,28.74735",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES07",
-              "suffix": "07"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.747397959639542,
-                -14.897500612023187,
-                28.837612465315644
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.74740,-14.89750,28.83761",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES08",
-              "suffix": "08"
-            },
-            {
-              "bbox": [
-                -14.999999999999982,
-                28.83766042944854,
-                -14.89741195715386,
-                28.9278735821638
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-15.00000,28.83766,-14.89741,28.92787",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES09",
-              "suffix": "09"
-            },
-            {
-              "bbox": [
-                -14.898270241823013,
-                28.025217331123603,
-                -14.796380947856271,
-                28.11536683569754
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89827,28.02522,-14.79638,28.11537",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES10",
-              "suffix": "10"
-            },
-            {
-              "bbox": [
-                -14.898185177590655,
-                28.115489239030264,
-                -14.79621004099719,
-                28.205637126384698
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89819,28.11549,-14.79621,28.20564",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES11",
-              "suffix": "11"
-            },
-            {
-              "bbox": [
-                -14.898099719143016,
-                28.205759957719927,
-                -14.796038342933372,
-                28.295906224673
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89810,28.20576,-14.79604,28.29591",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES12",
-              "suffix": "12"
-            },
-            {
-              "bbox": [
-                -14.898013865068446,
-                28.29602948471298,
-                -14.795865850823189,
-                28.38617412809096
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89801,28.29603,-14.79587,28.38617",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES13",
-              "suffix": "13"
-            },
-            {
-              "bbox": [
-                -14.897927613946035,
-                28.38629781754183,
-                -14.795692561806332,
-                28.476440834179062
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89793,28.38630,-14.79569,28.47644",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES14",
-              "suffix": "14"
-            },
-            {
-              "bbox": [
-                -14.897840964345514,
-                28.47656495375089,
-                -14.795518473003686,
-                28.56670634048983
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89784,28.47656,-14.79552,28.56671",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES15",
-              "suffix": "15"
-            },
-            {
-              "bbox": [
-                -14.897753914827227,
-                28.56683089089659,
-                -14.79534358151721,
-                28.656970644587826
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89775,28.56683,-14.79534,28.65697",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES16",
-              "suffix": "16"
-            },
-            {
-              "bbox": [
-                -14.897666463942047,
-                28.657095626547456,
-                -14.7951678844298,
-                28.747233744049655
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89767,28.65710,-14.79517,28.74723",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES17",
-              "suffix": "17"
-            },
-            {
-              "bbox": [
-                -14.897578610231312,
-                28.74735915828404,
-                -14.794991378805136,
-                28.83749563646401
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89758,28.74736,-14.79499,28.83750",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES18",
-              "suffix": "18"
-            },
-            {
-              "bbox": [
-                -14.897490352226757,
-                28.83762148369906,
-                -14.794814061687585,
-                28.927756319431708
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.89749,28.83762,-14.79481,28.92776",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES19",
-              "suffix": "19"
-            },
-            {
-              "bbox": [
-                -14.79654087645737,
-                28.02510436724103,
-                -14.69456731650611,
-                28.115177859533656
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79654,28.02510,-14.69457,28.11518",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES20",
-              "suffix": "20"
-            },
-            {
-              "bbox": [
-                -14.796370749395074,
-                28.11537584766773,
-                -14.694310955473364,
-                28.205447436627118
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79637,28.11538,-14.69431,28.20545",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES21",
-              "suffix": "21"
-            },
-            {
-              "bbox": [
-                -14.79619983391143,
-                28.205646138178682,
-                -14.694053407636918,
-                28.29571582015081
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79620,28.20565,-14.69405,28.29572",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES22",
-              "suffix": "22"
-            },
-            {
-              "bbox": [
-                -14.796028127183202,
-                28.29591523629044,
-                -14.693794668734414,
-                28.385983007626766
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79603,28.29592,-14.69379,28.38598",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES23",
-              "suffix": "23"
-            },
-            {
-              "bbox": [
-                -14.795855626368619,
-                28.386183139531504,
-                -14.693534734475477,
-                28.47624899658897
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79586,28.38618,-14.69353,28.47625",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES24",
-              "suffix": "24"
-            },
-            {
-              "bbox": [
-                -14.79568232860723,
-                28.47644984544238,
-                -14.693273600541536,
-                28.566513784583385
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79568,28.47645,-14.69327,28.56651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES25",
-              "suffix": "25"
-            },
-            {
-              "bbox": [
-                -14.795508231019777,
-                28.56671535157558,
-                -14.693011262585607,
-                28.656777369168015
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79551,28.56672,-14.69301,28.65678",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES26",
-              "suffix": "26"
-            },
-            {
-              "bbox": [
-                -14.79533333070807,
-                28.65697965549568,
-                -14.69274771623213,
-                28.74703974791283
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79533,28.65698,-14.69275,28.74704",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES27",
-              "suffix": "27"
-            },
-            {
-              "bbox": [
-                -14.795157624754845,
-                28.74724275477926,
-                -14.692482957076729,
-                28.837300918399883
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79516,28.74724,-14.69248,28.83730",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES28",
-              "suffix": "28"
-            },
-            {
-              "bbox": [
-                -14.794981110223652,
-                28.837504647015045,
-                -14.692216980686032,
-                28.927560878223296
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.79498,28.83750,-14.69222,28.92756",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES29",
-              "suffix": "29"
-            },
-            {
-              "bbox": [
-                -14.694812296705221,
-                28.024916095904555,
-                -14.592754867720508,
-                28.114913293680996
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69481,28.02492,-14.59275,28.11491",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES30",
-              "suffix": "30"
-            },
-            {
-              "bbox": [
-                -14.694557109617776,
-                28.11518686387341,
-                -14.592413056748603,
-                28.205181871750383
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69456,28.11519,-14.59241,28.20518",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES31",
-              "suffix": "31"
-            },
-            {
-              "bbox": [
-                -14.69430073992133,
-                28.205456440762013,
-                -14.592069663401858,
-                28.295449254610762
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69430,28.20546,-14.59207,28.29545",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES32",
-              "suffix": "32"
-            },
-            {
-              "bbox": [
-                -14.694043183381199,
-                28.295724824080448,
-                -14.591724681997368,
-                28.385715439775126
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69404,28.29572,-14.59172,28.38572",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES33",
-              "suffix": "33"
-            },
-            {
-              "bbox": [
-                -14.69378443573488,
-                28.385992011350755,
-                -14.591378106814897,
-                28.475980424768334
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69378,28.38599,-14.59138,28.47598",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES34",
-              "suffix": "34"
-            },
-            {
-              "bbox": [
-                -14.693524492691857,
-                28.47625800010693,
-                -14.591029932096598,
-                28.566244207127195
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69352,28.47626,-14.59103,28.56624",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES35",
-              "suffix": "35"
-            },
-            {
-              "bbox": [
-                -14.693263349933405,
-                28.566522787894932,
-                -14.590680152046765,
-                28.656506784400495
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69326,28.56652,-14.59068,28.65651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES36",
-              "suffix": "36"
-            },
-            {
-              "bbox": [
-                -14.693001003112403,
-                28.656786372272755,
-                -14.590328760831552,
-                28.746768154148935
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69300,28.65679,-14.59033,28.74677",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES37",
-              "suffix": "37"
-            },
-            {
-              "bbox": [
-                -14.69273744785313,
-                28.74704875081037,
-                -14.589975752578738,
-                28.83702831394527
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69274,28.74705,-14.58998,28.83703",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES38",
-              "suffix": "38"
-            },
-            {
-              "bbox": [
-                -14.692472679751067,
-                28.837309921089858,
-                -14.589621121377435,
-                28.92728726137428
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.69247,28.83731,-14.58962,28.92729",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES39",
-              "suffix": "39"
-            },
             {
               "bbox": [
                 -14.592744652444875,
@@ -5645,102 +3164,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RES41",
               "suffix": "41"
-            },
-            {
-              "bbox": [
-                -14.592402832770281,
-                28.205190868197953,
-                -14.490087507218313,
-                28.295106531890443
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59240,28.20519,-14.49009,28.29511",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES42",
-              "suffix": "42"
-            },
-            {
-              "bbox": [
-                -14.592059430680719,
-                28.29545825082433,
-                -14.489656289032038,
-                28.38537142839228
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59206,28.29546,-14.48966,28.38537",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES43",
-              "suffix": "43"
-            },
-            {
-              "bbox": [
-                -14.591714440493146,
-                28.38572443575424,
-                -14.489223078683837,
-                28.47563512259215
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59171,28.38572,-14.48922,28.47564",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES44",
-              "suffix": "44"
-            },
-            {
-              "bbox": [
-                -14.591367856487178,
-                28.475989420512565,
-                -14.488787868976846,
-                28.56589761201506
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59137,28.47599,-14.48879,28.56590",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES45",
-              "suffix": "45"
-            },
-            {
-              "bbox": [
-                -14.59101967290482,
-                28.566253202636116,
-                -14.488350652666892,
-                28.656158894197965
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59102,28.56625,-14.48835,28.65616",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES46",
-              "suffix": "46"
-            },
-            {
-              "bbox": [
-                -14.590669883950213,
-                28.65651577967366,
-                -14.487911422462135,
-                28.746418966689674
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59067,28.65652,-14.48791,28.74642",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES47",
-              "suffix": "47"
-            },
-            {
-              "bbox": [
-                -14.59031848378937,
-                28.746777149185906,
-                -14.487470171022753,
-                28.83667782705096
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.59032,28.74678,-14.48747,28.83668",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES48",
-              "suffix": "48"
-            },
-            {
-              "bbox": [
-                -14.589965466549915,
-                28.837037308745643,
-                -14.48702689096061,
-                28.92693547285456
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.58997,28.83704,-14.48703,28.92694",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES49",
-              "suffix": "49"
             },
             {
               "bbox": [
@@ -5768,78 +3191,6 @@
             },
             {
               "bbox": [
-                -14.489646039063539,
-                28.3853804165983,
-                -14.38707004990367,
-                28.475213095042292
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48965,28.38538,-14.38707,28.47521",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES54",
-              "suffix": "54"
-            },
-            {
-              "bbox": [
-                -14.489212819852575,
-                28.475644110534386,
-                -14.38654781245212,
-                28.56547400425307
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48921,28.47564,-14.38655,28.56547",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES55",
-              "suffix": "55"
-            },
-            {
-              "bbox": [
-                -14.488777601242125,
-                28.56590659969304,
-                -14.386023167173827,
-                28.655733703590826
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48878,28.56591,-14.38602,28.65573",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES56",
-              "suffix": "56"
-            },
-            {
-              "bbox": [
-                -14.488340375987857,
-                28.656167881611196,
-                -14.38549610531929,
-                28.745992190589824
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48834,28.65617,-14.38550,28.74599",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES57",
-              "suffix": "57"
-            },
-            {
-              "bbox": [
-                -14.487901136797785,
-                28.746427953837674,
-                -14.384966618081426,
-                28.83624946279623
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48790,28.74643,-14.38497,28.83625",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES58",
-              "suffix": "58"
-            },
-            {
-              "bbox": [
-                -14.487459876331934,
-                28.836686813933255,
-                -14.384434696595179,
-                28.92650551776806
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.48746,28.83669,-14.38443,28.92651",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES59",
-              "suffix": "59"
-            },
-            {
-              "bbox": [
                 -14.38809708650802,
                 28.294696637620646,
                 -14.28552587789905,
@@ -5864,66 +3215,6 @@
             },
             {
               "bbox": [
-                -14.387059782609573,
-                28.475222075154388,
-                -14.284310163744605,
-                28.564973389959412
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.38706,28.47522,-14.28431,28.56497",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES65",
-              "suffix": "65"
-            },
-            {
-              "bbox": [
-                -14.386537536215307,
-                28.565482984071913,
-                -14.283698098247411,
-                28.655231218726964
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.38654,28.56548,-14.28370,28.65523",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES66",
-              "suffix": "66"
-            },
-            {
-              "bbox": [
-                -14.386012881953308,
-                28.655742683115886,
-                -14.283083213550107,
-                28.74548783202712
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.38601,28.65574,-14.28308,28.74549",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES67",
-              "suffix": "67"
-            },
-            {
-              "bbox": [
-                -14.385485811073918,
-                28.746001169820563,
-                -14.282465499378748,
-                28.835743227388754
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.38549,28.74600,-14.28247,28.83574",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES68",
-              "suffix": "68"
-            },
-            {
-              "bbox": [
-                -14.38495631476991,
-                28.836258441732117,
-                -14.28184494539177,
-                28.925997402352515
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.38496,28.83626,-14.28184,28.92600",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES69",
-              "suffix": "69"
-            },
-            {
-              "bbox": [
                 -14.284909144532365,
                 28.474723320461308,
                 -14.182075324019308,
@@ -5945,42 +3236,6 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RES76",
               "suffix": "76"
-            },
-            {
-              "bbox": [
-                -14.283687804526553,
-                28.655240190335725,
-                -14.180673151243703,
-                28.74490589830195
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.28369,28.65524,-14.18067,28.74491",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES77",
-              "suffix": "77"
-            },
-            {
-              "bbox": [
-                -14.283072910765014,
-                28.74549680331243,
-                -14.179967220480343,
-                28.835159128164335
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.28307,28.74550,-14.17997,28.83516",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES78",
-              "suffix": "78"
-            },
-            {
-              "bbox": [
-                -14.28245518748799,
-                28.835752198350043,
-                -14.179258044402225,
-                28.925411133979296
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.28246,28.83575,-14.17926,28.92541",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES79",
-              "suffix": "79"
             },
             {
               "bbox": [
@@ -6020,30 +3275,6 @@
             },
             {
               "bbox": [
-                -14.180662839960327,
-                28.744914861613776,
-                -14.077472186883721,
-                28.834497173586605
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.18066,28.74491,-14.07747,28.83450",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES88",
-              "suffix": "88"
-            },
-            {
-              "bbox": [
-                -14.17995690005193,
-                28.835168091122902,
-                -14.076674400609798,
-                28.924746721153042
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.17996,28.83517,-14.07667,28.92475",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES89",
-              "suffix": "89"
-            },
-            {
-              "bbox": [
                 -14.084479309539985,
                 28.02220523827289,
                 -13.981927078635945,
@@ -6065,34 +3296,322 @@
               "land_fraction": 0.0,
               "subtile_mgrs": "28RES91",
               "suffix": "91"
-            },
-            {
-              "bbox": [
-                -14.078256002681483,
-                28.74425535314752,
-                -13.974980804008586,
-                28.83375737324672
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.07826,28.74426,-13.97498,28.83376",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES98",
-              "suffix": "98"
-            },
-            {
-              "bbox": [
-                -14.077461857959388,
-                28.834506128514484,
-                -13.974094420919402,
-                28.92400417351138
-              ],
-              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-14.07746,28.83451,-13.97409,28.92400",
-              "land_fraction": 0.0,
-              "subtile_mgrs": "28RES99",
-              "suffix": "99"
             }
           ],
           "tile_id": "28RES",
           "tile_mgrs": "28RES"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.878239853920784,
+                28.29146018920314,
+                -13.77525562089742,
+                28.380823485033904
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87824,28.29146,-13.77526,28.38082",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS13",
+              "suffix": "13"
+            },
+            {
+              "bbox": [
+                -13.877291406145714,
+                28.381711341639676,
+                -13.774216246434325,
+                28.47107011529672
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.87729,28.38171,-13.77422,28.47107",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS14",
+              "suffix": "14"
+            },
+            {
+              "bbox": [
+                -13.774205929225669,
+                28.47107904784319,
+                -13.67095729569982,
+                28.560353049707928
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.77421,28.47108,-13.67096,28.56035",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS25",
+              "suffix": "25"
+            },
+            {
+              "bbox": [
+                -13.773161749322588,
+                28.561324444545154,
+                -13.669820974197869,
+                28.65059361517088
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.77316,28.56132,-13.66982,28.65059",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS26",
+              "suffix": "26"
+            },
+            {
+              "bbox": [
+                -13.772112755742116,
+                28.651568605533992,
+                -13.668679419498218,
+                28.740832936301906
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.77211,28.65157,-13.66868,28.74083",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS27",
+              "suffix": "27"
+            },
+            {
+              "bbox": [
+                -13.771058930999237,
+                28.741811528201232,
+                -13.667532612537928,
+                28.831071010470456
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.77106,28.74181,-13.66753,28.83107",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS28",
+              "suffix": "28"
+            },
+            {
+              "bbox": [
+                -13.668669066349825,
+                28.74084185932957,
+                -13.565059884849598,
+                28.83001994553008
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66867,28.74084,-13.56506,28.83002",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFS38",
+              "suffix": "38"
+            }
+          ],
+          "tile_id": "28RFS",
+          "tile_mgrs": "28RFS"
+        },
+        {
+          "subtiles": [
+            {
+              "bbox": [
+                -13.974084074275703,
+                28.9240131199681,
+                -13.870539069452882,
+                29.013426025330162
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97408,28.92401,-13.87054,29.01343",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT00",
+              "suffix": "00"
+            },
+            {
+              "bbox": [
+                -13.973193610943927,
+                29.01425868449883,
+                -13.869555132645552,
+                29.103667305846837
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97319,29.01426,-13.86956,29.10367",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT01",
+              "suffix": "01"
+            },
+            {
+              "bbox": [
+                -13.972299061671558,
+                29.104503011203615,
+                -13.868566685160506,
+                29.193907340853023
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.97230,29.10450,-13.86857,29.19391",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT02",
+              "suffix": "02"
+            },
+            {
+              "bbox": [
+                -13.969590747094522,
+                29.375228539488937,
+                -13.865574111343607,
+                29.464619947762984
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.96959,29.37523,-13.86557,29.46462",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT05",
+              "suffix": "05"
+            },
+            {
+              "bbox": [
+                -13.869544758814989,
+                29.10367624330147,
+                -13.765727111564907,
+                29.192998547417364
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.86954,29.10368,-13.76573,29.19300",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT12",
+              "suffix": "12"
+            },
+            {
+              "bbox": [
+                -13.866565789094992,
+                29.374392600423395,
+                -13.762462695136183,
+                29.46370109326657
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.86657,29.37439,-13.76246,29.46370",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT15",
+              "suffix": "15"
+            },
+            {
+              "bbox": [
+                -13.765716719776359,
+                29.193007476195568,
+                -13.661719117793838,
+                29.28224258557367
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76572,29.19301,-13.66172,29.28224",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT23",
+              "suffix": "23"
+            },
+            {
+              "bbox": [
+                -13.764633534375864,
+                29.283242914778434,
+                -13.660540389861549,
+                29.37247312333957
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76463,29.28324,-13.66054,29.37247",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT24",
+              "suffix": "24"
+            },
+            {
+              "bbox": [
+                -13.763545392151837,
+                29.373477097092213,
+                -13.659356272666132,
+                29.46270239603628
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.76355,29.37348,-13.65936,29.46270",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT25",
+              "suffix": "25"
+            },
+            {
+              "bbox": [
+                -13.662882076150822,
+                29.19201970581069,
+                -13.558799669190924,
+                29.281171939575824
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66288,29.19202,-13.55880,29.28117",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT33",
+              "suffix": "33"
+            },
+            {
+              "bbox": [
+                -13.661708707968739,
+                29.282251505587567,
+                -13.557530365952825,
+                29.371398541040733
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.66171,29.28225,-13.55753,29.37140",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT34",
+              "suffix": "34"
+            },
+            {
+              "bbox": [
+                -13.558789250886488,
+                29.281180851272673,
+                -13.454526145206682,
+                29.370244438037698
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.55879,29.28118,-13.45453,29.37024",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT44",
+              "suffix": "44"
+            },
+            {
+              "bbox": [
+                -13.461253330477671,
+                28.919128735250048,
+                -13.357290153905932,
+                29.00813171507593
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.46125,28.91913,-13.35729,29.00813",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT50",
+              "suffix": "50"
+            },
+            {
+              "bbox": [
+                -13.455875575519787,
+                29.28003096742816,
+                -13.351528141402701,
+                29.369010831157805
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.45588,29.28003,-13.35153,29.36901",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT54",
+              "suffix": "54"
+            },
+            {
+              "bbox": [
+                -13.357279747652997,
+                29.008140611834936,
+                -13.253138422396836,
+                29.097054726623394
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.35728,29.00814,-13.25314,29.09705",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT61",
+              "suffix": "61"
+            },
+            {
+              "bbox": [
+                -13.355849095358128,
+                29.098362311257308,
+                -13.251611538370545,
+                29.18727035454284
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.35585,29.09836,-13.25161,29.18727",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT62",
+              "suffix": "62"
+            },
+            {
+              "bbox": [
+                -13.354411885589588,
+                29.1885827318106,
+                -13.250077662263175,
+                29.277484692706533
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.35441,29.18858,-13.25008,29.27748",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT63",
+              "suffix": "63"
+            },
+            {
+              "bbox": [
+                -13.352968094118468,
+                29.278801870800564,
+                -13.24853676816857,
+                29.36769773838541
+              ],
+              "bounds_url": "https://opencagedata.com/tools/bounds-finder#-13.35297,29.27880,-13.24854,29.36770",
+              "land_fraction": 0.0,
+              "subtile_mgrs": "28RFT64",
+              "suffix": "64"
+            }
+          ],
+          "tile_id": "28RFT",
+          "tile_mgrs": "28RFT"
         }
       ]
     }

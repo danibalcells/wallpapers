@@ -34,7 +34,10 @@ def parse_subtile_suffix(suffix: str) -> tuple[int, int]:
     return int(suffix[0]), int(suffix[1])
 
 
-def _parse_candidate_list(path: Path) -> tuple[list[Subtile], dict[Subtile, float]]:
+def _parse_candidate_list(
+    path: Path,
+    island_filter: str | None = None,
+) -> tuple[list[Subtile], dict[Subtile, float]]:
     if not path.exists():
         raise CandidateListError(f"Candidate list file not found: {path}")
     try:
@@ -52,6 +55,8 @@ def _parse_candidate_list(path: Path) -> tuple[list[Subtile], dict[Subtile, floa
         for island in islands:
             if not isinstance(island, dict):
                 raise CandidateListError("Candidate list islands must be objects")
+            if island_filter is not None and island.get("name") != island_filter:
+                continue
             tiles = island.get("tiles")
             if not isinstance(tiles, list):
                 raise CandidateListError("Candidate list tiles must be a list")
@@ -104,8 +109,11 @@ def load_candidate_subtiles(path: Path) -> list[Subtile]:
     return parsed
 
 
-def load_candidate_subtiles_with_land(path: Path) -> tuple[list[Subtile], dict[Subtile, float]]:
-    return _parse_candidate_list(path)
+def load_candidate_subtiles_with_land(
+    path: Path,
+    island_filter: str | None = None,
+) -> tuple[list[Subtile], dict[Subtile, float]]:
+    return _parse_candidate_list(path, island_filter=island_filter)
 
 
 def subtile_bbox_utm(

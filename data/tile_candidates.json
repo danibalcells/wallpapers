@@ -2,10 +2,34 @@
   "tiles": [
     {
       "islands": [
+        "el_hierro"
+      ],
+      "tile_id": "27RYL"
+    },
+    {
+      "islands": [
+        "la_palma"
+      ],
+      "tile_id": "27RYM"
+    },
+    {
+      "islands": [
+        "el_hierro"
+      ],
+      "tile_id": "28RBR"
+    },
+    {
+      "islands": [
         "la_gomera",
         "la_palma"
       ],
       "tile_id": "28RBS"
+    },
+    {
+      "islands": [
+        "tenerife"
+      ],
+      "tile_id": "28RCR"
     },
     {
       "islands": [
@@ -30,6 +54,20 @@
         "fuerteventura"
       ],
       "tile_id": "28RES"
+    },
+    {
+      "islands": [
+        "fuerteventura",
+        "lanzarote"
+      ],
+      "tile_id": "28RFS"
+    },
+    {
+      "islands": [
+        "la_graciosa",
+        "lanzarote"
+      ],
+      "tile_id": "28RFT"
     }
   ],
   "version": 1

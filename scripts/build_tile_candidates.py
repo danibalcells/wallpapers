@@ -78,6 +78,21 @@ def _island_tags(
     return sorted(tags)
 
 
+def _has_neighbor_land(
+    grid: dict[tuple[int, int], float],
+    easting: int,
+    northing: int,
+    threshold: float,
+) -> bool:
+    for de in (-1, 0, 1):
+        for dn in (-1, 0, 1):
+            if de == 0 and dn == 0:
+                continue
+            if grid.get((easting + de, northing + dn), 0.0) >= threshold:
+                return True
+    return False
+
+
 def _bounds_url(bbox: tuple[float, float, float, float]) -> str:
     west, south, east, north = bbox
     return (
@@ -126,8 +141,15 @@ def _write_tiles(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build candidate tile/subtile lists from island polygons")
-    parser.add_argument("--min-tile-land", type=float, default=0.05)
-    parser.add_argument("--min-subtile-land", type=float, default=0.05)
+    parser.add_argument(
+        "--min-tile-land", type=float, default=0.0,
+        help="Minimum land fraction for a 100km tile to be processed at all (default 0.0 = process all tiles)",
+    )
+    parser.add_argument(
+        "--min-subtile-land", type=float, default=0.05,
+        help="A 10km subtile is included if its own land fraction OR any 8-connected neighbour's "
+             "land fraction meets this threshold",
+    )
     parser.add_argument("--tiles-out", type=Path, default=Path("data/tile_candidates.json"))
     parser.add_argument("--subtiles-out", type=Path, default=Path("data/subtile_candidates.json"))
     parser.add_argument(
@@ -145,12 +167,16 @@ def main() -> None:
     tile_ids = [tile_id.strip() for tile_id in args.tile_ids.split(",") if tile_id.strip()]
     logger.info("Using %d base tiles for %s", len(tile_ids), archipelago_bbox)
 
-    valid_tiles: list[str] = []
-    valid_subtiles: list[Subtile] = []
+    mgrs = MGRS()
     tile_tags: dict[str, list[IslandName]] = {}
     subtile_tags: dict[Subtile, list[IslandName]] = {}
     subtile_bboxes: dict[Subtile, tuple[float, float, float, float]] = {}
-    mgrs = MGRS()
+
+    # Pass 1: compute land fractions for every subtile in every qualifying tile.
+    # A tile is only skipped here if --min-tile-land > 0 AND the whole tile has
+    # less land than that threshold.  The default (0.0) processes all tiles.
+    TileGrid = dict[tuple[int, int], float]
+    per_tile_grid: dict[str, TileGrid] = {}
 
     for tile_id in tile_ids:
         tile_bbox_wgs84 = _tile_bbox_from_mgrs(mgrs, tile_id)
@@ -158,29 +184,46 @@ def main() -> None:
             logger.warning("Failed to parse tile bbox for %s", tile_id)
             continue
         tile_polygon = box(*tile_bbox_wgs84)
-        tile_land = _land_fraction(tile_polygon, land_union)
-        if tile_land < args.min_tile_land:
-            continue
-        valid_tiles.append(tile_id)
+        if args.min_tile_land > 0.0:
+            tile_land = _land_fraction(tile_polygon, land_union)
+            if tile_land < args.min_tile_land:
+                logger.info("Skipping tile %s (tile land %.3f < %.3f)", tile_id, tile_land, args.min_tile_land)
+                continue
         tile_tags[tile_id] = _island_tags(tile_polygon, islands)
+
+        grid: TileGrid = {}
         for easting in range(10):
             for northing in range(10):
-                subtile = Subtile(tile_id=tile_id, easting=easting, northing=northing)
                 subtile_bbox_wgs84 = _subtile_bbox_from_mgrs(mgrs, tile_id, easting, northing)
                 if subtile_bbox_wgs84 is None:
                     continue
                 subtile_polygon = box(*subtile_bbox_wgs84)
-                subtile_land = _land_fraction(subtile_polygon, land_union)
-                valid_subtiles.append((subtile, subtile_land))
-                subtile_tags[subtile] = _island_tags(subtile_polygon, islands)
-                subtile_bboxes[subtile] = subtile_bbox_wgs84
+                land = _land_fraction(subtile_polygon, land_union)
+                grid[(easting, northing)] = land
+                subtile_tags[Subtile(tile_id=tile_id, easting=easting, northing=northing)] = (
+                    _island_tags(subtile_polygon, islands)
+                )
+                subtile_bboxes[Subtile(tile_id=tile_id, easting=easting, northing=northing)] = subtile_bbox_wgs84
+        per_tile_grid[tile_id] = grid
 
-    valid_tiles = sorted(set(valid_tiles))
-    valid_subtiles_unique: dict[Subtile, float] = {}
-    for subtile, land in valid_subtiles:
-        if subtile not in valid_subtiles_unique:
-            valid_subtiles_unique[subtile] = land
-    valid_subtiles_sorted = sorted(valid_subtiles_unique.items(), key=lambda item: (item[0].tile_id, item[0].easting, item[0].northing))
+    # Pass 2: apply the neighbour-aware subtile filter.
+    # A subtile is included when its own land fraction OR any 8-connected
+    # neighbour within the same 100km tile meets --min-subtile-land.
+    valid_tiles: list[str] = []
+    valid_subtiles_sorted: list[tuple[Subtile, float]] = []
+
+    for tile_id in sorted(per_tile_grid.keys()):
+        grid = per_tile_grid[tile_id]
+        tile_has_candidate = False
+        for (e, n) in sorted(grid.keys()):
+            own_land = grid[(e, n)]
+            if own_land >= args.min_subtile_land or _has_neighbor_land(grid, e, n, args.min_subtile_land):
+                subtile = Subtile(tile_id=tile_id, easting=e, northing=n)
+                valid_subtiles_sorted.append((subtile, own_land))
+                tile_has_candidate = True
+        if tile_has_candidate:
+            valid_tiles.append(tile_id)
+
     logger.info("Keeping %d tiles and %d subtiles", len(valid_tiles), len(valid_subtiles_sorted))
 
     island_tiles: dict[str, dict[str, list[dict[str, object]]]] = {}
@@ -198,12 +241,12 @@ def main() -> None:
         }
         for tag in tags:
             tiles = island_tiles.setdefault(tag, {})
-            subtiles = tiles.setdefault(subtile.tile_id, [])
-            subtiles.append(entry)
+            subtiles_list = tiles.setdefault(subtile.tile_id, [])
+            subtiles_list.append(entry)
 
     for tiles in island_tiles.values():
-        for tile_id, subtiles in tiles.items():
-            tiles[tile_id] = sorted(subtiles, key=lambda item: item["suffix"])
+        for tile_id, subtiles_list in tiles.items():
+            tiles[tile_id] = sorted(subtiles_list, key=lambda item: item["suffix"])
 
     _write_tiles(args.tiles_out, valid_tiles, tile_tags)
     _write_candidates(args.subtiles_out, island_tiles)

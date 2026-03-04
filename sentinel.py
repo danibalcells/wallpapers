@@ -245,6 +245,7 @@ def fetch_tile_mosaic_image(
     max_items_per_tile: int = 20,
     min_land_per_subtile: float = 0.05,
     min_subtiles_with_land: int = 2,
+    island_filter: str | None = None,
 ) -> MosaicResult | None:
     try:
         candidates, land_fractions = load_candidate_subtiles_with_land(candidate_list_path)
@@ -268,6 +269,25 @@ def fetch_tile_mosaic_image(
             logger.error("No mosaics with at least %d subtiles having >= %.1f%% land", min_subtiles_with_land, min_land_per_subtile * 100)
             return None
         logger.info("After land filter: %d mosaics", len(mosaics))
+
+    if island_filter is not None:
+        try:
+            island_subtiles, _ = load_candidate_subtiles_with_land(
+                candidate_list_path, island_filter=island_filter
+            )
+        except CandidateListError as exc:
+            logger.error("%s", exc)
+            return None
+        island_set = set(island_subtiles)
+        if not island_set:
+            logger.error("No subtiles found for island %r in candidate list", island_filter)
+            return None
+        mosaics = [m for m in mosaics if any(s in island_set for s in m.subtiles)]
+        if not mosaics:
+            logger.error("No valid mosaics found for island %r", island_filter)
+            return None
+        candidates = [s for s in candidates if s in island_set]
+        logger.info("Island filter %r: %d mosaics, %d seed candidates", island_filter, len(mosaics), len(candidates))
 
     tile_ids = sorted({subtile.tile_id for subtile in candidates})
     dates = _list_tile_dates(

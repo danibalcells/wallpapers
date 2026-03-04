@@ -194,6 +194,16 @@ def main():
         help="Number of old images to keep (default: 10)"
     )
     parser.add_argument(
+        "--island",
+        type=str,
+        metavar="NAME",
+        help=(
+            "Restrict selection to a single island. "
+            "Valid names: tenerife, gran_canaria, fuerteventura, lanzarote, "
+            "la_graciosa, la_palma, la_gomera, el_hierro"
+        ),
+    )
+    parser.add_argument(
         "--max-per-day",
         type=int,
         help="Skip generation if this many images were already generated today"
@@ -238,6 +248,9 @@ def main():
     logger.info("Selecting %dx%d tile mosaic from %s", mosaic_width, mosaic_height, candidate_list)
 
     logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
+    if args.island:
+        logger.info("Island filter: %s", args.island)
+
     result = fetch_tile_mosaic_image(
         candidate_list_path=candidate_list,
         max_cloud_cover=max_cloud,
@@ -248,6 +261,7 @@ def main():
         rng_seed=rng_seed,
         min_land_per_subtile=min_land_per_subtile,
         min_subtiles_with_land=min_subtiles_with_land,
+        island_filter=args.island or None,
     )
 
     if result is None:
