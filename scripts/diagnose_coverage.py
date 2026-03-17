@@ -41,7 +41,7 @@ CANDIDATES_RAW_PATH = ROOT / "data" / "subtile_candidates.json"
 MOSAIC_W = 3
 MOSAIC_H = 2
 MIN_LAND_PER_SUBTILE = 0.05
-MIN_SUBTILES_WITH_LAND = 2
+MIN_SUBTILES_WITH_LAND = 1
 SIMULATE_N = 20_000          # number of random seed picks to simulate
 
 # ── known MGRS tiles the build script considers (from --tile-ids default) ──

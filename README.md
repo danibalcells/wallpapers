@@ -4,7 +4,7 @@ Automatically fetches recent Sentinel-2 satellite imagery of the Canary Islands 
 
 ## How it works
 
-1. A precomputed candidate list (`data/subtile_candidates.json`) defines which 10 km MGRS subtiles cover the islands with enough land to be interesting.
+1. A precomputed candidate list (`data/subtile_candidates.json`) defines a support universe of 10 km MGRS subtiles that can participate in a valid canonical `4x3` mosaic with at least one land-bearing subtile.
 2. The mosaic selector builds all possible contiguous grids of subtiles (default 4×3, roughly 40×30 km) and picks one at random.
 3. Sentinel-2 L2A imagery is fetched from [Element 84 Earth Search](https://earth-search.aws.element84.com/v1) via the STAC API. Only scenes from the last N days with cloud cover below the threshold are considered.
 4. Each subtile must have ≥98% valid pixels (no clouds, no data gaps). Failed subtiles are skipped and the next mosaic candidate is tried.
@@ -62,7 +62,7 @@ python main.py -v
 | `--shape WxH` | `4x3` | Mosaic dimensions in 10 km subtiles |
 | `--valid-pixel-min` | 0.98 | Minimum valid-pixel fraction per subtile |
 | `--min-land-per-subtile` | 0.05 | Minimum land fraction for a subtile to count as "has land" |
-| `--min-subtiles-with-land` | 2 | Minimum subtiles with land required per mosaic |
+| `--min-subtiles-with-land` | 1 | Minimum subtiles with land required per mosaic |
 | `--seed` | random | RNG seed for reproducible mosaic selection |
 | `--candidate-list` | `data/subtile_candidates.json` | Path to candidate subtile list |
 | `--output` | auto | Custom output path for the image |
@@ -148,7 +148,7 @@ islands.py            # Island boundary polygons
 wallpaper.py          # Cross-platform wallpaper setting
 config.yaml           # User preferences
 data/
-  subtile_candidates.json   # Precomputed candidate subtiles with land fractions
+  subtile_candidates.json   # Support-universe subtiles with land fractions
   tile_status_cache.json    # Runtime cache of tile/date validity
 images/               # Generated wallpapers
 scripts/

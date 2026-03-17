@@ -18,6 +18,7 @@ from pystac_client import Client
 
 from mosaic_reference import (
     build_mosaic_positions,
+    format_top_left_subtile,
     parse_capture_date,
     parse_top_left_subtile,
     shift_top_left_subtile,
@@ -207,7 +208,7 @@ def _cache_set_subtile_status(cache: dict[str, Any], date: str, subtile: Subtile
 
 
 def _mosaic_key(mosaic: MosaicDefinition) -> str:
-    return f"{mosaic.tile_id}:{mosaic.origin_easting},{mosaic.origin_northing}:{mosaic.width}x{mosaic.height}"
+    return f"{format_top_left_subtile(mosaic.top_left_subtile)}:{mosaic.width}x{mosaic.height}"
 
 
 def _cache_get_used_mosaics(cache: dict[str, Any], date: str) -> set[str]:
@@ -250,7 +251,7 @@ def fetch_tile_mosaic_image(
     rng_seed: int | None = None,
     max_items_per_tile: int = 20,
     min_land_per_subtile: float = 0.05,
-    min_subtiles_with_land: int = 2,
+    min_subtiles_with_land: int = 1,
     island_filter: str | None = None,
     top_left_subtile: str | None = None,
     offset_east: int = 0,
@@ -322,7 +323,7 @@ def fetch_tile_mosaic_image(
         requested_mosaic = MosaicDefinition(
             tile_id=requested_top_left.tile_id,
             origin_easting=requested_top_left.easting,
-            origin_northing=requested_top_left.northing - mosaic_height + 1,
+            origin_northing=requested_top_left.northing,
             width=mosaic_width,
             height=mosaic_height,
             subtiles=requested_subtiles,
@@ -394,11 +395,10 @@ def fetch_tile_mosaic_image(
                     available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
                     continue
             logger.info(
-                "Processing tile %s for date %s (mosaic origin %d,%d size %dx%d)",
-                chosen.tile_id,
+                "Processing mosaic %s for date %s (tiles %s, size %dx%d)",
+                format_top_left_subtile(chosen.top_left_subtile),
                 date,
-                chosen.origin_easting,
-                chosen.origin_northing,
+                ",".join(sorted({subtile.tile_id for subtile in chosen.subtiles})),
                 chosen.width,
                 chosen.height,
             )

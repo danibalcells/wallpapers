@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from mosaic_reference import format_top_left_subtile
 from tiles import Subtile, parse_subtile_suffix
 from mosaic_selector import MosaicDefinition, build_mosaics, filter_mosaics_by_land
 
@@ -17,7 +18,7 @@ DEFAULT_CANDIDATE_LIST = PROJECT_DIR / "data" / "subtile_candidates.json"
 DEFAULT_MOSAIC_WIDTH = 4
 DEFAULT_MOSAIC_HEIGHT = 3
 DEFAULT_MIN_LAND_PER_SUBTILE = 0.05
-DEFAULT_MIN_SUBTILES_WITH_LAND = 2
+DEFAULT_MIN_SUBTILES_WITH_LAND = 1
 
 
 def load_candidates_by_island(
@@ -46,7 +47,7 @@ def load_candidates_by_island(
 
 
 def mosaic_key(m: MosaicDefinition) -> str:
-    return f"{m.tile_id}:{m.origin_easting},{m.origin_northing}:{m.width}x{m.height}"
+    return f"{format_top_left_subtile(m.top_left_subtile)}:{m.width}x{m.height}"
 
 
 def assign_mosaic_island(
@@ -101,7 +102,14 @@ def main() -> None:
         print(f"{'=' * 60}")
         print(f"  {island.upper()} — {len(mosaics)} mosaics (tiles: {', '.join(tiles)})")
         print(f"{'=' * 60}")
-        for m in sorted(mosaics, key=lambda m: (m.tile_id, m.origin_easting, m.origin_northing)):
+        for m in sorted(
+            mosaics,
+            key=lambda m: (
+                m.top_left_subtile.tile_id,
+                m.top_left_subtile.easting,
+                m.top_left_subtile.northing,
+            ),
+        ):
             land_count = sum(
                 1 for s in m.subtiles
                 if land_fractions.get(s, 0.0) >= DEFAULT_MIN_LAND_PER_SUBTILE

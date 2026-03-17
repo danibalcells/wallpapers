@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from mosaic_reference import format_top_left_subtile
 from tiles import Subtile, parse_subtile_suffix, load_candidate_subtiles_with_land
 from mosaic_selector import build_mosaics, filter_mosaics, filter_mosaics_by_land
 
@@ -18,6 +19,10 @@ CACHE_PATH = PROJECT_DIR / "data" / "tile_status_cache.json"
 WIDTH, HEIGHT = 3, 2
 MIN_LAND = 0.05
 MIN_LAND_SUBTILES = 2
+
+
+def mosaic_key(tile) -> str:
+    return f"{format_top_left_subtile(tile.top_left_subtile)}:{tile.width}x{tile.height}"
 
 
 def main() -> None:
@@ -79,7 +84,7 @@ def main() -> None:
                 sim_invalid.add(s)
 
         after_none = filter_mosaics(mosaics, sim_invalid)
-        after_used = [m for m in after_none if f"{m.tile_id}:{m.origin_easting},{m.origin_northing}:{m.width}x{m.height}" not in used]
+        after_used = [m for m in after_none if mosaic_key(m) not in used]
 
         print(f"\n  Mosaics surviving after removing 'none' tile subtiles + cached invalid: {len(after_none)}")
         print(f"  Mosaics surviving after also removing used: {len(after_used)}")

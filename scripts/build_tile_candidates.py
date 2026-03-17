@@ -13,6 +13,8 @@ from shapely.geometry import Polygon, box
 from shapely.ops import unary_union
 
 from islands import IslandName, get_island_polygons, get_island_union
+from mosaic_selector import build_mosaics, filter_mosaics_by_land
+from mosaic_reference import shift_top_left_subtile
 from tiles import Subtile
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -78,21 +80,6 @@ def _island_tags(
     return sorted(tags)
 
 
-def _has_neighbor_land(
-    grid: dict[tuple[int, int], float],
-    easting: int,
-    northing: int,
-    threshold: float,
-) -> bool:
-    for de in (-1, 0, 1):
-        for dn in (-1, 0, 1):
-            if de == 0 and dn == 0:
-                continue
-            if grid.get((easting + de, northing + dn), 0.0) >= threshold:
-                return True
-    return False
-
-
 def _bounds_url(bbox: tuple[float, float, float, float]) -> str:
     west, south, east, north = bbox
     return (
@@ -103,6 +90,101 @@ def _bounds_url(bbox: tuple[float, float, float, float]) -> str:
 
 def _subtile_mgrs(tile_id: str, suffix: str) -> str:
     return f"{tile_id}{suffix}"
+
+
+def _tile_neighbor(tile_id: str, direction: str) -> str:
+    if direction == "west":
+        return shift_top_left_subtile(Subtile(tile_id=tile_id, easting=0, northing=0), -1, 0).tile_id
+    if direction == "east":
+        return shift_top_left_subtile(Subtile(tile_id=tile_id, easting=9, northing=0), 1, 0).tile_id
+    if direction == "south":
+        return shift_top_left_subtile(Subtile(tile_id=tile_id, easting=0, northing=0), 0, -1).tile_id
+    if direction == "north":
+        return shift_top_left_subtile(Subtile(tile_id=tile_id, easting=0, northing=9), 0, 1).tile_id
+    raise ValueError(f"Unsupported direction: {direction}")
+
+
+def _expand_tile_ids(tile_ids: list[str], halo: int) -> list[str]:
+    expanded = set(tile_ids)
+    frontier = set(tile_ids)
+    for _ in range(max(halo, 0)):
+        next_frontier: set[str] = set()
+        for tile_id in frontier:
+            for direction in ("west", "east", "south", "north"):
+                try:
+                    neighbor = _tile_neighbor(tile_id, direction)
+                except ValueError:
+                    continue
+                if neighbor not in expanded:
+                    next_frontier.add(neighbor)
+        expanded.update(next_frontier)
+        frontier = next_frontier
+        if not frontier:
+            break
+    return sorted(expanded)
+
+
+def _compute_subtile_metadata(
+    tile_ids: list[str],
+    mgrs: MGRS,
+    land_union: Polygon,
+    islands: dict[IslandName, Polygon],
+) -> tuple[
+    dict[str, list[IslandName]],
+    dict[Subtile, list[IslandName]],
+    dict[Subtile, tuple[float, float, float, float]],
+    dict[Subtile, float],
+]:
+    tile_tags: dict[str, list[IslandName]] = {}
+    subtile_tags: dict[Subtile, list[IslandName]] = {}
+    subtile_bboxes: dict[Subtile, tuple[float, float, float, float]] = {}
+    subtile_land_fractions: dict[Subtile, float] = {}
+
+    for tile_id in tile_ids:
+        tile_bbox_wgs84 = _tile_bbox_from_mgrs(mgrs, tile_id)
+        if tile_bbox_wgs84 is None:
+            logger.warning("Failed to parse tile bbox for %s", tile_id)
+            continue
+        tile_tags[tile_id] = _island_tags(box(*tile_bbox_wgs84), islands)
+
+        for easting in range(10):
+            for northing in range(10):
+                subtile_bbox_wgs84 = _subtile_bbox_from_mgrs(mgrs, tile_id, easting, northing)
+                if subtile_bbox_wgs84 is None:
+                    continue
+                subtile_polygon = box(*subtile_bbox_wgs84)
+                subtile = Subtile(tile_id=tile_id, easting=easting, northing=northing)
+                subtile_land_fractions[subtile] = _land_fraction(subtile_polygon, land_union)
+                subtile_tags[subtile] = _island_tags(subtile_polygon, islands)
+                subtile_bboxes[subtile] = subtile_bbox_wgs84
+
+    return tile_tags, subtile_tags, subtile_bboxes, subtile_land_fractions
+
+
+def _support_subtiles(
+    all_subtiles: list[Subtile],
+    land_fractions: dict[Subtile, float],
+    support_mosaic_width: int,
+    support_mosaic_height: int,
+    min_land_per_subtile: float,
+    min_land_subtiles_per_mosaic: int,
+) -> set[Subtile]:
+    support_mosaics = build_mosaics(
+        all_subtiles,
+        width=support_mosaic_width,
+        height=support_mosaic_height,
+    )
+    valid_support_mosaics = filter_mosaics_by_land(
+        support_mosaics,
+        land_fractions,
+        min_land_per_subtile,
+        min_land_subtiles_per_mosaic,
+    )
+    return {
+        subtile
+        for mosaic in valid_support_mosaics
+        for subtile in mosaic.subtiles
+    }
 
 
 def _write_candidates(
@@ -147,8 +229,25 @@ def main() -> None:
     )
     parser.add_argument(
         "--min-subtile-land", type=float, default=0.05,
-        help="A 10km subtile is included if its own land fraction OR any 8-connected neighbour's "
-             "land fraction meets this threshold",
+        help="Land fraction threshold used to count a subtile as land-bearing when evaluating support mosaics",
+    )
+    parser.add_argument(
+        "--min-land-subtiles-per-mosaic",
+        type=int,
+        default=1,
+        help="Keep support mosaics with at least this many land-bearing subtiles",
+    )
+    parser.add_argument(
+        "--support-shape",
+        type=str,
+        default="4x3",
+        help="Canonical support mosaic shape as WxH; any subtile used by a valid support mosaic is kept",
+    )
+    parser.add_argument(
+        "--tile-halo",
+        type=int,
+        default=1,
+        help="How many macro-tile steps to expand around the base tile list before building support mosaics",
     )
     parser.add_argument("--tiles-out", type=Path, default=Path("data/tile_candidates.json"))
     parser.add_argument("--subtiles-out", type=Path, default=Path("data/subtile_candidates.json"))
@@ -163,68 +262,67 @@ def main() -> None:
     islands = get_island_polygons()
     land_union = get_island_union()
     archipelago_bbox = _archipelago_bbox(list(islands.values()))
+    try:
+        support_mosaic_width_text, support_mosaic_height_text = args.support_shape.lower().split("x", 1)
+        support_mosaic_width = int(support_mosaic_width_text)
+        support_mosaic_height = int(support_mosaic_height_text)
+    except ValueError as exc:
+        raise SystemExit("--support-shape must look like WxH, e.g. 4x3") from exc
 
     tile_ids = [tile_id.strip() for tile_id in args.tile_ids.split(",") if tile_id.strip()]
-    logger.info("Using %d base tiles for %s", len(tile_ids), archipelago_bbox)
+    expanded_tile_ids = _expand_tile_ids(tile_ids, args.tile_halo)
+    logger.info(
+        "Using %d base tiles and %d expanded tiles for %s",
+        len(tile_ids),
+        len(expanded_tile_ids),
+        archipelago_bbox,
+    )
 
     mgrs = MGRS()
-    tile_tags: dict[str, list[IslandName]] = {}
-    subtile_tags: dict[Subtile, list[IslandName]] = {}
-    subtile_bboxes: dict[Subtile, tuple[float, float, float, float]] = {}
-
-    # Pass 1: compute land fractions for every subtile in every qualifying tile.
-    # A tile is only skipped here if --min-tile-land > 0 AND the whole tile has
-    # less land than that threshold.  The default (0.0) processes all tiles.
-    TileGrid = dict[tuple[int, int], float]
-    per_tile_grid: dict[str, TileGrid] = {}
-
-    for tile_id in tile_ids:
-        tile_bbox_wgs84 = _tile_bbox_from_mgrs(mgrs, tile_id)
-        if tile_bbox_wgs84 is None:
-            logger.warning("Failed to parse tile bbox for %s", tile_id)
-            continue
-        tile_polygon = box(*tile_bbox_wgs84)
-        if args.min_tile_land > 0.0:
-            tile_land = _land_fraction(tile_polygon, land_union)
-            if tile_land < args.min_tile_land:
-                logger.info("Skipping tile %s (tile land %.3f < %.3f)", tile_id, tile_land, args.min_tile_land)
+    if args.min_tile_land > 0.0:
+        filtered_tile_ids: list[str] = []
+        for tile_id in expanded_tile_ids:
+            tile_bbox_wgs84 = _tile_bbox_from_mgrs(mgrs, tile_id)
+            if tile_bbox_wgs84 is None:
                 continue
-        tile_tags[tile_id] = _island_tags(tile_polygon, islands)
+            tile_land = _land_fraction(box(*tile_bbox_wgs84), land_union)
+            if tile_land >= args.min_tile_land:
+                filtered_tile_ids.append(tile_id)
+        expanded_tile_ids = filtered_tile_ids
 
-        grid: TileGrid = {}
-        for easting in range(10):
-            for northing in range(10):
-                subtile_bbox_wgs84 = _subtile_bbox_from_mgrs(mgrs, tile_id, easting, northing)
-                if subtile_bbox_wgs84 is None:
-                    continue
-                subtile_polygon = box(*subtile_bbox_wgs84)
-                land = _land_fraction(subtile_polygon, land_union)
-                grid[(easting, northing)] = land
-                subtile_tags[Subtile(tile_id=tile_id, easting=easting, northing=northing)] = (
-                    _island_tags(subtile_polygon, islands)
-                )
-                subtile_bboxes[Subtile(tile_id=tile_id, easting=easting, northing=northing)] = subtile_bbox_wgs84
-        per_tile_grid[tile_id] = grid
+    tile_tags, subtile_tags, subtile_bboxes, subtile_land_fractions = _compute_subtile_metadata(
+        expanded_tile_ids,
+        mgrs,
+        land_union,
+        islands,
+    )
 
-    # Pass 2: apply the neighbour-aware subtile filter.
-    # A subtile is included when its own land fraction OR any 8-connected
-    # neighbour within the same 100km tile meets --min-subtile-land.
-    valid_tiles: list[str] = []
-    valid_subtiles_sorted: list[tuple[Subtile, float]] = []
+    support_subtiles_sorted = sorted(
+        subtile_land_fractions.keys(),
+        key=lambda subtile: (subtile.tile_id, subtile.easting, subtile.northing),
+    )
+    selected_subtiles = _support_subtiles(
+        support_subtiles_sorted,
+        subtile_land_fractions,
+        support_mosaic_width=support_mosaic_width,
+        support_mosaic_height=support_mosaic_height,
+        min_land_per_subtile=args.min_subtile_land,
+        min_land_subtiles_per_mosaic=args.min_land_subtiles_per_mosaic,
+    )
+    valid_tiles = sorted({subtile.tile_id for subtile in selected_subtiles})
+    valid_subtiles_sorted = sorted(
+        ((subtile, subtile_land_fractions[subtile]) for subtile in selected_subtiles),
+        key=lambda item: (item[0].tile_id, item[0].easting, item[0].northing),
+    )
 
-    for tile_id in sorted(per_tile_grid.keys()):
-        grid = per_tile_grid[tile_id]
-        tile_has_candidate = False
-        for (e, n) in sorted(grid.keys()):
-            own_land = grid[(e, n)]
-            if own_land >= args.min_subtile_land or _has_neighbor_land(grid, e, n, args.min_subtile_land):
-                subtile = Subtile(tile_id=tile_id, easting=e, northing=n)
-                valid_subtiles_sorted.append((subtile, own_land))
-                tile_has_candidate = True
-        if tile_has_candidate:
-            valid_tiles.append(tile_id)
-
-    logger.info("Keeping %d tiles and %d subtiles", len(valid_tiles), len(valid_subtiles_sorted))
+    logger.info(
+        "Keeping %d tiles and %d subtiles from support shape %dx%d with >= %d land-bearing subtiles",
+        len(valid_tiles),
+        len(valid_subtiles_sorted),
+        support_mosaic_width,
+        support_mosaic_height,
+        args.min_land_subtiles_per_mosaic,
+    )
 
     island_tiles: dict[str, dict[str, list[dict[str, object]]]] = {}
     for subtile, land_fraction in valid_subtiles_sorted:
