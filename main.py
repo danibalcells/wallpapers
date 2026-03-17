@@ -20,6 +20,10 @@ import yaml
 
 from PIL import Image
 
+from mosaic_reference import (
+    format_top_left_subtile,
+    resolve_manual_selection,
+)
 from sentinel import fetch_tile_mosaic_image
 from wallpaper import set_wallpaper
 
@@ -158,6 +162,33 @@ def main():
         help=f"Mosaic shape WxH (default: {DEFAULT_MOSAIC_WIDTH}x{DEFAULT_MOSAIC_HEIGHT})",
     )
     parser.add_argument(
+        "--top-left-subtile",
+        type=str,
+        help="Use this exact top-left subtile, e.g. 28RCS02"
+    )
+    parser.add_argument(
+        "--from-image",
+        type=str,
+        help="Derive date and top-left subtile from an existing image filename or path"
+    )
+    parser.add_argument(
+        "--offset-east",
+        type=int,
+        default=0,
+        help="Shift the requested top-left subtile east or west by this many mini-tiles"
+    )
+    parser.add_argument(
+        "--offset-north",
+        type=int,
+        default=0,
+        help="Shift the requested top-left subtile north or south by this many mini-tiles"
+    )
+    parser.add_argument(
+        "--date",
+        type=str,
+        help="Use this exact capture date (YYYY-MM-DD or YYYYMMDD)"
+    )
+    parser.add_argument(
         "--seed",
         type=int,
         help="Random seed for mosaic selection"
@@ -235,6 +266,17 @@ def main():
     rng_seed = args.seed
     min_land_per_subtile = args.min_land_per_subtile if args.min_land_per_subtile is not None else prefs.get("min_land_per_subtile", DEFAULT_MIN_LAND_PER_SUBTILE)
     min_subtiles_with_land = args.min_subtiles_with_land if args.min_subtiles_with_land is not None else prefs.get("min_subtiles_with_land", DEFAULT_MIN_SUBTILES_WITH_LAND)
+
+    try:
+        selected_top_left_subtile, selected_date = resolve_manual_selection(
+            top_left_subtile=args.top_left_subtile,
+            from_image=args.from_image,
+            offset_east=args.offset_east,
+            offset_north=args.offset_north,
+            exact_date=args.date,
+        )
+    except ValueError as exc:
+        parser.error(str(exc))
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -246,6 +288,10 @@ def main():
             sys.exit(0)
     
     logger.info("Selecting %dx%d tile mosaic from %s", mosaic_width, mosaic_height, candidate_list)
+    if selected_top_left_subtile is not None:
+        logger.info("Requested top-left subtile: %s", selected_top_left_subtile)
+    if selected_date is not None:
+        logger.info("Requested capture date: %s", selected_date)
 
     logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
     if args.island:
@@ -262,6 +308,10 @@ def main():
         min_land_per_subtile=min_land_per_subtile,
         min_subtiles_with_land=min_subtiles_with_land,
         island_filter=args.island or None,
+        top_left_subtile=selected_top_left_subtile,
+        offset_east=args.offset_east,
+        offset_north=args.offset_north,
+        exact_date=selected_date,
     )
 
     if result is None:
@@ -270,8 +320,7 @@ def main():
         sys.exit(1)
 
     mosaic = result.mosaic
-    top_left_northing = mosaic.origin_northing + mosaic.height - 1
-    top_left_tile = f"{mosaic.tile_id}{mosaic.origin_easting}{top_left_northing}"
+    top_left_tile = format_top_left_subtile(mosaic.top_left_subtile)
     capture_date = result.date.replace("-", "")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{capture_date}_{top_left_tile}_{timestamp}.png"

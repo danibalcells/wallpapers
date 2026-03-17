@@ -210,3 +210,5 @@ __marimo__/
 output/
 images/
 *.png
+
+.DS_Store

@@ -15,6 +15,8 @@ class MosaicDefinition:
     width: int
     height: int
     subtiles: tuple[Subtile, ...]
+    top_left_subtile: Subtile
+    positions: tuple[tuple[Subtile, int, int], ...]
 
 
 def build_mosaics(
@@ -45,6 +47,19 @@ def build_mosaics(
                         break
                 if missing:
                     continue
+                top_left_subtile = Subtile(
+                    tile_id=tile_id,
+                    easting=origin_e,
+                    northing=origin_n + height - 1,
+                )
+                positions = tuple(
+                    (
+                        subtile,
+                        subtile.easting - origin_e,
+                        top_left_subtile.northing - subtile.northing,
+                    )
+                    for subtile in subtiles_in_rect
+                )
                 mosaics.append(
                     MosaicDefinition(
                         tile_id=tile_id,
@@ -53,6 +68,8 @@ def build_mosaics(
                         width=width,
                         height=height,
                         subtiles=tuple(subtiles_in_rect),
+                        top_left_subtile=top_left_subtile,
+                        positions=positions,
                     )
                 )
     return mosaics

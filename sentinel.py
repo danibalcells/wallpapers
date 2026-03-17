@@ -16,6 +16,12 @@ import rasterio.windows
 from PIL import Image
 from pystac_client import Client
 
+from mosaic_reference import (
+    build_mosaic_positions,
+    parse_capture_date,
+    parse_top_left_subtile,
+    shift_top_left_subtile,
+)
 from mosaic_selector import (
     MosaicDefinition,
     build_mosaics,
@@ -246,56 +252,109 @@ def fetch_tile_mosaic_image(
     min_land_per_subtile: float = 0.05,
     min_subtiles_with_land: int = 2,
     island_filter: str | None = None,
+    top_left_subtile: str | None = None,
+    offset_east: int = 0,
+    offset_north: int = 0,
+    exact_date: str | None = None,
 ) -> MosaicResult | None:
-    try:
-        candidates, land_fractions = load_candidate_subtiles_with_land(candidate_list_path)
-    except CandidateListError as exc:
-        logger.error("%s", exc)
-        return None
-    logger.info("Loaded %d candidate subtiles from %s", len(candidates), candidate_list_path)
-
-    try:
-        mosaics = build_mosaics(candidates, width=mosaic_width, height=mosaic_height)
-    except ValueError as exc:
-        logger.error("%s", exc)
-        return None
-    if not mosaics:
-        logger.error("No %dx%d mosaics available from candidate list", mosaic_width, mosaic_height)
-        return None
-    logger.info("Built %d mosaics for sampling", len(mosaics))
-    if land_fractions:
-        mosaics = filter_mosaics_by_land(mosaics, land_fractions, min_land_per_subtile, min_subtiles_with_land)
-        if not mosaics:
-            logger.error("No mosaics with at least %d subtiles having >= %.1f%% land", min_subtiles_with_land, min_land_per_subtile * 100)
-            return None
-        logger.info("After land filter: %d mosaics", len(mosaics))
-
-    if island_filter is not None:
+    candidates: list[Subtile]
+    mosaics: list[MosaicDefinition]
+    requested_mosaic: MosaicDefinition | None = None
+    if top_left_subtile is None:
         try:
-            island_subtiles, _ = load_candidate_subtiles_with_land(
-                candidate_list_path, island_filter=island_filter
-            )
+            candidates, land_fractions = load_candidate_subtiles_with_land(candidate_list_path)
         except CandidateListError as exc:
             logger.error("%s", exc)
             return None
-        island_set = set(island_subtiles)
-        if not island_set:
-            logger.error("No subtiles found for island %r in candidate list", island_filter)
+        logger.info("Loaded %d candidate subtiles from %s", len(candidates), candidate_list_path)
+
+        try:
+            mosaics = build_mosaics(candidates, width=mosaic_width, height=mosaic_height)
+        except ValueError as exc:
+            logger.error("%s", exc)
             return None
-        mosaics = [m for m in mosaics if any(s in island_set for s in m.subtiles)]
         if not mosaics:
-            logger.error("No valid mosaics found for island %r", island_filter)
+            logger.error("No %dx%d mosaics available from candidate list", mosaic_width, mosaic_height)
             return None
-        candidates = [s for s in candidates if s in island_set]
-        logger.info("Island filter %r: %d mosaics, %d seed candidates", island_filter, len(mosaics), len(candidates))
+        logger.info("Built %d mosaics for sampling", len(mosaics))
+        if land_fractions:
+            mosaics = filter_mosaics_by_land(mosaics, land_fractions, min_land_per_subtile, min_subtiles_with_land)
+            if not mosaics:
+                logger.error("No mosaics with at least %d subtiles having >= %.1f%% land", min_subtiles_with_land, min_land_per_subtile * 100)
+                return None
+            logger.info("After land filter: %d mosaics", len(mosaics))
+
+        if island_filter is not None:
+            try:
+                island_subtiles, _ = load_candidate_subtiles_with_land(
+                    candidate_list_path, island_filter=island_filter
+                )
+            except CandidateListError as exc:
+                logger.error("%s", exc)
+                return None
+            island_set = set(island_subtiles)
+            if not island_set:
+                logger.error("No subtiles found for island %r in candidate list", island_filter)
+                return None
+            mosaics = [m for m in mosaics if any(s in island_set for s in m.subtiles)]
+            if not mosaics:
+                logger.error("No valid mosaics found for island %r", island_filter)
+                return None
+            candidates = [s for s in candidates if s in island_set]
+            logger.info("Island filter %r: %d mosaics, %d seed candidates", island_filter, len(mosaics), len(candidates))
+    else:
+        try:
+            requested_top_left = parse_top_left_subtile(top_left_subtile)
+            requested_top_left = shift_top_left_subtile(
+                requested_top_left,
+                east_offset=offset_east,
+                north_offset=offset_north,
+            )
+            requested_positions = build_mosaic_positions(
+                requested_top_left,
+                mosaic_width=mosaic_width,
+                mosaic_height=mosaic_height,
+            )
+        except ValueError as exc:
+            logger.error("%s", exc)
+            return None
+        requested_subtiles = tuple(subtile for subtile, _, _ in requested_positions)
+        requested_mosaic = MosaicDefinition(
+            tile_id=requested_top_left.tile_id,
+            origin_easting=requested_top_left.easting,
+            origin_northing=requested_top_left.northing - mosaic_height + 1,
+            width=mosaic_width,
+            height=mosaic_height,
+            subtiles=requested_subtiles,
+            top_left_subtile=requested_top_left,
+            positions=requested_positions,
+        )
+        candidates = list(requested_subtiles)
+        mosaics = [requested_mosaic]
+        logger.info(
+            "Using requested mosaic top-left %s%s size %dx%d",
+            requested_mosaic.top_left_subtile.tile_id,
+            requested_mosaic.top_left_subtile.suffix(),
+            requested_mosaic.width,
+            requested_mosaic.height,
+        )
+        if island_filter is not None:
+            logger.info("Ignoring island filter for explicit top-left selection")
 
     tile_ids = sorted({subtile.tile_id for subtile in candidates})
-    dates = _list_tile_dates(
-        tile_ids=tile_ids,
-        days_back=days_back,
-        max_cloud_cover=max_cloud_cover,
-        max_items_per_tile=max_items_per_tile,
-    )
+    if exact_date is not None:
+        try:
+            dates = [parse_capture_date(exact_date)]
+        except ValueError as exc:
+            logger.error("%s", exc)
+            return None
+    else:
+        dates = _list_tile_dates(
+            tile_ids=tile_ids,
+            days_back=days_back,
+            max_cloud_cover=max_cloud_cover,
+            max_items_per_tile=max_items_per_tile,
+        )
     if not dates:
         logger.warning("No imagery dates found for candidate tiles")
         return None
@@ -307,27 +366,33 @@ def fetch_tile_mosaic_image(
         for subtile in candidates:
             if _cache_get_subtile_status(cache, date, subtile) == "invalid":
                 invalid_subtiles.add(subtile)
-        used_mosaics = _cache_get_used_mosaics(cache, date)
+        used_mosaics = set() if requested_mosaic is not None else _cache_get_used_mosaics(cache, date)
         available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
         logger.info("Attempting date %s with %d mosaics", date, len(available))
         while available:
-            seed = pick_seed(candidates, invalid_subtiles, rng)
-            if seed is None:
-                break
-            if _cache_get_tile_item_status(cache, date, seed.tile_id) == "none":
-                invalid_subtiles.add(seed)
-                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
-                continue
-            seed_mosaics = mosaics_containing_seed(available, seed)
-            if not seed_mosaics:
-                invalid_subtiles.add(seed)
-                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
-                continue
-            chosen = pick_mosaic(seed_mosaics, rng)
-            if chosen is None:
-                invalid_subtiles.add(seed)
-                available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
-                continue
+            if requested_mosaic is not None:
+                chosen = requested_mosaic if requested_mosaic in available else None
+                seed = requested_mosaic.subtiles[0] if requested_mosaic.subtiles else None
+                if chosen is None or seed is None:
+                    break
+            else:
+                seed = pick_seed(candidates, invalid_subtiles, rng)
+                if seed is None:
+                    break
+                if _cache_get_tile_item_status(cache, date, seed.tile_id) == "none":
+                    invalid_subtiles.add(seed)
+                    available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
+                    continue
+                seed_mosaics = mosaics_containing_seed(available, seed)
+                if not seed_mosaics:
+                    invalid_subtiles.add(seed)
+                    available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
+                    continue
+                chosen = pick_mosaic(seed_mosaics, rng)
+                if chosen is None:
+                    invalid_subtiles.add(seed)
+                    available = _available_mosaics(mosaics, invalid_subtiles, used_mosaics)
+                    continue
             logger.info(
                 "Processing tile %s for date %s (mosaic origin %d,%d size %dx%d)",
                 chosen.tile_id,
@@ -504,24 +569,32 @@ def _attempt_mosaic(
     valid_pixel_min: float,
     cache: dict[str, Any],
 ) -> tuple[np.ndarray | None, list[Subtile]]:
-    if _cache_get_tile_item_status(cache, date, mosaic.tile_id) == "none":
-        return None, list(mosaic.subtiles)
-    item = _select_item_for_tile_date(mosaic.tile_id, date, max_cloud_cover)
-    if item is None:
-        _cache_set_tile_item_status(cache, date, mosaic.tile_id, "none")
-        logger.info("No item for tile %s on %s", mosaic.tile_id, date)
-        return None, list(mosaic.subtiles)
-    _cache_set_tile_item_status(cache, date, mosaic.tile_id, "ok")
-    tile_bbox = _asset_proj_bbox(item, "red")
-    if tile_bbox is None:
-        raise TileReadError(f"Missing proj:bbox for tile {mosaic.tile_id}")
+    items_by_tile: dict[str, object] = {}
+    tile_bboxes: dict[str, tuple[float, float, float, float]] = {}
+    tile_ids = sorted({subtile.tile_id for subtile in mosaic.subtiles})
+    for tile_id in tile_ids:
+        tile_subtiles = [subtile for subtile in mosaic.subtiles if subtile.tile_id == tile_id]
+        if _cache_get_tile_item_status(cache, date, tile_id) == "none":
+            return None, tile_subtiles
+        item = _select_item_for_tile_date(tile_id, date, max_cloud_cover)
+        if item is None:
+            _cache_set_tile_item_status(cache, date, tile_id, "none")
+            logger.info("No item for tile %s on %s", tile_id, date)
+            return None, tile_subtiles
+        _cache_set_tile_item_status(cache, date, tile_id, "ok")
+        tile_bbox = _asset_proj_bbox(item, "red")
+        if tile_bbox is None:
+            raise TileReadError(f"Missing proj:bbox for tile {tile_id}")
+        items_by_tile[tile_id] = item
+        tile_bboxes[tile_id] = tile_bbox
 
     bands: list[SubtileBands] = []
     for subtile in mosaic.subtiles:
         cached_status = _cache_get_subtile_status(cache, date, subtile)
         if cached_status == "invalid":
             return None, [subtile]
-        bbox_utm = subtile_bbox_utm(tile_bbox, subtile)
+        item = items_by_tile[subtile.tile_id]
+        bbox_utm = subtile_bbox_utm(tile_bboxes[subtile.tile_id], subtile)
         red, green, blue = _read_subtile_bands(item, bbox_utm)
         valid_fraction = _valid_pixel_fraction(red, green, blue)
         if valid_fraction < valid_pixel_min:
@@ -589,9 +662,11 @@ def _mosaic_bands(
     red_mosaic = np.zeros((height, width), dtype=np.float32)
     green_mosaic = np.zeros((height, width), dtype=np.float32)
     blue_mosaic = np.zeros((height, width), dtype=np.float32)
+    position_by_subtile = {subtile: (col, row) for subtile, col, row in mosaic.positions}
     for band in bands:
-        row_offset = (mosaic.origin_northing + mosaic.height - 1 - band.subtile.northing) * tile_height
-        col_offset = (band.subtile.easting - mosaic.origin_easting) * tile_width
+        col, row = position_by_subtile[band.subtile]
+        row_offset = row * tile_height
+        col_offset = col * tile_width
         row_end = row_offset + tile_height
         col_end = col_offset + tile_width
         red_mosaic[row_offset:row_end, col_offset:col_end] = band.red
