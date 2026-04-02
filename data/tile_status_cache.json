@@ -114,7 +114,21 @@
       "27RYL:7,7:3x2",
       "28RBR:0,7:3x2",
       "27RYL:7,5:3x2",
-      "28RBR:0,8:3x2"
+      "28RBR:0,8:3x2",
+      "28RBR18:3x2",
+      "27RYL67:3x2",
+      "28RBR06:3x2",
+      "27RYL77:3x2",
+      "27RYL78:3x2",
+      "27RYL68:3x2",
+      "28RBR09:3x2",
+      "27RYL66:3x2",
+      "28RBR17:3x2",
+      "27RYL76:3x2",
+      "28RBR07:3x2",
+      "27RYL79:3x2",
+      "28RBR19:3x2",
+      "28RBR08:3x2"
     ],
     "2026-03-05": [
       "28RDS:5,0:3x2",
@@ -133,23 +147,96 @@
       "28RDR:1,8:3x2",
       "28RDS:2,1:3x2",
       "28RCS:5,5:3x2",
-      "28RDR:2,7:3x2"
+      "28RDR:2,7:3x2",
+      "28RBS82:3x2",
+      "28RBS92:3x2",
+      "28RBS83:3x2",
+      "28RBS81:3x2",
+      "28RBS52:3x2",
+      "28RBS71:3x2",
+      "28RBS73:3x2",
+      "28RBS72:3x2",
+      "28RBS51:3x2",
+      "28RBS62:3x2",
+      "28RBS61:3x2",
+      "28RBS93:3x2",
+      "28RBS70:3x2",
+      "28RBS60:3x2",
+      "28RBR18:3x2",
+      "28RBR17:3x2",
+      "28RBS91:3x2",
+      "28RBS50:3x2"
     ],
     "2026-03-10": [
       "27RYL:7,7:3x2",
       "27RYL:7,6:3x2",
       "28RCR:0,8:3x2",
-      "27RYL:7,5:3x2"
+      "27RYL:7,5:3x2",
+      "27RYL77:3x2",
+      "27RYL68:3x2",
+      "27RYL76:3x2",
+      "27RYL66:3x2",
+      "27RYL67:3x2",
+      "27RYL79:3x2",
+      "27RYL78:3x2",
+      "27RYM76:3x2",
+      "27RYM77:3x2",
+      "27RYM78:3x2",
+      "27RYM75:3x2"
     ],
     "2026-03-12": [
       "28RES:6,0:3x2",
       "28RES:7,4:3x2",
-      "28RFS:0,5:3x2"
+      "28RFS:0,5:3x2",
+      "28RET95:3x2",
+      "28RET85:3x2",
+      "28RFT04:3x2",
+      "28RET83:3x2",
+      "28RET93:3x2",
+      "28RFT13:3x2",
+      "28RET94:3x2",
+      "28RFT03:3x2",
+      "28RET84:3x2",
+      "28RFT15:3x2",
+      "28RFT05:3x2",
+      "28RFT14:3x2"
     ],
     "2026-03-13": [
       "28RBS:2,8:3x2",
       "28RBS:2,7:3x2",
-      "28RBS:0,8:3x2"
+      "28RBS:0,8:3x2",
+      "27RYL79:3x2",
+      "27RYL67:3x2",
+      "28RBR08:3x2",
+      "27RYL77:3x2",
+      "27RYL78:3x2",
+      "27RYL68:3x2",
+      "27RYL76:3x2",
+      "28RBR17:3x2",
+      "28RBR07:3x2",
+      "27RYL66:3x2",
+      "28RBR18:3x2",
+      "28RBR06:3x2",
+      "28RBR09:3x2",
+      "28RBR19:3x2",
+      "28RBS05:3x2",
+      "28RBS18:3x2",
+      "28RBS08:3x2",
+      "27RYM75:3x2",
+      "28RBS06:3x2",
+      "28RBS28:3x2",
+      "28RBS09:3x2",
+      "27RYM76:3x2",
+      "27RYM77:3x2",
+      "28RBS17:3x2",
+      "28RBS19:3x2",
+      "28RBS29:3x2",
+      "28RBS07:3x2",
+      "28RBS16:3x2",
+      "27RYM78:3x2",
+      "28RBS27:3x2",
+      "28RBS38:3x2",
+      "28RBS39:3x2"
     ],
     "2026-03-14": [
       "28RFS:0,8:3x2",
@@ -168,12 +255,620 @@
       "28RBS:9,1:4x3",
       "28RBS:8,1:4x3",
       "28RBS82:4x3",
-      "28RDR08:4x3"
+      "28RDR08:4x3",
+      "28RBR18:3x2",
+      "28RBR17:3x2",
+      "28RBS81:3x2",
+      "28RBS82:3x2",
+      "28RBS83:3x2",
+      "28RBS51:3x2",
+      "28RBS50:3x2",
+      "28RBS52:3x2",
+      "28RBS61:3x2",
+      "28RBS91:3x2",
+      "28RBS72:3x2",
+      "28RBS93:3x2",
+      "28RBS73:3x2",
+      "28RBS92:3x2",
+      "28RBS71:3x2",
+      "28RBS60:3x2",
+      "28RBS62:3x2",
+      "28RBS70:3x2",
+      "28RDR27:3x2",
+      "28RDS32:3x2",
+      "28RDS21:3x2",
+      "28RDR09:3x2",
+      "28RDR29:3x2",
+      "28RDR28:3x2",
+      "28RDS30:3x2",
+      "28RDR17:3x2",
+      "28RDS20:3x2",
+      "28RCR97:3x2",
+      "28RDR18:3x2",
+      "28RDS10:3x2",
+      "28RDR07:3x2",
+      "28RDS00:3x2",
+      "28RDR08:3x2",
+      "28RDR49:3x2",
+      "28RDS60:3x2",
+      "28RDS40:3x2",
+      "28RDR58:3x2",
+      "28RDR59:3x2",
+      "28RDS12:3x2",
+      "28RDR19:3x2",
+      "28RCR98:3x2",
+      "28RDR48:3x2",
+      "28RDR38:3x2",
+      "28RDS50:3x2",
+      "28RDS51:3x2",
+      "28RDR39:3x2",
+      "28RCS90:3x2",
+      "28RDR37:3x2",
+      "28RDS22:3x2"
     ],
     "2026-03-17": [
       "28RFT00:4x3",
       "28RET90:4x3",
-      "28RFT24:4x3"
+      "28RFT24:4x3",
+      "28RES64:3x2",
+      "28RES65:3x2",
+      "28RES99:3x2",
+      "28RFS07:3x2",
+      "28RES74:3x2",
+      "28RCS11:3x2",
+      "28RES54:3x2",
+      "28RFS08:3x2",
+      "28RCS16:3x2",
+      "28RBR18:3x2",
+      "28RBR17:3x2",
+      "28RFT04:3x2",
+      "28RBS71:3x2",
+      "28RET85:3x2",
+      "28RFT15:3x2",
+      "28RBS72:3x2",
+      "28RBS70:3x2",
+      "28RBS82:3x2",
+      "28RET84:3x2",
+      "28RBS52:3x2",
+      "28RFT05:3x2",
+      "28RET93:3x2",
+      "28RBS60:3x2",
+      "28RET94:3x2",
+      "28RBS93:3x2",
+      "28RET95:3x2",
+      "28RET83:3x2",
+      "28RBS50:3x2",
+      "28RBS51:3x2",
+      "28RBS62:3x2",
+      "28RBS83:3x2",
+      "28RBS73:3x2",
+      "28RBS81:3x2",
+      "28RBS92:3x2",
+      "28RBS91:3x2",
+      "28RBS61:3x2",
+      "28RFT14:3x2",
+      "28RFT03:3x2",
+      "28RFT13:3x2",
+      "28RES50:3x2",
+      "28RES98:3x2",
+      "28RES52:3x2",
+      "28RFT00:3x2",
+      "28RES77:3x2",
+      "28RFT10:3x2",
+      "28RES61:3x2",
+      "28RES53:3x2",
+      "28RES62:3x2",
+      "28RFT41:3x2",
+      "28RES93:3x2",
+      "28RFT20:3x2",
+      "28RES41:3x2",
+      "28RES75:3x2",
+      "28RFT01:3x2",
+      "28RFS06:3x2",
+      "28RFT12:3x2",
+      "28RES72:3x2",
+      "28RES96:3x2",
+      "28RFT31:3x2",
+      "28RFT42:3x2",
+      "28RET91:3x2",
+      "28RET90:3x2",
+      "28RFT21:3x2",
+      "28RFS19:3x2",
+      "28RFT52:3x2",
+      "28RES86:3x2",
+      "28RFS09:3x2",
+      "28RES63:3x2",
+      "28RFT32:3x2",
+      "28RFS16:3x2",
+      "28RES85:3x2",
+      "28RFT34:3x2",
+      "28RES87:3x2",
+      "28RFS18:3x2",
+      "28RES73:3x2",
+      "28RES84:3x2",
+      "28RES42:3x2",
+      "28RFT11:3x2",
+      "28RFS29:3x2",
+      "28RFT23:3x2",
+      "28RET92:3x2",
+      "28RES88:3x2",
+      "28RES40:3x2",
+      "28RES97:3x2"
+    ],
+    "2026-03-20": [
+      "28RCS77:3x2",
+      "28RDR37:3x2",
+      "28RCS85:3x2",
+      "27RYM75:3x2",
+      "28RCS16:3x2",
+      "28RCS90:3x2",
+      "28RCS13:6x4",
+      "28RCS24:6x4",
+      "28RCS35:6x4",
+      "28RBR17:3x2",
+      "27RYM76:3x2",
+      "27RYM78:3x2",
+      "27RYM77:3x2",
+      "28RDS21:3x2",
+      "28RDS50:3x2",
+      "28RDR38:3x2",
+      "28RDS41:3x2",
+      "28RDR28:3x2",
+      "28RDS20:3x2",
+      "28RDR18:3x2",
+      "28RCR98:3x2",
+      "28RDR17:3x2",
+      "28RDS00:3x2",
+      "28RDS11:3x2",
+      "28RDS32:3x2",
+      "28RDR08:3x2",
+      "28RDS01:3x2",
+      "28RDS10:3x2",
+      "28RDR49:3x2",
+      "28RDR29:3x2",
+      "28RDS51:3x2",
+      "28RDR59:3x2",
+      "28RDS40:3x2",
+      "28RDS61:3x2",
+      "28RDS30:3x2",
+      "28RDS22:3x2",
+      "28RDR39:3x2",
+      "28RDR19:3x2",
+      "28RCR97:3x2",
+      "28RDS52:3x2",
+      "28RDR07:3x2",
+      "28RDS60:3x2",
+      "28RCR99:3x2",
+      "28RDS12:3x2",
+      "28RDS31:3x2",
+      "28RDR27:3x2",
+      "28RDR09:3x2",
+      "28RDR69:3x2",
+      "28RDS42:3x2",
+      "28RDR48:3x2",
+      "28RDR58:3x2"
+    ],
+    "2026-03-22": [
+      "28RES95:3x2",
+      "28RFT14:3x2",
+      "28RFS05:3x2",
+      "28RFS29:3x2",
+      "28RFT05:3x2",
+      "28RFT03:3x2",
+      "28RFT15:3x2",
+      "28RFT30:3x2",
+      "28RET93:3x2",
+      "28RFT04:3x2",
+      "28RFT12:3x2",
+      "28RFT13:3x2",
+      "28RES99:3x2",
+      "28RET85:3x2",
+      "28RES31:3x2",
+      "28RES51:3x2",
+      "28RES70:3x2",
+      "28RET95:3x2",
+      "28RES86:3x2",
+      "28RFT32:3x2",
+      "28RFT02:3x2",
+      "28RES43:3x2",
+      "28RET90:3x2",
+      "28RET94:3x2",
+      "28RFT10:3x2",
+      "28RES77:3x2",
+      "28RET84:3x2",
+      "28RET83:3x2",
+      "28RFT22:3x2",
+      "28RFT33:3x2",
+      "28RFS06:3x2",
+      "28RES94:3x2",
+      "28RES40:3x2",
+      "28RFT43:3x2",
+      "28RES76:3x2",
+      "28RFT31:3x2",
+      "28RFT42:3x2",
+      "28RES85:3x2",
+      "28RFT23:3x2",
+      "28RES73:3x2",
+      "28RES82:3x2",
+      "28RFS19:3x2",
+      "28RES96:3x2",
+      "28RFT11:3x2",
+      "28RES88:3x2",
+      "28RFT41:3x2",
+      "28RES72:3x2",
+      "28RFT21:3x2",
+      "28RFT52:3x2",
+      "28RFT00:3x2",
+      "28RES41:3x2",
+      "28RES71:3x2",
+      "28RET92:3x2",
+      "28RES74:3x2",
+      "28RES60:3x2",
+      "28RFT20:3x2",
+      "28RES65:3x2",
+      "28RES97:3x2",
+      "28RES83:3x2",
+      "28RFS04:3x2",
+      "28RFS08:3x2",
+      "28RFS07:3x2",
+      "28RDR69:3x2",
+      "28RES30:3x2",
+      "28RES62:3x2",
+      "28RFS16:3x2",
+      "28RES98:3x2",
+      "28RES75:3x2",
+      "28RFS18:3x2",
+      "28RES87:3x2",
+      "28RES84:3x2",
+      "28RES54:3x2",
+      "28RFS09:3x2",
+      "28RES92:3x2",
+      "28RES64:3x2",
+      "28RES63:3x2",
+      "28RFS17:3x2",
+      "28RES66:3x2",
+      "28RES50:3x2",
+      "28RFT01:3x2",
+      "28RET91:3x2",
+      "28RES42:3x2",
+      "28RFT34:3x2",
+      "28RES52:3x2",
+      "28RES61:3x2",
+      "28RES93:3x2",
+      "28RFT54:3x2",
+      "28RES53:3x2",
+      "28RFT44:3x2",
+      "28RFT53:3x2",
+      "28RES81:3x2",
+      "28RFT40:3x2",
+      "28RFT24:3x2"
+    ],
+    "2026-03-23": [
+      "28RBT00:3x2",
+      "28RBT30:3x2",
+      "27RYL68:3x2",
+      "28RBS19:4x3",
+      "27RYL77:3x2",
+      "27RYM77:3x2",
+      "27RYL67:3x2",
+      "27RYL79:3x2",
+      "28RBT10:3x2",
+      "28RBS17:3x2",
+      "27RYL66:3x2",
+      "28RBS18:3x2",
+      "27RYL76:3x2",
+      "28RBS29:3x2",
+      "28RBS08:3x2",
+      "28RBS09:3x2",
+      "27RYL78:3x2",
+      "27RYM75:3x2",
+      "28RBS19:3x2",
+      "28RBS16:3x2",
+      "28RBS05:3x2",
+      "28RBS27:3x2",
+      "28RBS28:3x2",
+      "28RBT20:3x2",
+      "28RBS06:3x2",
+      "28RBS39:3x2",
+      "28RBS07:3x2",
+      "27RYM78:3x2",
+      "28RBS38:3x2",
+      "27RYM76:3x2"
+    ],
+    "2026-03-24": [
+      "28RFS18:3x2",
+      "28RFS17:3x2",
+      "28RFS09:3x2",
+      "28RFS16:3x2",
+      "28RFS19:3x2",
+      "28RFS29:3x2",
+      "28RFS08:3x2",
+      "28RFS05:3x2",
+      "28RFS07:3x2",
+      "28RFS06:3x2",
+      "28RFS04:3x2"
+    ],
+    "2026-03-25": [
+      "28RCS02:3x2",
+      "28RDS41:3x2",
+      "28RDR39:3x2",
+      "28RBS81:3x2",
+      "28RDS21:3x2",
+      "28RCS23:3x2",
+      "28RDS51:3x2",
+      "28RDS31:3x2",
+      "28RBS72:3x2",
+      "28RDR29:3x2",
+      "28RCS21:3x2",
+      "28RBS62:3x2",
+      "28RCS16:3x2",
+      "28RCS03:3x2",
+      "28RCS12:3x2",
+      "28RBS51:3x2",
+      "28RDS10:3x2",
+      "28RCS66:3x2",
+      "28RDR48:3x2",
+      "28RBS71:3x2",
+      "28RBS92:3x2",
+      "28RBS94:3x2",
+      "28RDR69:3x2",
+      "28RCS53:3x2",
+      "28RCS43:3x2",
+      "28RDS11:3x2",
+      "28RCS13:3x2",
+      "28RCS22:3x2",
+      "28RCS11:3x2",
+      "28RBS52:3x2",
+      "28RDR49:3x2",
+      "28RBS61:3x2",
+      "28RDS20:3x2",
+      "28RBS91:3x2",
+      "28RBS82:3x2",
+      "28RDS00:3x2",
+      "28RDR28:3x2",
+      "28RDS50:3x2",
+      "28RBS73:3x2",
+      "28RDS30:3x2",
+      "28RBS83:3x2",
+      "28RBS93:3x2",
+      "28RCS44:3x2",
+      "28RCS75:3x2",
+      "28RDR17:3x2",
+      "28RCS56:3x2",
+      "28RDS01:3x2",
+      "28RDR27:3x2",
+      "28RCS00:3x2",
+      "28RDR58:3x2",
+      "28RCS25:3x2",
+      "28RCS35:3x2",
+      "28RCS32:3x2",
+      "28RDS40:3x2",
+      "28RCS01:3x2",
+      "28RCS34:3x2",
+      "28RDR19:3x2",
+      "28RDR08:3x2",
+      "28RDR18:3x2",
+      "28RDR59:3x2",
+      "28RCS33:3x2",
+      "28RCS24:3x2",
+      "28RDS52:3x2",
+      "28RDR38:3x2",
+      "28RDR09:3x2",
+      "28RDS60:3x2",
+      "28RDR07:3x2",
+      "28RCR97:3x2",
+      "28RDS22:3x2",
+      "28RCS90:3x2",
+      "28RDS61:3x2",
+      "28RDS32:3x2",
+      "28RDS42:3x2",
+      "28RDS12:3x2",
+      "28RDR37:3x2",
+      "28RCR98:3x2",
+      "28RCR99:3x2",
+      "28RCS31:3x2",
+      "28RCS36:3x2",
+      "28RCS45:3x2",
+      "28RCS10:3x2",
+      "28RCS14:3x2",
+      "28RCS04:3x2",
+      "28RCS65:3x2",
+      "28RCS46:3x2",
+      "28RCS55:3x2",
+      "28RCS64:3x2",
+      "28RCS54:3x2",
+      "28RCS26:3x2",
+      "28RCS42:3x2",
+      "28RCS15:3x2",
+      "28RCS05:3x2",
+      "28RCS52:3x2"
+    ],
+    "2026-03-27": [
+      "28RFS19:3x2",
+      "28RET90:3x2",
+      "28RFT04:3x2",
+      "28RFT05:3x2",
+      "28RFT10:3x2",
+      "28RFT31:3x2",
+      "28RET84:3x2",
+      "28RFT14:3x2",
+      "28RFT20:3x2",
+      "28RET94:3x2",
+      "28RFS07:3x2",
+      "28RFS09:3x2",
+      "28RFT03:3x2",
+      "28RBR17:3x2",
+      "28RET83:3x2",
+      "28RFT02:3x2",
+      "28RET93:3x2",
+      "28RCS43:3x2",
+      "28RFS08:3x2",
+      "28RFT13:3x2",
+      "28RFT11:3x2",
+      "28RET95:3x2",
+      "28RCS64:3x2",
+      "28RFS06:3x2",
+      "28RET85:3x2",
+      "28RCS32:3x2",
+      "28RFS05:3x2",
+      "28RFS04:3x2",
+      "28RFT30:3x2",
+      "28RFT21:3x2",
+      "28RFT15:3x2",
+      "28RFS17:3x2",
+      "28RFS16:3x2",
+      "28RFT32:3x2",
+      "28RFS18:3x2",
+      "28RCS13:3x2",
+      "28RFT01:3x2",
+      "28RCS76:3x2",
+      "28RFT43:3x2",
+      "28RCS11:3x2",
+      "28RFT12:3x2",
+      "28RET91:3x2",
+      "28RCS03:3x2",
+      "28RFT00:3x2",
+      "28RFS29:3x2",
+      "28RFT22:3x2",
+      "28RCS35:3x2",
+      "28RFT42:3x2",
+      "28RCS41:3x2",
+      "28RFT41:3x2",
+      "28RCS24:3x2",
+      "28RCS02:3x2",
+      "28RCS74:3x2",
+      "28RBR18:3x2",
+      "28RCS46:3x2",
+      "28RCS23:3x2",
+      "28RFT54:3x2",
+      "28RCS22:3x2",
+      "28RFT23:3x2",
+      "28RFT40:3x2",
+      "28RCS31:3x2",
+      "28RCS54:3x2",
+      "28RFT52:3x2",
+      "28RFT33:3x2",
+      "28RET92:3x2",
+      "28RCS12:3x2",
+      "28RCS65:3x2",
+      "28RFT44:3x2",
+      "28RCS14:3x2",
+      "28RFT53:3x2",
+      "28RCS67:3x2",
+      "28RCS63:3x2",
+      "28RCS53:3x2",
+      "28RFT34:3x2",
+      "28RCS25:3x2",
+      "28RCS33:3x2",
+      "28RFT24:3x2",
+      "28RCS44:3x2",
+      "28RCS42:3x2",
+      "28RCS01:3x2",
+      "28RCS21:3x2",
+      "28RCS75:3x2",
+      "28RCS52:3x2",
+      "28RCS66:3x2",
+      "28RCS34:3x2",
+      "28RCS15:3x2",
+      "28RCS57:3x2",
+      "28RCS77:3x2",
+      "28RCS55:3x2",
+      "28RCS05:3x2",
+      "28RCS47:3x2",
+      "28RCS56:3x2",
+      "28RCS45:3x2",
+      "28RCS36:3x2",
+      "28RCS26:3x2",
+      "28RCS37:3x2",
+      "28RCS16:3x2",
+      "28RCS04:3x2"
+    ],
+    "2026-03-28": [
+      "28RBR08:3x2",
+      "27RYM75:3x2",
+      "27RYM78:3x2",
+      "27RYL78:3x2",
+      "28RBR06:3x2",
+      "27RYL77:3x2",
+      "27RYL76:3x2",
+      "27RYL66:3x2",
+      "28RBR07:3x2",
+      "27RYL67:3x2",
+      "27RYM77:3x2",
+      "27RYM76:3x2",
+      "27RYL68:3x2",
+      "28RBR17:3x2",
+      "28RBR19:3x2",
+      "28RBR18:3x2",
+      "27RYL79:3x2",
+      "28RBR09:3x2"
+    ],
+    "2026-03-30": [
+      "28RBS18:3x2",
+      "28RBR09:3x2",
+      "28RBS29:3x2",
+      "28RBS08:3x2",
+      "28RBS27:3x2",
+      "28RBS09:3x2",
+      "28RBR17:3x2",
+      "28RBS07:3x2",
+      "28RBR08:3x2",
+      "27RYL77:3x2",
+      "27RYL78:3x2",
+      "28RBR18:3x2",
+      "28RBR06:3x2",
+      "28RBS19:3x2",
+      "27RYL66:3x2",
+      "28RBT20:3x2",
+      "28RBR07:3x2",
+      "28RBS16:3x2",
+      "27RYL68:3x2",
+      "27RYL67:3x2",
+      "28RBR19:3x2",
+      "28RBS28:3x2",
+      "27RYL76:3x2",
+      "27RYL79:3x2",
+      "28RBT10:3x2",
+      "28RBS17:3x2",
+      "27RYM75:3x2",
+      "28RBS39:3x2",
+      "28RBT00:3x2",
+      "28RBS05:3x2",
+      "28RBS38:3x2",
+      "28RBT30:3x2",
+      "27RYM76:3x2",
+      "28RBS06:3x2",
+      "27RYM77:3x2",
+      "27RYM78:3x2"
+    ],
+    "2026-04-01": [
+      "28RFT12:3x2",
+      "28RES75:3x2",
+      "28RFT42:3x2",
+      "28RES62:3x2",
+      "28RFT43:3x2",
+      "28RFT32:3x2",
+      "28RFT14:3x2",
+      "28RFT33:3x2",
+      "28RES53:3x2",
+      "28RES42:3x2",
+      "28RFT52:3x2",
+      "28RFT13:3x2",
+      "28RFT05:3x2",
+      "28RES74:3x2",
+      "28RES60:3x2",
+      "28RES76:3x2",
+      "28RFT15:3x2",
+      "28RFT01:3x2",
+      "28RFT03:3x2",
+      "28RES77:3x2",
+      "28RES52:3x2",
+      "28RFT11:3x2",
+      "28RES65:3x2",
+      "28RES51:3x2",
+      "28RFT24:3x2",
+      "28RFT04:3x2",
+      "28RES63:3x2"
     ]
   },
   "subtiles": {
@@ -561,46 +1256,115 @@
     },
     "2026-03-03": {
       "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
         "75": "valid",
         "76": "valid",
         "77": "valid",
         "78": "valid",
+        "79": "valid",
         "85": "valid",
         "86": "valid",
         "87": "valid",
         "88": "valid",
+        "89": "valid",
         "95": "valid",
         "96": "valid",
         "97": "valid",
-        "98": "valid"
+        "98": "valid",
+        "99": "valid"
       },
       "28RBR": {
+        "05": "valid",
+        "06": "valid",
         "07": "valid",
         "08": "valid",
         "09": "valid",
+        "15": "valid",
+        "16": "valid",
         "17": "valid",
         "18": "valid",
         "19": "valid",
+        "25": "valid",
+        "26": "valid",
         "27": "valid",
         "28": "valid",
-        "29": "valid"
+        "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid"
       }
     },
     "2026-03-05": {
       "27RYL": {
-        "75": "invalid"
+        "66": "invalid",
+        "75": "invalid",
+        "76": "invalid",
+        "77": "invalid",
+        "79": "invalid"
+      },
+      "28RBR": {
+        "06": "invalid",
+        "08": "invalid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "invalid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "59": "valid",
+        "69": "valid",
+        "79": "valid",
+        "89": "valid",
+        "99": "valid"
       },
       "28RBS": {
+        "05": "invalid",
         "06": "invalid",
-        "28": "invalid"
+        "16": "invalid",
+        "17": "invalid",
+        "27": "invalid",
+        "28": "invalid",
+        "38": "invalid",
+        "39": "invalid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid"
+      },
+      "28RBT": {
+        "00": "invalid"
       },
       "28RCS": {
         "00": "valid",
         "01": "valid",
         "02": "valid",
+        "03": "valid",
         "10": "valid",
         "11": "valid",
         "12": "valid",
+        "13": "valid",
         "20": "valid",
         "21": "valid",
         "22": "valid",
@@ -680,14 +1444,38 @@
     },
     "2026-03-10": {
       "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
         "75": "valid",
         "76": "valid",
         "77": "valid",
         "78": "valid",
+        "79": "valid",
         "85": "valid",
         "86": "valid",
         "87": "valid",
         "88": "valid",
+        "89": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
         "95": "valid",
         "96": "valid",
         "97": "valid",
@@ -726,6 +1514,16 @@
         "94": "valid",
         "95": "valid"
       },
+      "28RET": {
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid"
+      },
       "28RFS": {
         "05": "valid",
         "06": "valid",
@@ -733,23 +1531,124 @@
         "16": "valid",
         "25": "valid",
         "26": "valid"
+      },
+      "28RFT": {
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid"
       }
     },
     "2026-03-13": {
-      "28RBS": {
+      "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "89": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid"
+      },
+      "28RBR": {
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
         "08": "valid",
         "09": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
         "18": "valid",
         "19": "valid",
+        "25": "valid",
+        "26": "valid",
         "27": "valid",
         "28": "valid",
         "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid"
+      },
+      "28RBS": {
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
         "37": "valid",
         "38": "valid",
         "39": "valid",
+        "46": "valid",
         "47": "valid",
         "48": "valid",
-        "49": "valid"
+        "49": "valid",
+        "50": "valid",
+        "51": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "60": "invalid",
+        "61": "valid",
+        "70": "invalid",
+        "71": "invalid",
+        "73": "invalid"
       }
     },
     "2026-03-14": {
@@ -772,12 +1671,49 @@
     },
     "2026-03-15": {
       "27RYL": {
-        "75": "invalid"
+        "68": "invalid",
+        "75": "invalid",
+        "76": "invalid",
+        "78": "invalid",
+        "79": "invalid"
       },
       "28RBR": {
+        "06": "invalid",
+        "07": "invalid",
+        "09": "invalid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "invalid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "59": "valid",
+        "69": "valid",
+        "79": "valid",
+        "89": "valid",
         "99": "valid"
       },
       "28RBS": {
+        "05": "invalid",
+        "16": "invalid",
+        "17": "invalid",
+        "27": "invalid",
+        "28": "invalid",
+        "38": "invalid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
         "80": "valid",
         "81": "valid",
         "82": "valid",
@@ -787,10 +1723,20 @@
         "92": "valid",
         "93": "valid"
       },
+      "28RBT": {
+        "00": "invalid",
+        "10": "invalid",
+        "20": "invalid",
+        "30": "invalid"
+      },
       "28RCR": {
         "09": "valid",
         "19": "valid",
-        "29": "valid"
+        "29": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
       },
       "28RCS": {
         "00": "valid",
@@ -826,6 +1772,7 @@
         "74": "valid",
         "83": "valid",
         "84": "valid",
+        "90": "valid",
         "93": "valid",
         "94": "valid"
       },
@@ -844,55 +1791,1420 @@
         "29": "valid",
         "36": "valid",
         "37": "valid",
-        "38": "valid"
+        "38": "valid",
+        "39": "valid",
+        "46": "valid",
+        "47": "valid",
+        "48": "valid",
+        "49": "valid",
+        "56": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "67": "valid",
+        "68": "valid",
+        "69": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "89": "valid"
       },
       "28RDS": {
+        "00": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
         "50": "valid",
         "51": "valid",
+        "52": "valid",
         "60": "valid",
         "61": "valid",
         "70": "valid",
-        "71": "valid"
+        "71": "valid",
+        "80": "valid"
       }
     },
     "2026-03-17": {
+      "27RYL": {
+        "68": "invalid",
+        "76": "invalid",
+        "78": "invalid",
+        "79": "invalid"
+      },
+      "28RBR": {
+        "06": "invalid",
+        "07": "invalid",
+        "09": "invalid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "invalid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "59": "valid",
+        "69": "valid",
+        "79": "valid",
+        "89": "valid",
+        "99": "valid"
+      },
+      "28RBS": {
+        "05": "invalid",
+        "07": "invalid",
+        "16": "invalid",
+        "27": "invalid",
+        "29": "invalid",
+        "38": "invalid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid"
+      },
+      "28RBT": {
+        "30": "invalid"
+      },
+      "28RCR": {
+        "97": "valid"
+      },
+      "28RCS": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "15": "valid",
+        "16": "valid",
+        "20": "valid",
+        "21": "valid",
+        "25": "valid",
+        "26": "valid",
+        "30": "valid",
+        "31": "valid",
+        "35": "valid",
+        "36": "valid",
+        "90": "valid"
+      },
       "28RDR": {
-        "08": "invalid"
+        "07": "invalid",
+        "08": "invalid",
+        "18": "invalid",
+        "37": "invalid",
+        "39": "invalid",
+        "58": "invalid",
+        "69": "invalid"
+      },
+      "28RDS": {
+        "00": "invalid",
+        "01": "invalid",
+        "11": "invalid",
+        "12": "invalid",
+        "40": "invalid",
+        "41": "invalid",
+        "51": "invalid",
+        "52": "invalid",
+        "60": "invalid"
+      },
+      "28RER": {
+        "49": "valid",
+        "59": "valid",
+        "69": "valid",
+        "79": "valid"
       },
       "28RES": {
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
         "98": "valid",
         "99": "valid"
       },
       "28RET": {
-        "90": "valid"
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid"
       },
       "28RFS": {
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
         "08": "valid",
         "09": "valid",
+        "12": "valid",
+        "13": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
         "18": "valid",
         "19": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
         "28": "valid",
         "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
         "38": "valid",
-        "39": "valid"
+        "39": "valid",
+        "48": "valid",
+        "49": "valid"
       },
       "28RFT": {
         "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
         "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
         "20": "valid",
+        "21": "valid",
         "22": "valid",
         "23": "valid",
         "24": "valid",
+        "25": "valid",
         "30": "valid",
+        "31": "valid",
         "32": "valid",
         "33": "valid",
         "34": "valid",
+        "35": "valid",
+        "40": "valid",
+        "41": "valid",
         "42": "valid",
         "43": "valid",
         "44": "valid",
+        "50": "valid",
+        "51": "valid",
         "52": "valid",
         "53": "valid",
-        "54": "valid"
+        "54": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "71": "valid",
+        "72": "valid"
+      }
+    },
+    "2026-03-20": {
+      "27RYL": {
+        "66": "invalid",
+        "67": "invalid",
+        "76": "invalid",
+        "77": "invalid",
+        "78": "invalid",
+        "79": "invalid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid"
+      },
+      "28RBR": {
+        "06": "invalid",
+        "16": "valid",
+        "17": "valid",
+        "18": "invalid",
+        "26": "valid",
+        "27": "valid",
+        "36": "valid",
+        "37": "valid"
+      },
+      "28RCR": {
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "28RCS": {
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "15": "valid",
+        "16": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "36": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "45": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "55": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "90": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid"
+      },
+      "28RDR": {
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "46": "valid",
+        "47": "valid",
+        "48": "valid",
+        "49": "valid",
+        "56": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "67": "valid",
+        "68": "valid",
+        "69": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "88": "valid",
+        "89": "valid"
+      },
+      "28RDS": {
+        "00": "valid",
+        "01": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "80": "valid",
+        "81": "valid"
+      },
+      "28RES": {
+        "40": "invalid",
+        "42": "invalid",
+        "43": "invalid",
+        "50": "invalid",
+        "52": "invalid",
+        "65": "invalid",
+        "66": "invalid",
+        "70": "invalid",
+        "71": "invalid",
+        "73": "invalid",
+        "75": "invalid",
+        "76": "invalid",
+        "77": "invalid"
+      }
+    },
+    "2026-03-22": {
+      "28RDR": {
+        "17": "invalid",
+        "28": "invalid",
+        "37": "invalid",
+        "38": "invalid",
+        "39": "invalid",
+        "58": "invalid",
+        "59": "invalid",
+        "68": "valid",
+        "69": "valid",
+        "78": "valid",
+        "79": "valid",
+        "88": "valid",
+        "89": "valid"
+      },
+      "28RDS": {
+        "00": "invalid",
+        "11": "invalid",
+        "21": "invalid",
+        "31": "invalid",
+        "42": "invalid",
+        "52": "invalid",
+        "60": "invalid",
+        "61": "invalid"
+      },
+      "28RER": {
+        "39": "valid",
+        "49": "valid",
+        "59": "valid",
+        "69": "valid",
+        "79": "valid",
+        "89": "valid",
+        "99": "valid"
+      },
+      "28RES": {
+        "30": "valid",
+        "31": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "66": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "28RET": {
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid"
+      },
+      "28RFS": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "48": "valid",
+        "49": "valid",
+        "59": "valid",
+        "69": "valid"
+      },
+      "28RFT": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid"
+      }
+    },
+    "2026-03-23": {
+      "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "89": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid"
+      },
+      "28RBS": {
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "46": "valid",
+        "47": "valid",
+        "48": "valid",
+        "49": "valid",
+        "52": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "61": "valid",
+        "62": "valid",
+        "71": "invalid",
+        "72": "invalid",
+        "73": "invalid"
+      },
+      "28RBT": {
+        "00": "valid",
+        "10": "valid",
+        "20": "valid",
+        "30": "valid",
+        "40": "valid",
+        "50": "valid"
+      }
+    },
+    "2026-03-24": {
+      "28RFS": {
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "48": "valid",
+        "49": "valid"
+      }
+    },
+    "2026-03-25": {
+      "28RBS": {
+        "05": "invalid",
+        "07": "invalid",
+        "09": "invalid",
+        "16": "invalid",
+        "27": "invalid",
+        "38": "invalid",
+        "39": "invalid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid"
+      },
+      "28RCR": {
+        "09": "valid",
+        "19": "valid",
+        "29": "valid",
+        "39": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "28RCS": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "45": "valid",
+        "46": "valid",
+        "47": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "55": "valid",
+        "56": "valid",
+        "57": "invalid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "66": "valid",
+        "67": "invalid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "invalid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "invalid",
+        "90": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "invalid"
+      },
+      "28RDR": {
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "46": "valid",
+        "47": "valid",
+        "48": "valid",
+        "49": "valid",
+        "56": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "67": "valid",
+        "68": "valid",
+        "69": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "88": "valid",
+        "89": "valid"
+      },
+      "28RDS": {
+        "00": "valid",
+        "01": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "80": "valid",
+        "81": "valid"
+      },
+      "28RES": {
+        "31": "invalid",
+        "40": "invalid",
+        "43": "invalid",
+        "61": "invalid",
+        "63": "invalid",
+        "65": "invalid",
+        "66": "invalid",
+        "70": "invalid",
+        "72": "invalid",
+        "73": "invalid",
+        "75": "invalid",
+        "76": "invalid",
+        "77": "invalid"
+      }
+    },
+    "2026-03-27": {
+      "27RYL": {
+        "66": "invalid",
+        "67": "invalid",
+        "76": "invalid",
+        "77": "invalid",
+        "78": "invalid",
+        "79": "invalid"
+      },
+      "28RBR": {
+        "06": "invalid",
+        "08": "invalid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "invalid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid"
+      },
+      "28RCS": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "45": "valid",
+        "46": "valid",
+        "47": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "55": "valid",
+        "56": "valid",
+        "57": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid"
+      },
+      "28RDS": {
+        "01": "invalid",
+        "04": "invalid",
+        "05": "invalid",
+        "06": "invalid",
+        "07": "invalid",
+        "12": "invalid",
+        "31": "invalid",
+        "42": "invalid",
+        "51": "invalid",
+        "52": "invalid",
+        "61": "invalid"
+      },
+      "28RES": {
+        "30": "invalid",
+        "31": "invalid",
+        "43": "invalid",
+        "51": "invalid",
+        "53": "invalid",
+        "60": "invalid",
+        "63": "invalid",
+        "70": "invalid",
+        "74": "invalid",
+        "81": "invalid",
+        "82": "invalid",
+        "85": "invalid",
+        "92": "invalid",
+        "93": "invalid",
+        "94": "invalid",
+        "96": "invalid",
+        "97": "invalid",
+        "99": "invalid"
+      },
+      "28RET": {
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "90": "valid",
+        "91": "valid",
+        "92": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid"
+      },
+      "28RFS": {
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "48": "valid",
+        "49": "valid",
+        "59": "valid",
+        "69": "valid"
+      },
+      "28RFT": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "40": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "54": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid"
+      }
+    },
+    "2026-03-28": {
+      "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "89": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid"
+      },
+      "28RBR": {
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid"
+      }
+    },
+    "2026-03-30": {
+      "27RYL": {
+        "65": "valid",
+        "66": "valid",
+        "67": "valid",
+        "68": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "79": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "89": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid",
+        "99": "valid"
+      },
+      "27RYM": {
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "78": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "88": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid",
+        "98": "valid"
+      },
+      "28RBR": {
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid"
+      },
+      "28RBS": {
+        "04": "valid",
+        "05": "valid",
+        "06": "valid",
+        "07": "valid",
+        "08": "valid",
+        "09": "valid",
+        "14": "valid",
+        "15": "valid",
+        "16": "valid",
+        "17": "valid",
+        "18": "valid",
+        "19": "valid",
+        "24": "valid",
+        "25": "valid",
+        "26": "valid",
+        "27": "valid",
+        "28": "valid",
+        "29": "valid",
+        "35": "valid",
+        "36": "valid",
+        "37": "valid",
+        "38": "valid",
+        "39": "valid",
+        "46": "valid",
+        "47": "valid",
+        "48": "valid",
+        "49": "valid",
+        "52": "valid",
+        "57": "valid",
+        "58": "valid",
+        "59": "valid",
+        "62": "valid",
+        "70": "invalid",
+        "72": "invalid",
+        "73": "invalid"
+      },
+      "28RBT": {
+        "00": "valid",
+        "10": "valid",
+        "20": "valid",
+        "30": "valid",
+        "40": "valid",
+        "50": "valid"
+      }
+    },
+    "2026-04-01": {
+      "28RDR": {
+        "07": "invalid",
+        "09": "invalid",
+        "19": "invalid",
+        "27": "invalid",
+        "29": "invalid",
+        "37": "invalid",
+        "58": "invalid",
+        "69": "invalid"
+      },
+      "28RDS": {
+        "10": "invalid",
+        "21": "invalid",
+        "30": "invalid",
+        "32": "invalid",
+        "42": "invalid",
+        "52": "invalid",
+        "60": "invalid"
+      },
+      "28RER": {
+        "69": "valid",
+        "79": "valid",
+        "89": "valid"
+      },
+      "28RES": {
+        "41": "valid",
+        "42": "valid",
+        "50": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "60": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "64": "valid",
+        "65": "valid",
+        "70": "valid",
+        "71": "valid",
+        "72": "valid",
+        "73": "valid",
+        "74": "valid",
+        "75": "valid",
+        "76": "valid",
+        "77": "valid",
+        "80": "valid",
+        "81": "valid",
+        "82": "valid",
+        "83": "valid",
+        "84": "valid",
+        "85": "valid",
+        "86": "valid",
+        "87": "valid",
+        "93": "valid",
+        "94": "valid",
+        "95": "valid",
+        "96": "valid",
+        "97": "valid"
+      },
+      "28RFT": {
+        "00": "valid",
+        "01": "valid",
+        "02": "valid",
+        "03": "valid",
+        "04": "valid",
+        "05": "valid",
+        "10": "valid",
+        "11": "valid",
+        "12": "valid",
+        "13": "valid",
+        "14": "valid",
+        "15": "valid",
+        "20": "valid",
+        "21": "valid",
+        "22": "valid",
+        "23": "valid",
+        "24": "valid",
+        "25": "valid",
+        "30": "valid",
+        "31": "valid",
+        "32": "valid",
+        "33": "valid",
+        "34": "valid",
+        "35": "valid",
+        "41": "valid",
+        "42": "valid",
+        "43": "valid",
+        "44": "valid",
+        "51": "valid",
+        "52": "valid",
+        "53": "valid",
+        "61": "valid",
+        "62": "valid",
+        "63": "valid",
+        "71": "valid",
+        "72": "valid"
       }
     }
   },
@@ -4819,6 +7131,12 @@
       "27RYL": {
         "item": "ok"
       },
+      "27RZL": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
       "28RBR": {
         "item": "ok"
       },
@@ -4848,7 +7166,28 @@
       "27RYL": {
         "item": "ok"
       },
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
       "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
         "item": "ok"
       },
       "28RCS": {
@@ -4877,7 +7216,13 @@
       "27RYM": {
         "item": "ok"
       },
+      "27RZL": {
+        "item": "none"
+      },
       "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
         "item": "none"
       },
       "28RBR": {
@@ -4930,19 +7275,46 @@
       "28RES": {
         "item": "ok"
       },
+      "28RET": {
+        "item": "ok"
+      },
       "28RFS": {
+        "item": "ok"
+      },
+      "28RFT": {
         "item": "ok"
       }
     },
     "2026-03-13": {
+      "27RYL": {
+        "item": "ok"
+      },
       "27RYM": {
         "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
       },
       "27RZM": {
         "item": "none"
       },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
       "28RBS": {
         "item": "ok"
+      },
+      "28RBT": {
+        "item": "none"
+      },
+      "28RCS": {
+        "item": "none"
       },
       "28RFT": {
         "item": "none"
@@ -4975,10 +7347,28 @@
       "27RYL": {
         "item": "ok"
       },
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
       "28RBR": {
         "item": "ok"
       },
       "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
         "item": "ok"
       },
       "28RCR": {
@@ -5001,7 +7391,46 @@
       }
     },
     "2026-03-17": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
+      "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
+        "item": "ok"
+      },
+      "28RCR": {
+        "item": "ok"
+      },
+      "28RCS": {
+        "item": "ok"
+      },
       "28RDR": {
+        "item": "ok"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
         "item": "ok"
       },
       "28RES": {
@@ -5012,6 +7441,398 @@
       },
       "28RFS": {
         "item": "ok"
+      },
+      "28RFT": {
+        "item": "ok"
+      }
+    },
+    "2026-03-20": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RYM": {
+        "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
+      "28RBS": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "ok"
+      },
+      "28RCS": {
+        "item": "ok"
+      },
+      "28RDR": {
+        "item": "ok"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
+        "item": "ok"
+      },
+      "28RES": {
+        "item": "ok"
+      },
+      "28RFS": {
+        "item": "none"
+      },
+      "28RFT": {
+        "item": "none"
+      }
+    },
+    "2026-03-21": {
+      "27RYL": {
+        "item": "none"
+      },
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "none"
+      },
+      "28RBS": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "none"
+      },
+      "28RCS": {
+        "item": "none"
+      },
+      "28RDR": {
+        "item": "none"
+      },
+      "28RDS": {
+        "item": "none"
+      },
+      "28RER": {
+        "item": "none"
+      },
+      "28RES": {
+        "item": "none"
+      },
+      "28RET": {
+        "item": "none"
+      },
+      "28RFS": {
+        "item": "none"
+      },
+      "28RFT": {
+        "item": "none"
+      }
+    },
+    "2026-03-22": {
+      "27RYL": {
+        "item": "none"
+      },
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "none"
+      },
+      "28RDR": {
+        "item": "ok"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
+        "item": "ok"
+      },
+      "28RES": {
+        "item": "ok"
+      },
+      "28RET": {
+        "item": "ok"
+      },
+      "28RFS": {
+        "item": "ok"
+      },
+      "28RFT": {
+        "item": "ok"
+      }
+    },
+    "2026-03-23": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RYM": {
+        "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "none"
+      },
+      "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
+        "item": "ok"
+      },
+      "28RCS": {
+        "item": "none"
+      },
+      "28RDR": {
+        "item": "none"
+      },
+      "28RDS": {
+        "item": "none"
+      },
+      "28RES": {
+        "item": "none"
+      },
+      "28RFT": {
+        "item": "none"
+      }
+    },
+    "2026-03-24": {
+      "27RYL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "none"
+      },
+      "28RBS": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "none"
+      },
+      "28RCS": {
+        "item": "none"
+      },
+      "28RES": {
+        "item": "none"
+      },
+      "28RFS": {
+        "item": "ok"
+      },
+      "28RFT": {
+        "item": "none"
+      }
+    },
+    "2026-03-25": {
+      "27RYM": {
+        "item": "none"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "none"
+      },
+      "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "ok"
+      },
+      "28RCS": {
+        "item": "ok"
+      },
+      "28RDR": {
+        "item": "ok"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
+        "item": "ok"
+      },
+      "28RES": {
+        "item": "ok"
+      },
+      "28RFS": {
+        "item": "none"
+      }
+    },
+    "2026-03-27": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
+      "28RBS": {
+        "item": "none"
+      },
+      "28RCR": {
+        "item": "none"
+      },
+      "28RCS": {
+        "item": "ok"
+      },
+      "28RDR": {
+        "item": "none"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
+        "item": "ok"
+      },
+      "28RES": {
+        "item": "ok"
+      },
+      "28RET": {
+        "item": "ok"
+      },
+      "28RFS": {
+        "item": "ok"
+      },
+      "28RFT": {
+        "item": "ok"
+      }
+    },
+    "2026-03-28": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RYM": {
+        "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
+      "28RBS": {
+        "item": "none"
+      }
+    },
+    "2026-03-30": {
+      "27RYL": {
+        "item": "ok"
+      },
+      "27RYM": {
+        "item": "ok"
+      },
+      "27RZL": {
+        "item": "none"
+      },
+      "27RZM": {
+        "item": "none"
+      },
+      "28RAR": {
+        "item": "none"
+      },
+      "28RAS": {
+        "item": "none"
+      },
+      "28RBR": {
+        "item": "ok"
+      },
+      "28RBS": {
+        "item": "ok"
+      },
+      "28RBT": {
+        "item": "ok"
+      },
+      "28RCS": {
+        "item": "none"
+      }
+    },
+    "2026-04-01": {
+      "28RCR": {
+        "item": "none"
+      },
+      "28RDR": {
+        "item": "ok"
+      },
+      "28RDS": {
+        "item": "ok"
+      },
+      "28RER": {
+        "item": "ok"
+      },
+      "28RES": {
+        "item": "ok"
+      },
+      "28RET": {
+        "item": "none"
+      },
+      "28RFS": {
+        "item": "none"
       },
       "28RFT": {
         "item": "ok"

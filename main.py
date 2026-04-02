@@ -11,6 +11,7 @@ Usage:
 
 import argparse
 import logging
+import random
 import re
 import sys
 from datetime import date, datetime
@@ -34,6 +35,10 @@ DEFAULT_MOSAIC_WIDTH = 4
 DEFAULT_MOSAIC_HEIGHT = 3
 DEFAULT_MIN_LAND_PER_SUBTILE = 0.05
 DEFAULT_MIN_SUBTILES_WITH_LAND = 1
+ALL_NAMED_ISLANDS = [
+    "el_hierro", "fuerteventura", "gran_canaria", "la_gomera",
+    "la_graciosa", "la_palma", "lanzarote", "tenerife",
+]
 PROJECT_DIR = Path(__file__).parent.resolve()
 OUTPUT_DIR = PROJECT_DIR / "images"
 CONFIG_FILE = PROJECT_DIR / "config.yaml"
@@ -235,6 +240,27 @@ def main():
         ),
     )
     parser.add_argument(
+        "--count",
+        type=int,
+        default=1,
+        metavar="N",
+        help=(
+            "Number of images to generate in one run (default: 1). "
+            "When N > 1, each image is drawn from a distinct randomly-chosen island. "
+            "Cannot be combined with --island."
+        ),
+    )
+    parser.add_argument(
+        "--island-pool",
+        type=str,
+        nargs="+",
+        metavar="NAME",
+        help=(
+            "Pool of islands to sample from when --count > 1. "
+            f"Defaults to all named islands: {', '.join(ALL_NAMED_ISLANDS)}"
+        ),
+    )
+    parser.add_argument(
         "--max-per-day",
         type=int,
         help="Skip generation if this many images were already generated today"
@@ -245,7 +271,10 @@ def main():
         help="Enable verbose logging"
     )
     args = parser.parse_args()
-    
+
+    if args.count > 1 and args.island:
+        parser.error("--count and --island cannot be used together; use --island-pool to restrict the pool")
+
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     
@@ -286,72 +315,84 @@ def main():
         if existing >= max_per_day:
             logger.info("Already generated %d image(s) today (max %d), skipping", existing, max_per_day)
             sys.exit(0)
-    
+
+    if args.count > 1:
+        pool = list(args.island_pool or ALL_NAMED_ISLANDS)
+        rng = random.Random(rng_seed)
+        rng.shuffle(pool)
+        island_filters: list[str | None] = [pool[i % len(pool)] for i in range(args.count)]
+    else:
+        island_filters = [args.island or None]
+
     logger.info("Selecting %dx%d tile mosaic from %s", mosaic_width, mosaic_height, candidate_list)
     if selected_top_left_subtile is not None:
         logger.info("Requested top-left subtile: %s", selected_top_left_subtile)
     if selected_date is not None:
         logger.info("Requested capture date: %s", selected_date)
+    logger.info("Fetching Sentinel-2 imagery (max %d%% clouds, last %d days)", max_cloud, days_back)
 
-    logger.info(f"Fetching Sentinel-2 imagery (max {max_cloud}% clouds, last {days_back} days)")
-    if args.island:
-        logger.info("Island filter: %s", args.island)
+    saved_paths: list[Path] = []
+    for i, island_filter in enumerate(island_filters):
+        if island_filter:
+            logger.info("Image %d/%d — island: %s", i + 1, len(island_filters), island_filter)
+        per_image_seed = (rng_seed + i) if rng_seed is not None else None
 
-    result = fetch_tile_mosaic_image(
-        candidate_list_path=candidate_list,
-        max_cloud_cover=max_cloud,
-        days_back=days_back,
-        valid_pixel_min=valid_pixel_min,
-        mosaic_width=mosaic_width,
-        mosaic_height=mosaic_height,
-        rng_seed=rng_seed,
-        min_land_per_subtile=min_land_per_subtile,
-        min_subtiles_with_land=min_subtiles_with_land,
-        island_filter=args.island or None,
-        top_left_subtile=selected_top_left_subtile,
-        offset_east=args.offset_east,
-        offset_north=args.offset_north,
-        exact_date=selected_date,
-    )
+        result = fetch_tile_mosaic_image(
+            candidate_list_path=candidate_list,
+            max_cloud_cover=max_cloud,
+            days_back=days_back,
+            valid_pixel_min=valid_pixel_min,
+            mosaic_width=mosaic_width,
+            mosaic_height=mosaic_height,
+            rng_seed=per_image_seed,
+            min_land_per_subtile=min_land_per_subtile,
+            min_subtiles_with_land=min_subtiles_with_land,
+            island_filter=island_filter,
+            top_left_subtile=selected_top_left_subtile,
+            offset_east=args.offset_east,
+            offset_north=args.offset_north,
+            exact_date=selected_date,
+        )
 
-    if result is None:
-        logger.error("Failed to fetch imagery - no suitable mosaics found")
-        logger.info("Try increasing --days or --cloud-cover, or update the candidate list")
+        if result is None:
+            logger.error(
+                "Failed to fetch imagery for island %s — no suitable mosaics found",
+                island_filter or "(any)",
+            )
+            continue
+
+        mosaic = result.mosaic
+        top_left_tile = format_top_left_subtile(mosaic.top_left_subtile)
+        capture_date = result.date.replace("-", "")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = (
+            args.output
+            if (args.output and len(island_filters) == 1)
+            else OUTPUT_DIR / f"canary_mosaic_{capture_date}_{top_left_tile}_{timestamp}.png"
+        )
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(result.image).save(output_path, "PNG", optimize=True)
+        logger.info("Saved image to %s", output_path)
+        saved_paths.append(output_path)
+
+    if not saved_paths:
+        logger.error("No images were generated successfully")
         sys.exit(1)
 
-    mosaic = result.mosaic
-    top_left_tile = format_top_left_subtile(mosaic.top_left_subtile)
-    capture_date = result.date.replace("-", "")
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = args.output or OUTPUT_DIR / f"canary_mosaic_{capture_date}_{top_left_tile}_{timestamp}.png"
-
-    output_path = Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(result.image).save(output_path, "PNG", optimize=True)
-    logger.info(f"Saved image to {output_path}")
-    
-    # if not args.dry_run:
-    #     logger.info("Setting wallpaper...")
-    #     if set_wallpaper(str(output_path)):
-    #         logger.info("Wallpaper set successfully!")
-    #     else:
-    #         logger.error("Failed to set wallpaper (image was saved)")
-    #         sys.exit(1)
-    # else:
-    #     logger.info("Dry run - skipping wallpaper set")
     if args.set_wallpaper and not args.dry_run:
         logger.info("Setting wallpaper...")
-        if set_wallpaper(str(output_path)):
+        if set_wallpaper(str(saved_paths[-1])):
             logger.info("Wallpaper set successfully!")
         else:
-            logger.error("Failed to set wallpaper (image was saved)")
+            logger.error("Failed to set wallpaper (images were saved)")
             sys.exit(1)
     else:
         logger.info("Skipping wallpaper set (use --set-wallpaper)")
     
     cleanup_old_images(OUTPUT_DIR, keep=args.keep)
     
-    logger.info("Done!")
+    logger.info("Done! Generated %d/%d image(s).", len(saved_paths), len(island_filters))
 
 
 if __name__ == "__main__":
