@@ -209,6 +209,9 @@ __marimo__/
 # Canary Wallpaper specific
 output/
 images/
+timelapses/
 *.png
+*.mp4
+*.gif
 
 .DS_Store
